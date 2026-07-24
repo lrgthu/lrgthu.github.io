@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ruogu (Franklin) Lin</title>
+    <meta
+      name="description"
+      content="Personal website for Ruogu (Franklin) Lin, cognitive scientist and statistician working on brain encoding, representation analysis, and interpretable models."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top">Ruogu Lin</a>
+        <div class="nav-links">
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="portrait" aria-hidden="true">RL</div>
+        <div class="hero-copy">
+          <p class="eyebrow">Cognitive Scientist · Statistician</p>
+          <h1>Ruogu (Franklin) Lin</h1>
+          <p class="lead">
+            I work on computational approaches for understanding visual representations in the brain, with a focus on
+            brain encoding models, structured variance partitioning, and reproducible analysis pipelines for EEG, MEG,
+            and fMRI data.
+          </p>
+          <div class="actions" aria-label="Profile links">
+            <a class="button primary" href="https://github.com/lrgthu">GitHub</a>
+            <a class="button" href="#publications">Research</a>
+            <a class="button" href="#contact">Contact</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="split" id="research">
+        <div>
+          <p class="section-label">Research</p>
+          <h2>Interpretable models for brain and behavior.</h2>
+        </div>
+        <div class="prose">
+          <p>
+            My current work studies how visual information is represented over time and across measurement modalities.
+            I build and validate encoding-model workflows that connect neural data with image features, deep neural
+            network layers, and behaviorally meaningful stimulus attributes.
+          </p>
+          <p>
+            I care about methods that are both predictive and interpretable: models should improve held-out prediction
+            while making clear which feature spaces contribute to the explanation.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-heading">
+          <p class="section-label">Selected projects</p>
+          <h2>Code and analysis infrastructure</h2>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Stacked regressions for brain maps</h3>
+            <p>
+              A Python package for stacked ridge-regression encoding models and structured variance partitioning across
+              correlated feature spaces.
+            </p>
+            <a href="https://github.com/lrgthu/Stacking">View project</a>
+          </article>
+          <article class="card">
+            <h3>MidRep reproduction</h3>
+            <p>
+              Reproduction code, validation scripts, and figure-generation notes for analyses of sustained intermediate
+              visual representations during perception.
+            </p>
+            <a href="https://github.com/lrgthu/MidRep_Reproduction">View project</a>
+          </article>
+          <article class="card">
+            <h3>THINGS-EEG2 MidRep</h3>
+            <p>
+              Paper-aligned EEG2 analyses using AlexNet feature layers, cached structured stacking, and cross-dataset
+              validation checks.
+            </p>
+            <a href="https://github.com/lrgthu/Things_EEG2_MidRep">View project</a>
+          </article>
+          <article class="card">
+            <h3>Brain Encoding Toolkit</h3>
+            <p>
+              Consolidated code archive for MEG, EEG, fMRI, temporal generalization, permutation testing, and
+              representation-analysis workflows.
+            </p>
+            <a href="https://github.com/lrgthu/Brain_Encoding_Code_Archive">View project</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="split" id="publications">
+        <div>
+          <p class="section-label">Publications</p>
+          <h2>Manuscripts and reproducibility notes</h2>
+        </div>
+        <div class="prose">
+          <p>
+            This page is ready for a publications list. Add citations, preprints, PDFs, and project links here as they
+            become public.
+          </p>
+          <ul class="publication-list">
+            <li>
+              <span class="pub-title">Intermediate Visual Representations are Sustained during Perception</span>
+              <span class="pub-note">Reproduction materials and figure-validation workflow.</span>
+            </li>
+            <li>
+              <span class="pub-title">Stacked regressions and structured variance partitioning for interpretable brain maps</span>
+              <span class="pub-note">Methods package and examples for brain encoding analyses.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <p class="section-label">Contact</p>
+        <h2>Open to research conversations and collaboration.</h2>
+        <p>
+          Based in Menlo Park, CA. The fastest place to inspect active code is GitHub.
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/lrgthu">github.com/lrgthu</a>
+          <a href="https://github.com/lrgthu?tab=repositories">Code repositories</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year">2026</span> Ruogu (Franklin) Lin.</p>
+      <p>Built for GitHub Pages.</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
