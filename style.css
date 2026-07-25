@@ -462,7 +462,7 @@ html.light .sidebar-photo {
   white-space: nowrap;
 }
 
-#coauthor-network {
+#coauthor-graph {
   width: 100%;
   height: 460px;
   background: var(--bg-surface);
