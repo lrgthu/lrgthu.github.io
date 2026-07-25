@@ -472,18 +472,34 @@ html.light .sidebar-photo {
   text-transform: uppercase;
 }
 
-.meta-logo {
-  width: 74px;
+.company-group + .company-group {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.company-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.45rem;
+}
+
+.company-logo {
+  width: auto;
+  max-width: 92px;
   height: 24px;
   flex: 0 0 auto;
   object-fit: contain;
   opacity: 0.9;
 }
 
-.cv-parent-logo {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 0.35rem;
+.company-role-list .cv-item:first-child {
+  padding-top: 0.45rem;
+}
+
+.meta-logo {
+  max-width: 86px;
 }
 
 .cv-item {
