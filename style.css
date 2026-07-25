@@ -245,13 +245,17 @@ h1, h2, h3, h4 {
 
 .about-text p {
   color: var(--text-secondary);
+  font-family: var(--font-publication);
+  font-size: 0.86rem;
+  line-height: 1.52;
   margin-bottom: var(--space-md);
   max-width: 42rem;
 }
 
 .about-text strong {
   color: var(--text-primary);
-  font-weight: 500;
+  font-family: var(--font-publication);
+  font-weight: 700;
 }
 
 .tag-group {
