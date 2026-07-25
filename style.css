@@ -543,6 +543,16 @@ html.light .sidebar-photo {
   font-weight: 500;
 }
 
+.cv-bullets {
+  margin-top: 0.45rem;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.cv-bullets li + li {
+  margin-top: 0.25rem;
+}
+
 @media (max-width: 768px) {
   .layout {
     flex-direction: column;
