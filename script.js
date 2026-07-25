@@ -6,26 +6,26 @@ document.addEventListener("DOMContentLoaded", function () {
       return {
         coauthor: {
           color: {
-            background: "#dde8f5",
-            border: "#9bbde0",
-            highlight: { background: "#c8daf0", border: "#0969da" },
-            hover: { background: "#c8daf0", border: "#0969da" }
+            background: "#efe3c5",
+            border: "#7c6b4d",
+            highlight: { background: "#f7f1df", border: "#8b1a1a" },
+            hover: { background: "#f7f1df", border: "#8b1a1a" }
           },
-          font: { color: "#1f2328", size: 12, face: "Inter, sans-serif" }
+          font: { color: "#17130c", size: 12, face: "Times New Roman, serif" }
         },
         ruogu: {
           color: {
-            background: "#0969da",
-            border: "#0550ae",
-            highlight: { background: "#1a7fe8", border: "#0969da" },
-            hover: { background: "#1a7fe8", border: "#0969da" }
+            background: "#8b1a1a",
+            border: "#17130c",
+            highlight: { background: "#a62424", border: "#17130c" },
+            hover: { background: "#a62424", border: "#17130c" }
           },
-          font: { color: "#1f2328", size: 14, face: "Inter, sans-serif", bold: true }
+          font: { color: "#fffaf0", size: 14, face: "Times New Roman, serif", bold: true }
         },
         edge: {
-          color: "#9bbde0",
-          hover: "#0969da",
-          highlight: "#0969da"
+          color: "#7c6b4d",
+          hover: "#8b1a1a",
+          highlight: "#8b1a1a"
         }
       };
     }
