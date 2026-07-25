@@ -63,7 +63,7 @@
         <div class="pub-group">
           <h3 class="pub-group-title">Co-author Network</h3>
           <div id="coauthor-network" aria-label="Interactive co-author network"></div>
-          <p class="network-note">Node size reflects repeated co-authorship in the publication list below.</p>
+          <p class="network-note">Built from the publication list below. Node and edge size reflect repeated co-authorship.</p>
         </div>
 
         <div class="pub-group">
@@ -183,48 +183,85 @@
     const networkContainer = document.getElementById("coauthor-network");
 
     if (window.vis && networkContainer) {
-      const nodes = new vis.DataSet([
-        { id: "rl", label: "Ruogu Lin", value: 7, group: "me" },
-        { id: "lw", label: "Leila Wehbe", value: 2 },
-        { id: "xz", label: "Xuefeng Zeng", value: 4 },
-        { id: "mx", label: "Min Xu", value: 3 },
-        { id: "cl", label: "C Liu", value: 2 },
-        { id: "aw", label: "A Wang", value: 1 },
-        { id: "tn", label: "T Naselaris", value: 1 },
-        { id: "kk", label: "K Kay", value: 1 },
-        { id: "nj", label: "N Jain", value: 1 },
-        { id: "mmh", label: "M. M. Henderson", value: 1 },
-        { id: "jsp", label: "J. S. Prince", value: 1 },
-        { id: "mjt", label: "M. J. Tarr", value: 1 },
-        { id: "rl2", label: "R Li", value: 1 },
-        { id: "ses", label: "S. E. Sigmund", value: 1 },
-        { id: "bz", label: "B Zhou", value: 1 },
-        { id: "kw", label: "K Wang", value: 1 },
-        { id: "rj", label: "R Jiang", value: 1 },
-        { id: "kki", label: "K Kitani", value: 1 },
-        { id: "cc", label: "C Che", value: 1 },
-        { id: "ke", label: "K Elmaaroufi", value: 1 },
-        { id: "jg", label: "J Galeotti", value: 1 },
-        { id: "xl", label: "X Liang", value: 1 },
-        { id: "zf", label: "Z Freyberg", value: 1 },
-        { id: "ex", label: "E Xing", value: 1 },
-        { id: "zw", label: "Z Wang", value: 1 },
-        { id: "jl", label: "J Lu", value: 1 },
-        { id: "jf", label: "J Feng", value: 1 }
+      const papers = [
+        ["Ruogu Lin", "Thomas Naselaris", "Kendrick Kay", "Leila Wehbe"],
+        ["Nidhi Jain", "Aria Wang", "Margaret M. Henderson", "Ruogu Lin", "Jacob S. Prince", "Michael J. Tarr", "Leila Wehbe"],
+        ["Rui Li", "Xuefeng Zeng", "Sarah E. Sigmund", "Ruogu Lin", "Bo Zhou", "Chengqian Liu", "Kai Wang", "Ren Jiang"],
+        ["Ruogu Lin", "Xuefeng Zeng", "Kris Kitani", "Min Xu"],
+        ["Chen Che", "Ruogu Lin", "Xuefeng Zeng", "Karim Elmaaroufi", "John Galeotti", "Min Xu"],
+        ["Chengqian Liu", "Xuefeng Zeng", "Ruogu Lin", "Xiaoyu Liang", "Zachary Freyberg", "Eric Xing", "Min Xu"],
+        ["Zhenyu Wang", "Jian Lu", "Ruogu Lin", "Jianjiang Feng"]
+      ];
+
+      const shortLabels = new Map([
+        ["Ruogu Lin", "Ruogu Lin"],
+        ["Thomas Naselaris", "T Naselaris"],
+        ["Kendrick Kay", "K Kay"],
+        ["Leila Wehbe", "L Wehbe"],
+        ["Nidhi Jain", "N Jain"],
+        ["Aria Wang", "A Wang"],
+        ["Margaret M. Henderson", "M. M. Henderson"],
+        ["Jacob S. Prince", "J. S. Prince"],
+        ["Michael J. Tarr", "M. J. Tarr"],
+        ["Rui Li", "R Li"],
+        ["Xuefeng Zeng", "X Zeng"],
+        ["Sarah E. Sigmund", "S. E. Sigmund"],
+        ["Bo Zhou", "B Zhou"],
+        ["Chengqian Liu", "C Liu"],
+        ["Kai Wang", "K Wang"],
+        ["Ren Jiang", "R Jiang"],
+        ["Kris Kitani", "K Kitani"],
+        ["Min Xu", "M Xu"],
+        ["Chen Che", "C Che"],
+        ["Karim Elmaaroufi", "K Elmaaroufi"],
+        ["John Galeotti", "J Galeotti"],
+        ["Xiaoyu Liang", "X Liang"],
+        ["Zachary Freyberg", "Z Freyberg"],
+        ["Eric Xing", "E Xing"],
+        ["Zhenyu Wang", "Z Wang"],
+        ["Jian Lu", "J Lu"],
+        ["Jianjiang Feng", "J Feng"]
       ]);
 
-      const edges = new vis.DataSet([
-        ["rl", "lw", 2], ["rl", "xz", 4], ["rl", "mx", 3], ["rl", "cl", 2],
-        ["rl", "aw", 1], ["rl", "tn", 1], ["rl", "kk", 1], ["rl", "nj", 1],
-        ["rl", "mmh", 1], ["rl", "jsp", 1], ["rl", "mjt", 1], ["rl", "rl2", 1],
-        ["rl", "ses", 1], ["rl", "bz", 1], ["rl", "kw", 1], ["rl", "rj", 1],
-        ["rl", "kki", 1], ["rl", "cc", 1], ["rl", "ke", 1], ["rl", "jg", 1],
-        ["rl", "xl", 1], ["rl", "zf", 1], ["rl", "ex", 1], ["rl", "zw", 1],
-        ["rl", "jl", 1], ["rl", "jf", 1],
-        ["xz", "mx", 3], ["xz", "cl", 2], ["xz", "cc", 1], ["xz", "kki", 1],
-        ["cl", "mx", 1], ["lw", "aw", 1], ["lw", "tn", 1], ["lw", "kk", 1],
-        ["lw", "nj", 1], ["lw", "mmh", 1], ["lw", "jsp", 1], ["lw", "mjt", 1]
-      ].map(([from, to, value]) => ({ from, to, value, width: 1 + value * 0.75 })));
+      const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      const nodeWeights = new Map();
+      const edgeWeights = new Map();
+
+      for (const authors of papers) {
+        for (const author of authors) {
+          nodeWeights.set(author, (nodeWeights.get(author) || 0) + 1);
+        }
+        for (let i = 0; i < authors.length; i += 1) {
+          for (let j = i + 1; j < authors.length; j += 1) {
+            const pair = [authors[i], authors[j]].sort();
+            const key = pair.join("::");
+            edgeWeights.set(key, (edgeWeights.get(key) || 0) + 1);
+          }
+        }
+      }
+
+      const nodes = new vis.DataSet(
+        Array.from(nodeWeights, ([name, value]) => ({
+          id: slug(name),
+          label: shortLabels.get(name) || name,
+          title: `${name}<br>${value} publication${value === 1 ? "" : "s"}`,
+          value,
+          group: name === "Ruogu Lin" ? "me" : "coauthor"
+        }))
+      );
+
+      const edges = new vis.DataSet(
+        Array.from(edgeWeights, ([key, value]) => {
+          const [a, b] = key.split("::");
+          return {
+            from: slug(a),
+            to: slug(b),
+            value,
+            width: 0.75 + value * 0.85,
+            title: `${shortLabels.get(a) || a} + ${shortLabels.get(b) || b}<br>${value} shared publication${value === 1 ? "" : "s"}`
+          };
+        })
+      );
 
       const colors = getComputedStyle(document.documentElement);
       new vis.Network(networkContainer, { nodes, edges }, {
