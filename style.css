@@ -351,6 +351,10 @@ html.light .sidebar-photo {
   margin-bottom: var(--space-xl);
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 .pub-group:last-child,
 .cv-block:last-child {
   margin-bottom: 0;
