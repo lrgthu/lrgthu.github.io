@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Carnegie Mellon University</title>
+  <circle cx="32" cy="32" r="29" fill="#c41230"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <path fill="#ffffff" d="M18 44V20h7.2L32 32.2 38.8 20H46v24h-6.2V30.9l-5.5 9.7h-4.6l-5.5-9.7V44H18Z"/>
+</svg>
