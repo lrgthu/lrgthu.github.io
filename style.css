@@ -47,6 +47,10 @@ h1, h2, h3, h4 {
   line-height: 1.2;
 }
 
+#theme-toggle {
+  display: none !important;
+}
+
 .layout {
   display: flex;
   min-height: 100vh;
