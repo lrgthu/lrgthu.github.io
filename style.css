@@ -492,6 +492,27 @@ html.light .sidebar-photo {
   gap: var(--space-xl);
 }
 
+.cv-notice {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.cv-notice p + p {
+  margin-top: 0.5rem;
+}
+
+.cv-notice code {
+  color: var(--text-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
 .cv-item {
   display: grid;
   grid-template-columns: 90px 1fr;
