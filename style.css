@@ -262,6 +262,19 @@ h1, h2, h3, h4 {
   padding-left: 1.85rem;
 }
 
+.poem-line-numbered {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.poem-line-number {
+  margin-left: auto;
+  font-size: 0.5rem;
+  line-height: inherit;
+}
+
 .poem-gap {
   margin-top: 0.34rem !important;
 }
@@ -272,10 +285,7 @@ h1, h2, h3, h4 {
 }
 
 .poem-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.16rem;
+  display: block;
   margin-top: 0.36rem;
   color: #4a3d2f;
   font-size: 0.55rem;
