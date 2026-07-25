@@ -262,6 +262,15 @@ h1, h2, h3, h4 {
   padding-left: 1.85rem;
 }
 
+.poem-gap {
+  margin-top: 0.34rem !important;
+}
+
+.poem-star {
+  margin: 0.48rem 0 0.34rem !important;
+  text-align: left;
+}
+
 .poem-footer {
   display: flex;
   flex-direction: column;
@@ -272,6 +281,31 @@ h1, h2, h3, h4 {
   font-size: 0.55rem;
   line-height: 1.05;
   text-align: center;
+}
+
+.sidebar-poem-fr {
+  max-width: 194px;
+  font-size: 0.43rem;
+  line-height: 1.46;
+  letter-spacing: 0.012em;
+}
+
+.sidebar-poem-fr figcaption {
+  margin-bottom: 0.72rem;
+  font-size: 0.62rem;
+  font-style: italic;
+  letter-spacing: 0.09em;
+  word-spacing: 0.05em;
+}
+
+.sidebar-poem-fr .poem-dropcap {
+  font-size: 2.25rem;
+  line-height: 0.72;
+}
+
+.sidebar-poem-fr .poem-lines {
+  transform: scaleX(0.98);
+  transform-origin: top center;
 }
 
 .sidebar-spacer {
