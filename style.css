@@ -501,12 +501,20 @@ html.light .sidebar-photo {
   font-weight: 600;
 }
 
-.school-emblem {
+.entry-logo {
   width: 42px;
   height: 42px;
   flex: 0 0 auto;
   object-fit: contain;
   opacity: 0.85;
+}
+
+.cmu-logo {
+  border-radius: 2px;
+}
+
+.org-logo {
+  padding: 4px;
 }
 
 .cv-bullets {
@@ -596,7 +604,7 @@ html.light .sidebar-photo {
     align-items: flex-start;
   }
 
-  .school-emblem {
+  .entry-logo {
     width: 34px;
     height: 34px;
   }
