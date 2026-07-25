@@ -3,30 +3,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (container && typeof vis !== "undefined") {
     function buildColors() {
-      const light = document.documentElement.classList.contains("light");
       return {
         coauthor: {
           color: {
-            background: light ? "#dde8f5" : "#2d333b",
-            border: light ? "#9bbde0" : "#4d5566",
-            highlight: { background: light ? "#c8daf0" : "#373e47", border: light ? "#0969da" : "#4f8ef7" },
-            hover: { background: light ? "#c8daf0" : "#373e47", border: light ? "#0969da" : "#4f8ef7" }
+            background: "#dde8f5",
+            border: "#9bbde0",
+            highlight: { background: "#c8daf0", border: "#0969da" },
+            hover: { background: "#c8daf0", border: "#0969da" }
           },
-          font: { color: light ? "#1f2328" : "#c9d1d9", size: 12, face: "Inter, sans-serif" }
+          font: { color: "#1f2328", size: 12, face: "Inter, sans-serif" }
         },
         ruogu: {
           color: {
-            background: light ? "#0969da" : "#2d5aa8",
-            border: light ? "#0550ae" : "#4f8ef7",
-            highlight: { background: light ? "#1a7fe8" : "#3d6ab8", border: light ? "#0969da" : "#6aa3ff" },
-            hover: { background: light ? "#1a7fe8" : "#3d6ab8", border: light ? "#0969da" : "#6aa3ff" }
+            background: "#0969da",
+            border: "#0550ae",
+            highlight: { background: "#1a7fe8", border: "#0969da" },
+            hover: { background: "#1a7fe8", border: "#0969da" }
           },
-          font: { color: light ? "#1f2328" : "#ffffff", size: 14, face: "Inter, sans-serif", bold: true }
+          font: { color: "#1f2328", size: 14, face: "Inter, sans-serif", bold: true }
         },
         edge: {
-          color: light ? "#9bbde0" : "#4d5566",
-          hover: light ? "#0969da" : "#4f8ef7",
-          highlight: light ? "#0969da" : "#4f8ef7"
+          color: "#9bbde0",
+          hover: "#0969da",
+          highlight: "#0969da"
         }
       };
     }
