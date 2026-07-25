@@ -1,24 +1,4 @@
 :root {
-  --bg-base: #0d1117;
-  --bg-surface: #161b22;
-  --bg-hover: #1c2128;
-  --border: #21262d;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --accent: #4f8ef7;
-  --accent-dim: #2d5aa8;
-  --font-heading: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --sidebar-width: 260px;
-  --radius: 6px;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
-  --space-xl: 4rem;
-}
-
-html.light {
   --bg-base: #ffffff;
   --bg-surface: #f6f8fa;
   --bg-hover: #eaeef2;
@@ -28,6 +8,14 @@ html.light {
   --text-muted: #848d97;
   --accent: #0969da;
   --accent-dim: #0550ae;
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sidebar-width: 260px;
+  --radius: 6px;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
 }
 
 *, *::before, *::after {
@@ -58,34 +46,6 @@ h1, h2, h3, h4 {
   font-weight: 600;
   line-height: 1.2;
 }
-
-#theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-surface);
-  color: var(--text-secondary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 700 1rem var(--font-heading);
-}
-
-#theme-toggle:hover {
-  border-color: var(--accent);
-  background: var(--bg-hover);
-  color: var(--text-primary);
-}
-
-.icon-moon { display: none; }
-html.light .icon-sun { display: none; }
-html.light .icon-moon { display: block; }
 
 .layout {
   display: flex;
@@ -126,22 +86,15 @@ html.light .icon-moon { display: block; }
   border-radius: 50%;
   border: 2px solid var(--border);
   background:
-    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.18), transparent 28%),
-    linear-gradient(145deg, var(--accent-dim), #151922);
-  color: var(--text-primary);
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9), transparent 28%),
+    linear-gradient(145deg, #dce9ff, #9fc3ff);
+  color: #12335f;
   display: grid;
   place-items: center;
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.08em;
-}
-
-html.light .sidebar-photo {
-  background:
-    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.9), transparent 28%),
-    linear-gradient(145deg, #dce9ff, #9fc3ff);
-  color: #12335f;
 }
 
 .sidebar-name {
