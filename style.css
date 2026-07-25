@@ -8,9 +8,10 @@
   --text-muted: #5d533f;
   --accent: #0a3a2d;
   --accent-dim: #6d1f12;
-  --font-heading: Monaco, "Andale Mono", "Courier New", Courier, monospace;
+  --font-heading: Chicago, Charcoal, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: Monaco, "Andale Mono", "Courier New", Courier, monospace;
   --font-publication: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: Chicago, Charcoal, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --sidebar-width: 240px;
   --radius: 0;
   --space-sm: 0.5rem;
@@ -113,10 +114,11 @@ h1, h2, h3, h4 {
 }
 
 .sidebar-name {
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.18rem;
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: 0;
+  letter-spacing: 0.01em;
 }
 
 .sidebar-title {
@@ -230,7 +232,8 @@ h1, h2, h3, h4 {
 }
 
 .section-title {
-  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
   color: var(--text-primary);
   margin: 0 -1rem 1rem;
   padding: 0.3rem 0.55rem;
@@ -238,8 +241,8 @@ h1, h2, h3, h4 {
   background:
     repeating-linear-gradient(0deg, #24211b 0 1px, #39352c 1px 2px);
   color: #f6f1df;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .about-text p {
