@@ -472,6 +472,20 @@ html.light .sidebar-photo {
   text-transform: uppercase;
 }
 
+.meta-logo {
+  width: 74px;
+  height: 24px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.cv-parent-logo {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.35rem;
+}
+
 .cv-item {
   display: flex;
   align-items: center;
