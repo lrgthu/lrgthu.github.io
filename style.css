@@ -91,7 +91,7 @@ h1, h2, h3, h4 {
   border: 2px solid var(--border);
   display: block;
   object-fit: cover;
-  object-position: 3% center;
+  object-position: center;
 }
 
 .sidebar-name {
