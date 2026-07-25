@@ -462,6 +462,26 @@ html.light .sidebar-photo {
   white-space: nowrap;
 }
 
+#coauthor-network {
+  width: 100%;
+  height: 460px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.network-note {
+  margin-top: 0.65rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.network-fallback {
+  padding: var(--space-md);
+  color: var(--text-secondary);
+}
+
 .cv-grid {
   display: flex;
   flex-direction: column;

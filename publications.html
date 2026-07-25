@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <link rel="stylesheet" href="style.css">
   <script src="theme.js"></script>
 </head>
@@ -58,6 +59,12 @@
     <main class="content">
       <section class="section">
         <h2 class="section-title">Publications</h2>
+
+        <div class="pub-group">
+          <h3 class="pub-group-title">Co-author Network</h3>
+          <div id="coauthor-network" aria-label="Interactive co-author network"></div>
+          <p class="network-note">Node size reflects repeated co-authorship in the publication list below.</p>
+        </div>
 
         <div class="pub-group">
           <h3 class="pub-group-title">Selected Articles</h3>
@@ -179,5 +186,99 @@
       </section>
     </main>
   </div>
+  <script>
+    const networkContainer = document.getElementById("coauthor-network");
+
+    if (window.vis && networkContainer) {
+      const nodes = new vis.DataSet([
+        { id: "rl", label: "Ruogu Lin", value: 7, group: "me" },
+        { id: "lw", label: "Leila Wehbe", value: 2 },
+        { id: "xz", label: "Xuefeng Zeng", value: 4 },
+        { id: "mx", label: "Min Xu", value: 3 },
+        { id: "cl", label: "C Liu", value: 2 },
+        { id: "aw", label: "A Wang", value: 1 },
+        { id: "tn", label: "T Naselaris", value: 1 },
+        { id: "kk", label: "K Kay", value: 1 },
+        { id: "nj", label: "N Jain", value: 1 },
+        { id: "mmh", label: "M. M. Henderson", value: 1 },
+        { id: "jsp", label: "J. S. Prince", value: 1 },
+        { id: "mjt", label: "M. J. Tarr", value: 1 },
+        { id: "rl2", label: "R Li", value: 1 },
+        { id: "ses", label: "S. E. Sigmund", value: 1 },
+        { id: "bz", label: "B Zhou", value: 1 },
+        { id: "kw", label: "K Wang", value: 1 },
+        { id: "rj", label: "R Jiang", value: 1 },
+        { id: "kki", label: "K Kitani", value: 1 },
+        { id: "cc", label: "C Che", value: 1 },
+        { id: "ke", label: "K Elmaaroufi", value: 1 },
+        { id: "jg", label: "J Galeotti", value: 1 },
+        { id: "xl", label: "X Liang", value: 1 },
+        { id: "zf", label: "Z Freyberg", value: 1 },
+        { id: "ex", label: "E Xing", value: 1 },
+        { id: "zw", label: "Z Wang", value: 1 },
+        { id: "jl", label: "J Lu", value: 1 },
+        { id: "jf", label: "J Feng", value: 1 }
+      ]);
+
+      const edges = new vis.DataSet([
+        ["rl", "lw", 2], ["rl", "xz", 4], ["rl", "mx", 3], ["rl", "cl", 2],
+        ["rl", "aw", 1], ["rl", "tn", 1], ["rl", "kk", 1], ["rl", "nj", 1],
+        ["rl", "mmh", 1], ["rl", "jsp", 1], ["rl", "mjt", 1], ["rl", "rl2", 1],
+        ["rl", "ses", 1], ["rl", "bz", 1], ["rl", "kw", 1], ["rl", "rj", 1],
+        ["rl", "kki", 1], ["rl", "cc", 1], ["rl", "ke", 1], ["rl", "jg", 1],
+        ["rl", "xl", 1], ["rl", "zf", 1], ["rl", "ex", 1], ["rl", "zw", 1],
+        ["rl", "jl", 1], ["rl", "jf", 1],
+        ["xz", "mx", 3], ["xz", "cl", 2], ["xz", "cc", 1], ["xz", "kki", 1],
+        ["cl", "mx", 1], ["lw", "aw", 1], ["lw", "tn", 1], ["lw", "kk", 1],
+        ["lw", "nj", 1], ["lw", "mmh", 1], ["lw", "jsp", 1], ["lw", "mjt", 1]
+      ].map(([from, to, value]) => ({ from, to, value, width: 1 + value * 0.75 })));
+
+      const colors = getComputedStyle(document.documentElement);
+      new vis.Network(networkContainer, { nodes, edges }, {
+        autoResize: true,
+        nodes: {
+          shape: "dot",
+          scaling: { min: 8, max: 30 },
+          font: { color: colors.getPropertyValue("--text-secondary").trim(), face: "Inter", size: 13 },
+          color: {
+            border: colors.getPropertyValue("--accent").trim(),
+            background: colors.getPropertyValue("--bg-hover").trim(),
+            highlight: {
+              border: colors.getPropertyValue("--accent").trim(),
+              background: colors.getPropertyValue("--accent-dim").trim()
+            }
+          }
+        },
+        groups: {
+          me: {
+            color: {
+              border: colors.getPropertyValue("--accent").trim(),
+              background: colors.getPropertyValue("--accent-dim").trim()
+            },
+            font: { color: colors.getPropertyValue("--text-primary").trim(), face: "Space Grotesk", size: 15 }
+          }
+        },
+        edges: {
+          color: colors.getPropertyValue("--border").trim(),
+          smooth: { type: "continuous" }
+        },
+        physics: {
+          stabilization: true,
+          barnesHut: {
+            gravitationalConstant: -9500,
+            centralGravity: 0.25,
+            springLength: 120,
+            springConstant: 0.035
+          }
+        },
+        interaction: {
+          hover: true,
+          tooltipDelay: 120
+        }
+      });
+    } else if (networkContainer) {
+      networkContainer.innerHTML = '<p class="network-fallback">Co-author network unavailable because the visualization library did not load.</p>';
+    }
+  </script>
 </body>
 </html>
