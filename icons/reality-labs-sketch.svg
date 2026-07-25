@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1075.3 1074.8" role="img">
+  <title>Reality Labs sketch</title>
+  <defs>
+    <filter id="pencilSketch" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.28 0.55 0.17 0 0  0.28 0.55 0.17 0 0  0.28 0.55 0.17 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.06 0.72"/>
+        <feFuncG type="table" tableValues="0.05 0.64"/>
+        <feFuncB type="table" tableValues="0.04 0.52"/>
+      </feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.94" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect x="26.883" y="26.883" width="1021.535" height="1021.035" fill="#fff5df" stroke="#6f6048" stroke-width="10.753" stroke-dasharray="19.36 13.98" vector-effect="non-scaling-stroke"/>
+  <image href="reality-labs.svg" x="0" y="0" width="1075.3" height="1074.8" preserveAspectRatio="xMidYMid meet" filter="url(#pencilSketch)" opacity="0.9" style="mix-blend-mode:multiply"/>
+  <path d="M43.01 118.23 C268.82 64.49, 623.67 150.47, 1032.29 96.73" fill="none" stroke="#6f6048" stroke-width="4.516" stroke-linecap="round" opacity="0.45" vector-effect="non-scaling-stroke"/>
+  <path d="M64.52 978.07 C365.60 1010.31, 698.95 945.82, 1021.53 978.07" fill="none" stroke="#6f6048" stroke-width="4.516" stroke-linecap="round" opacity="0.38" vector-effect="non-scaling-stroke"/>
+</svg>

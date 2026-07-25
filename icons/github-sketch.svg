@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img">
+  <title>Github sketch</title>
+  <defs>
+    <filter id="pencilSketch" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0.28 0.55 0.17 0 0  0.28 0.55 0.17 0 0  0.28 0.55 0.17 0 0  0 0 0 1 0"/>
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="0.06 0.72"/>
+        <feFuncG type="table" tableValues="0.05 0.64"/>
+        <feFuncB type="table" tableValues="0.04 0.52"/>
+      </feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.12" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <rect x="0.600" y="0.600" width="22.800" height="22.800" fill="#fff5df" stroke="#6f6048" stroke-width="0.250" stroke-dasharray="0.45 0.33" vector-effect="non-scaling-stroke"/>
+  <image href="github.svg" x="0" y="0" width="24" height="24" preserveAspectRatio="xMidYMid meet" filter="url(#pencilSketch)" opacity="0.9" style="mix-blend-mode:multiply"/>
+  <path d="M0.96 2.64 C6.00 1.44, 13.92 3.36, 23.04 2.16" fill="none" stroke="#6f6048" stroke-width="0.105" stroke-linecap="round" opacity="0.45" vector-effect="non-scaling-stroke"/>
+  <path d="M1.44 21.84 C8.16 22.56, 15.60 21.12, 22.80 21.84" fill="none" stroke="#6f6048" stroke-width="0.105" stroke-linecap="round" opacity="0.38" vector-effect="non-scaling-stroke"/>
+</svg>
