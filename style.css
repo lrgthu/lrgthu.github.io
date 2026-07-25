@@ -510,7 +510,7 @@ html.light .sidebar-photo {
 }
 
 .cmu-logo {
-  border-radius: 2px;
+  opacity: 0.95;
 }
 
 .org-logo {
