@@ -54,13 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function drawAutomaton() {
       ctx.clearRect(0, 0, automaton.width, automaton.height);
-      ctx.fillStyle = "rgba(32, 28, 20, 0.82)";
 
       grid.forEach(function (row, y) {
         row.forEach(function (alive, x) {
-          if (alive) {
-            ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
-          }
+          ctx.fillStyle = alive ? "#11100c" : "#f6f1df";
+          ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
         });
       });
     }
