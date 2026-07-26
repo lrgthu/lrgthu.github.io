@@ -7,7 +7,7 @@
   <meta name="description" content="Personal website for Ruogu (Franklin) Lin.">
   <meta name="author" content="Ruogu (Franklin) Lin">
   <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-  <link rel="stylesheet" href="style.css?v=retro-6">
+  <link rel="stylesheet" href="style.css?v=retro-7">
 </head>
 <body>
   <div class="layout">
@@ -35,7 +35,14 @@
 
       <div class="sidebar-divider"></div>
 
-      <figure class="sidebar-poem" aria-label="Poem excerpt">
+      <section class="sidebar-automaton" aria-label="Cellular automaton">
+        <div class="automaton-title">Rule 30</div>
+        <canvas id="cellular-automaton" width="189" height="189"></canvas>
+        <div class="automaton-caption">cellular automaton</div>
+      </section>
+
+      <!-- Remove `is-hidden` from these poem blocks to show them again. -->
+      <figure class="sidebar-poem is-hidden" aria-label="Poem excerpt">
         <figcaption>I. THE BURIAL OF THE DEAD</figcaption>
         <div class="poem-lines">
           <p class="poem-first"><span class="poem-dropcap">A</span><span>PRIL is the cruellest month, breeding</span></p>
@@ -57,7 +64,7 @@
         </div>
       </figure>
 
-      <figure class="sidebar-poem sidebar-poem-fr" aria-label="French poem excerpt">
+      <figure class="sidebar-poem sidebar-poem-fr is-hidden" aria-label="French poem excerpt">
         <figcaption>LE PHÉNIX</figcaption>
         <div class="poem-lines">
           <p class="poem-first"><span class="poem-dropcap">J</span><span>E suis le dernier sur ta route</span></p>

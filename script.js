@@ -1,4 +1,74 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const automaton = document.getElementById("cellular-automaton");
+
+  if (automaton) {
+    const ctx = automaton.getContext("2d");
+    const cellSize = 3;
+    const cols = Math.floor(automaton.width / cellSize);
+    const rows = Math.floor(automaton.height / cellSize);
+    let generation = new Array(cols).fill(0);
+    let history = [];
+    let tick = 0;
+
+    function seedAutomaton() {
+      generation = new Array(cols).fill(0);
+      generation[Math.floor(cols / 2)] = 1;
+      history = [generation.slice()];
+      tick = 0;
+    }
+
+    function nextGeneration(current) {
+      const next = new Array(cols).fill(0);
+      for (let index = 0; index < cols; index += 1) {
+        const left = current[(index - 1 + cols) % cols];
+        const center = current[index];
+        const right = current[(index + 1) % cols];
+        next[index] = left ^ (center || right);
+      }
+      return next;
+    }
+
+    function drawAutomaton() {
+      ctx.fillStyle = "#ede5c9";
+      ctx.fillRect(0, 0, automaton.width, automaton.height);
+      ctx.fillStyle = "#201c14";
+
+      history.forEach(function (row, y) {
+        row.forEach(function (alive, x) {
+          if (alive) {
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          }
+        });
+      });
+    }
+
+    function stepAutomaton() {
+      generation = nextGeneration(generation);
+      history.push(generation.slice());
+      if (history.length > rows) {
+        history.shift();
+      }
+      drawAutomaton();
+    }
+
+    function animateAutomaton() {
+      tick += 1;
+      if (tick % 8 === 0) {
+        stepAutomaton();
+      }
+      window.requestAnimationFrame(animateAutomaton);
+    }
+
+    seedAutomaton();
+    drawAutomaton();
+    automaton.addEventListener("click", seedAutomaton);
+    automaton.addEventListener("touchstart", seedAutomaton, { passive: true });
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.requestAnimationFrame(animateAutomaton);
+    }
+  }
+
   const container = document.getElementById("coauthor-graph");
 
   if (container && typeof vis !== "undefined") {
