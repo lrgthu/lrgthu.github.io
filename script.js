@@ -3,57 +3,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (automaton) {
     const ctx = automaton.getContext("2d");
-    const cellSize = 3;
+    const cellSize = 5;
     const cols = Math.floor(automaton.width / cellSize);
     const rows = Math.floor(automaton.height / cellSize);
-    let generation = new Array(cols).fill(0);
-    let history = [];
+    let grid = [];
     let tick = 0;
+    let stepsSinceSeed = 0;
 
     function seedAutomaton() {
-      generation = new Array(cols).fill(0);
-      generation[Math.floor(cols / 2)] = 1;
-      history = [generation.slice()];
+      grid = Array.from({ length: rows }, function () {
+        return Array.from({ length: cols }, function () {
+          return Math.random() < 0.34 ? 1 : 0;
+        });
+      });
       tick = 0;
+      stepsSinceSeed = 0;
     }
 
-    function nextGeneration(current) {
-      const next = new Array(cols).fill(0);
-      for (let index = 0; index < cols; index += 1) {
-        const left = current[(index - 1 + cols) % cols];
-        const center = current[index];
-        const right = current[(index + 1) % cols];
-        next[index] = left ^ (center || right);
+    function countNeighbors(x, y) {
+      let count = 0;
+      for (let yOffset = -1; yOffset <= 1; yOffset += 1) {
+        for (let xOffset = -1; xOffset <= 1; xOffset += 1) {
+          if (xOffset === 0 && yOffset === 0) {
+            continue;
+          }
+          const nextX = (x + xOffset + cols) % cols;
+          const nextY = (y + yOffset + rows) % rows;
+          count += grid[nextY][nextX];
+        }
       }
-      return next;
+      return count;
+    }
+
+    function nextGeneration() {
+      const next = Array.from({ length: rows }, function () {
+        return new Array(cols).fill(0);
+      });
+
+      for (let y = 0; y < rows; y += 1) {
+        for (let x = 0; x < cols; x += 1) {
+          const alive = grid[y][x] === 1;
+          const neighbors = countNeighbors(x, y);
+          next[y][x] = neighbors === 3 || (alive && neighbors === 2) ? 1 : 0;
+        }
+      }
+
+      grid = next;
+      stepsSinceSeed += 1;
     }
 
     function drawAutomaton() {
-      ctx.fillStyle = "#ede5c9";
-      ctx.fillRect(0, 0, automaton.width, automaton.height);
-      ctx.fillStyle = "#201c14";
+      ctx.clearRect(0, 0, automaton.width, automaton.height);
+      ctx.fillStyle = "rgba(32, 28, 20, 0.82)";
 
-      history.forEach(function (row, y) {
+      grid.forEach(function (row, y) {
         row.forEach(function (alive, x) {
           if (alive) {
-            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
           }
         });
       });
     }
 
     function stepAutomaton() {
-      generation = nextGeneration(generation);
-      history.push(generation.slice());
-      if (history.length > rows) {
-        history.shift();
+      nextGeneration();
+      if (stepsSinceSeed > 260) {
+        seedAutomaton();
       }
       drawAutomaton();
     }
 
     function animateAutomaton() {
       tick += 1;
-      if (tick % 8 === 0) {
+      if (tick % 10 === 0) {
         stepAutomaton();
       }
       window.requestAnimationFrame(animateAutomaton);

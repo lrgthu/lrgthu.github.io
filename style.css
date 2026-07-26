@@ -201,50 +201,21 @@ h1, h2, h3, h4 {
 
 .sidebar-automaton {
   width: 100%;
-  max-width: 196px;
-  margin: 0 auto;
-  padding: 0.45rem;
-  color: var(--text-primary);
-  background: #f6f1df;
-  border: 1px solid var(--border);
-  box-shadow:
-    2px 2px 0 #4c4c4c,
-    inset 1px 1px 0 #fffaf0,
-    inset -1px -1px 0 #7c6b4d;
-}
-
-.automaton-title {
-  margin: 0 0 0.35rem;
-  padding: 0.18rem 0.35rem;
-  color: #f6f1df;
-  background:
-    repeating-linear-gradient(0deg, #24211b 0 1px, #39352c 1px 2px);
-  border: 1px solid var(--border);
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.1;
-  text-align: center;
+  max-width: 190px;
+  margin: -0.15rem auto 0;
+  padding: 0;
+  opacity: 0.58;
+  mix-blend-mode: multiply;
 }
 
 #cellular-automaton {
   display: block;
   width: 100%;
   height: auto;
-  background: #ede5c9;
-  border: 1px solid var(--border);
+  background: transparent;
+  border: 0;
   image-rendering: pixelated;
   cursor: crosshair;
-}
-
-.automaton-caption {
-  margin-top: 0.3rem;
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: 0.58rem;
-  line-height: 1.2;
-  text-align: center;
-  letter-spacing: 0.02em;
 }
 
 .sidebar-poem {
