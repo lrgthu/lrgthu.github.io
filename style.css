@@ -223,16 +223,10 @@ h1, h2, h3, h4 {
   margin: 0.25rem auto 0;
   color: #d9d0b7;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 0.58rem;
-  line-height: 1.42;
+  font-size: 0.46rem;
+  line-height: 1.36;
   text-align: center;
-  user-select: none;
-}
-
-.sidebar-invisible-poem::selection,
-.sidebar-invisible-poem *::selection {
-  color: #d9d0b7;
-  background: #d9d0b7;
+  user-select: text;
 }
 
 .sidebar-invisible-poem p {
