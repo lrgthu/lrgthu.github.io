@@ -218,6 +218,31 @@ h1, h2, h3, h4 {
   cursor: crosshair;
 }
 
+.sidebar-invisible-poem {
+  max-width: 190px;
+  margin: 0.25rem auto 0;
+  color: #d9d0b7;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.58rem;
+  line-height: 1.42;
+  text-align: center;
+  user-select: none;
+}
+
+.sidebar-invisible-poem::selection,
+.sidebar-invisible-poem *::selection {
+  color: #d9d0b7;
+  background: #d9d0b7;
+}
+
+.sidebar-invisible-poem p {
+  margin: 0;
+}
+
+.invisible-poem-title {
+  margin-bottom: 0.5rem !important;
+}
+
 .sidebar-poem {
   margin: 0 auto;
   width: 100%;
@@ -717,6 +742,10 @@ h1, h2, h3, h4 {
   }
 
   .sidebar-automaton {
+    display: none;
+  }
+
+  .sidebar-invisible-poem {
     display: none;
   }
 
