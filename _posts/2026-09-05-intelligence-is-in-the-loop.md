@@ -1,7 +1,7 @@
 ---
 title: "Intelligence Is in the Loop"
 date: 2026-09-05 15:58:00 -0500
-summary: "A Wienerian view of NeuroAI: intelligence as purposive, predictive, adaptive control in a feedback loop—and a warning that optimization cannot choose its own ends."
+summary: "A Wienerian view of NeuroAI: why the natural unit of intelligence is the adaptive organism-environment loop—and why optimization cannot choose its own ends."
 tags: [neuroai, cybernetics, control, neuroscience, ai, norbert-wiener]
 ---
 
@@ -11,7 +11,7 @@ NeuroAI is often described as a two-way exchange. Neuroscience offers principles
 
 > **What exactly is the object that NeuroAI is trying to model?**
 
-Much of modern work starts with a brain and an artificial network exposed to the same stimulus, then asks whether their internal representations align. Neural predictivity, representational similarity, and benchmark frameworks such as Brain-Score have made this comparison quantitative and productive (Schrimpf et al., 2018). But the comparison also encourages a particular unit of analysis:
+Much of modern work begins with a brain and an artificial network exposed to the same stimulus, then asks whether their internal representations align. Encoding models, representational similarity, neural predictivity, and benchmark frameworks such as Brain-Score have made this comparison quantitative and productive (Schrimpf et al., 2018). But they also encourage a particular scientific unit:
 
 `stimulus → brain representation`
 
@@ -19,185 +19,181 @@ versus
 
 `stimulus → model representation`
 
-Norbert Wiener suggests a different unit.
+Norbert Wiener suggests a different choice of unit.
 
-Across *Behavior, Purpose and Teleology* (Rosenblueth, Wiener, & Bigelow, 1943), *Cybernetics: Or Control and Communication in the Animal and the Machine* (Wiener, 1948), and *The Human Use of Human Beings* (Wiener, 1950/1954), intelligence appears less as a property located inside a model than as a property of an organized relation among **purpose, information, prediction, action, feedback, learning, and environment**.
+Across *Behavior, Purpose and Teleology* (Rosenblueth, Wiener, & Bigelow, 1943), *Cybernetics: Or Control and Communication in the Animal and the Machine* (Wiener, 1948), and *The Human Use of Human Beings* (Wiener, 1950/1954), the relevant object is not a representation in isolation, and not even the brain considered by itself. It is an organized relation among **purpose, information, prediction, action, feedback, learning, and environment**.
 
-The basic object is not a representation in isolation. It is a loop:
+The basic object is a loop:
 
 `environment → sensing → internal state → action → environment`
 
-and, for an adaptive system, a slower loop around it:
+For an adaptive system, there is a slower loop around it:
 
 `experience → learning → changed controller → changed experience`
 
-This reading matters for NeuroAI because it changes the scientific question. Instead of asking only whether an artificial network resembles a brain internally, we can ask whether biological and artificial systems implement comparable forms of **closed-loop adaptive control under uncertainty**.
+And once intelligent machines enter institutions, there is a larger loop still:
 
-It also adds a question that engineering formulations often omit. *The Human Use of Human Beings* asks what happens when control systems enter human institutions. A system can become extremely good at optimizing an objective without acquiring any wisdom about whether that objective should have been chosen.
+`human ↔ machine ↔ institution ↔ society`
 
-A Wienerian NeuroAI therefore has two sides:
+This progression provides the organizing argument of this essay. The three Wiener texts can be read as a successive expansion of the system boundary. The 1943 paper **closes the loop around purposive behavior**. *Cybernetics* **generalizes the loop across animals and machines**. *The Human Use of Human Beings* **extends the loop across learning, human institutions, and social consequence**.
 
-> **Intelligence is purposive, predictive, adaptive control through information and feedback. But optimization does not determine what purposes ought to be pursued.**
+Wiener therefore offers NeuroAI less a particular model of intelligence than a different choice of scientific unit.
 
-The first claim is computational. The second is normative. Wiener thought they belonged in the same conversation.
+> **The natural unit is the adaptive organism–environment loop.**
+
+That shift has a concrete consequence. Instead of asking only whether an artificial network resembles a brain internally, we can ask whether biological and artificial systems implement comparable forms of **closed-loop adaptive control under uncertainty**.
+
+It also exposes a limit. A control system can become increasingly effective at pursuing an objective without acquiring any wisdom about whether the objective should have been chosen.
+
+A Wienerian NeuroAI therefore has two claims to keep in view: one computational and one normative. The first concerns how intelligent loops work. The second concerns what—and whom—the loop is for.
 
 ---
 
-## 1. Before cybernetics: making purpose scientifically tractable
+## I. Purpose: closing the loop
+
+### Behavior before mechanism
 
 The conceptual starting point is not the 1948 book but the 1943 paper *Behavior, Purpose and Teleology*, written by Arturo Rosenblueth, Norbert Wiener, and Julian Bigelow.
 
-The paper begins with a methodological move that remains strikingly modern. Instead of starting from the internal material composition of an object, the authors propose a behavioristic description: examine the object's outputs and how those outputs depend on inputs from its surroundings.
+The paper begins with a methodological move that remains strikingly useful. Instead of starting from the internal material composition of an object, the authors propose that one can first characterize its behavior: examine outputs and how they depend on inputs from the surroundings.
 
 That abstraction makes an animal and a machine scientifically comparable without claiming that they are materially identical.
 
 A cat and a servomechanism can be built from radically different substrates. Yet both can be described in terms of relations among sensory inputs, internal processes, actions, and consequences. The relevant similarity is not necessarily anatomical. It can be organizational.
 
-This is the first important lesson for NeuroAI:
+For NeuroAI, this immediately separates two questions that are often conflated:
+
+`implementation similarity`
+
+and
+
+`organizational similarity`
+
+A model may differ from a brain in implementation while instantiating a control principle relevant to neural function. Conversely, a model may reproduce a neural representational geometry while reaching that state through a very different causal organization.
+
+This is the first Wienerian lesson:
 
 > **Biological similarity is not the only scientifically meaningful form of similarity.**
 
-A model can differ from a brain in implementation while instantiating a similar control principle. Conversely, a model can match a neural representation while reaching that representation through a very different causal organization.
+### Purpose without final causes
 
 The 1943 paper then tries to naturalize a concept that had long carried metaphysical baggage: **purpose**.
 
-The authors distinguish purposeful from non-purposeful behavior and, within purposeful behavior, emphasize forms governed by feedback. A system behaves teleologically when deviations from an end state affect subsequent actions in ways that reduce those deviations.
-
-In modern notation, the simplest version looks familiar:
+The authors distinguish purposeful from non-purposeful behavior and emphasize a class of purposive behavior governed by feedback. In modern notation, the simplest version looks familiar:
 
 `error = desired state - current state`
 
 `action = function(error)`
 
-The important point is philosophical as much as mathematical. Purpose no longer has to mean that the future somehow causes the present. It can be implemented through present-time error correction.
+The important move is philosophical as much as mathematical. Purpose does not require the future to act as a mysterious final cause on the present. A system can behave as though directed toward an end because present deviations from that end modify present action.
 
-A thermostat is the canonical simple example. It does not possess a rich representation of temperature in the human sense. Yet its behavior is organized around a target state. When the measured state departs from that target, the system acts so as to reduce the difference.
+A thermostat is the canonical simple case. It does not need a rich symbolic concept of temperature. Its behavior is nevertheless organized around a target state. Deviation produces correction; correction changes the next measurement.
 
-Animals generalize this organization dramatically. They pursue food, avoid threats, maintain posture, regulate temperature, reach for objects, coordinate with others, and change strategies as conditions change.
+Animals generalize this organization dramatically. They pursue food, avoid threats, maintain posture, regulate temperature, reach for objects, coordinate with others, and alter strategies when circumstances change.
 
-Purpose, in this framework, becomes an empirical question about **closed-loop organization**.
+Purpose, on this view, becomes an empirical property of **closed-loop organization**.
 
----
+This already changes how we should think about intelligent behavior. A feedforward mapping
 
-## 2. Prediction matters because control extends into the future
+`input → output`
 
-Rosenblueth, Wiener, and Bigelow go further. They distinguish non-predictive from predictive forms of purposeful behavior.
+can produce an impressive response, but purposive organization requires us to ask what happens after the output enters the world.
 
-A system that reacts only to the current location of a moving target will often fail. Effective control requires estimating where the target will be when the action takes effect.
+Does the action reduce the relevant error? Does the next observation alter the next action? Does the system remain organized around a goal despite disturbance?
+
+The loop, not the isolated response, is the explanatory object.
+
+### Prediction matters because control extends into the future
+
+Rosenblueth, Wiener, and Bigelow go further by distinguishing non-predictive from predictive forms of purposeful behavior.
+
+A system that reacts only to the current position of a moving target will often fail. Effective control may require estimating where the target will be when an action takes effect.
 
 This converts prediction from a passive forecasting problem into a component of action.
 
-The distinction matters because modern AI often treats prediction as an end in itself:
+A predictive model in the usual machine-learning sense can be written as:
 
 `past data → prediction of future data`
 
-A cybernetic system instead uses prediction inside a loop:
+A predictive controller instead operates inside a loop:
 
 `estimate future state → choose action → change future state → observe consequence`
 
 The prediction participates in producing the data against which it will later be evaluated.
 
-That is a profound difference.
+That distinction is fundamental for biological intelligence. An animal does not merely predict a sensory stream supplied independently by the world. It acts in ways that change the sensory stream. Eye movements determine what reaches the fovea. Locomotion changes visual and proprioceptive input. Reaching changes the scene and the body's internal state. Social actions alter the behavior of other agents.
 
-An animal does not merely predict the sensory stream. It acts in ways that change the sensory stream. Eye movements determine what reaches the fovea. Locomotion changes visual and proprioceptive input. Reaching changes both the external scene and the body's internal state. Social actions change the behavior of other agents.
+The future data distribution is therefore partly endogenous to the policy.
 
-The data distribution is therefore partly endogenous to the policy.
+This is why embodiment is not a cosmetic extension of intelligence. It changes the statistical problem itself.
 
-In a passive dataset, the world generates observations and the model learns from them. In a behaving organism:
+### Failure can belong to the loop
 
-`policy → sampled experience → learned model → new policy`
+The same paper also contains a revealing discussion of pathological feedback. Rosenblueth, Wiener, and Bigelow use intention tremor to illustrate how a system can become unstable when correction is badly tuned.
 
-The controller helps generate its own future training data.
-
-This is one reason embodiment is not a cosmetic extension of intelligence. It changes the statistical problem itself.
-
----
-
-## 3. Failure is often a property of the loop, not a broken module
-
-The 1943 paper also contains a revealing discussion of pathological feedback. The authors use intention tremor as an example of how a system can become unstable when error correction is badly tuned.
-
-A feedback system can overshoot. With excessive gain, delay, or other dynamical mismatch, correction itself generates new error:
+A feedback process can overshoot:
 
 `positive error → overcorrection → negative error → overcorrection → ...`
 
-What looks behaviorally like a defective movement can therefore be understood as instability in a loop.
+With excessive gain, delay, or other dynamical mismatch, correction itself produces new error.
 
-This framing is still powerful for neuroscience. It shifts attention from asking only which component is "damaged" to asking how the dynamics of coupled components fail.
+This remains a powerful neuroscience intuition. What looks like a broken function in one component can sometimes be better understood as instability in a coupled process.
 
-A brain region does not merely contain a variable. It participates in a dynamical organization with sensory organs, body, environment, and other neural populations.
-
-This is a control-theoretic way of resisting a strong localization instinct:
+The explanatory contrast is:
 
 `brain area → function`
 
-may sometimes be less explanatory than
+versus
 
 `brain area → role in a distributed feedback process`
 
-The distinction becomes especially important for sensorimotor systems, recurrent networks, neuromodulation, closed-loop stimulation, and disorders in which timing and gain can matter as much as representational content.
+The latter becomes especially important in sensorimotor systems, recurrent circuits, neuromodulation, closed-loop stimulation, and disorders in which timing and gain may matter as much as representational content.
+
+The broader point is simple: once behavior is closed into a loop, success and failure become properties of dynamics, not only properties of parts.
 
 ---
 
-## 4. *Cybernetics*: the common science is organization, not substrate
+## II. *Cybernetics*: the common science is organization, not substrate
 
-Wiener's 1948 *Cybernetics* turns these ideas into a general research program. Its famous subtitle—*Control and Communication in the Animal and the Machine*—contains the central claim.
+Wiener's 1948 *Cybernetics* turns the logic of the 1943 paper into a general research program. Its subtitle—*Control and Communication in the Animal and the Machine*—states the level of abstraction directly.
 
-The common language is not "neurons."
+The common language is not neurons.
 
-It is not "digital computation."
+It is not digital computation.
 
 It is **control and communication**.
 
-For a system to regulate its behavior, it needs information about the state of the world and about the consequences of its own actions. Communication is therefore inseparable from control.
+A system that regulates its behavior needs information about the world and about the consequences of its own actions. Communication is therefore inseparable from control. Noise matters because corrupted information produces bad regulation. Delay matters because feedback about an old state may arrive too late. Prediction matters because action often must compensate for future rather than present conditions. Stability matters because feedback can amplify deviation instead of suppressing it.
 
 A minimal architecture is:
 
 `world → measurement → controller → action → world`
 
-The return path closes the loop:
+with the return path:
 
 `world → new measurement → updated action`
 
-Noise matters because corrupted information produces bad control. Delay matters because feedback about an old state may arrive too late. Prediction matters because action must often compensate for future rather than present conditions. Stability matters because feedback can amplify rather than suppress deviations.
+This is why Wiener's cybernetics cannot be reduced to the slogan that the brain is a computer. The more interesting claim is that **animals and machines can sometimes be described at the same organizational level**.
 
-This is why Wiener's cybernetics cannot be reduced to the slogan "the brain is a computer."
+Their components may be completely different while their behavior depends on related principles of information transmission, prediction, feedback, and regulation.
 
-The stronger and more interesting claim is that **animals and machines can sometimes be described at the same organizational level**.
+For NeuroAI, that gives us a useful hierarchy of comparison. We can ask whether two systems:
 
-Their components may differ completely, while their behavior obeys related principles of information transmission, prediction, feedback, and regulation.
-
-This gives NeuroAI a useful distinction:
-
-`implementation similarity`
-
-is not the same as
-
-`cybernetic similarity`
-
-A transformer layer need not resemble cortex microscopically to implement a computational principle relevant to cortical function. But representational resemblance alone also does not guarantee cybernetic similarity. Two systems can occupy similar representational geometries while differing in how those representations are generated, updated, used for action, or coupled to the world.
-
-A mature comparison should therefore ask at least three questions:
-
-1. Do the systems represent similar variables?
-2. Do they transform those variables through similar computations or dynamics?
-3. Do those states play similar roles in closed-loop behavior?
+1. represent similar variables;
+2. transform those variables through similar computations or dynamics; and
+3. use those states in similar ways inside closed-loop behavior.
 
 The third question is the most characteristically Wienerian.
 
----
+### From representation to control-relevant state
 
-## 5. From representation to control-relevant state
+Modern neuroscience is extraordinarily good at measuring representational similarity. Encoding models, representational similarity analysis, neural predictivity benchmarks, and deep-network comparisons reveal which artificial feature spaces explain variance in neural activity.
 
-Modern neuroscience has become extraordinarily good at measuring representational similarity. Encoding models, representational similarity analysis, neural predictivity benchmarks, and deep-network comparisons reveal which artificial feature spaces explain variance in neural activity.
-
-These are important constraints on theory.
-
-But a control perspective changes what a representation is *for*.
+These are important constraints on theory. But a control perspective changes what a representation is *for*.
 
 An organism does not need a complete photographic reconstruction of the world. It needs internal states sufficient to select effective actions under uncertainty.
 
-The relevant mapping is not simply:
+The relevant mapping is not only:
 
 `world → representation`
 
@@ -205,45 +201,33 @@ but:
 
 `world → internal state → action → future world`
 
-This suggests a stronger notion of representation:
+A stronger notion of representation therefore follows:
 
 > **A useful representation preserves the information required for successful control.**
 
-Later control theory supplies vocabulary that Wiener himself did not use in this form. **Observability** asks whether hidden system states can be inferred from available measurements. **Controllability** asks whether actions can move the system through the relevant state space.
+Later control theory provides vocabulary that Wiener himself did not use in this form. **Observability** asks whether hidden system states can be inferred from available measurements. **Controllability** asks whether actions can move the system through the relevant state space.
 
-These ideas translate naturally into cognitive questions.
+Translated into cognitive terms, perception can be viewed as making behaviorally relevant latent variables observable. Retinal input does not directly provide three-dimensional pose, hidden causes, future trajectories, or another agent's intention. The nervous system estimates variables that allow action despite partial observability.
 
-Perception can be viewed as the process of making behaviorally relevant latent variables observable. The retinal image does not directly contain object identity, three-dimensional pose, hidden causes, intentions, or future trajectories. The nervous system estimates variables that allow action despite partial observability.
+Action, conversely, depends on which parts of the world can be changed. A chair is not only a visual object; relative to a body it may be sittable, movable, reachable, or obstructing. This is close to the logic of affordances.
 
-Action, in turn, depends on which aspects of the environment are controllable. A chair is not only an object with visual properties; relative to a body, it may be sittable, movable, reachable, or obstructing. This is close to the logic of affordances.
+Cisek's affordance competition hypothesis makes that connection explicit in neurophysiological terms. Instead of a strict serial pipeline from perception to decision to action, sensory information can continuously specify multiple potential actions that compete for selection (Cisek, 2007).
 
-Paul Cisek's affordance competition hypothesis makes this connection explicit in neurophysiological terms. Rather than treating perception, decision, and action as a strictly serial pipeline, Cisek argues that sensory information continuously specifies multiple potential actions that compete for selection (Cisek, 2007).
+The brain, in this picture, is not merely describing an environment. It is organizing possible interactions with it.
 
-That picture is deeply cybernetic:
+### Internal models: prediction in the service of regulation
 
-`perception → complete world model → decision → action`
+Later sensorimotor neuroscience develops another strongly cybernetic theme: internal models.
 
-gives way to
+Wolpert, Ghahramani, and Jordan (1995) provided evidence that the nervous system uses internal models of sensorimotor dynamics. Forward models can predict sensory consequences of actions; inverse models can help determine actions required to reach desired states.
 
-`competing sensorimotor loops continuously coupled to the world`
-
-The brain is not merely describing an environment. It is organizing possible interactions with it.
-
----
-
-## 6. Internal models: prediction in the service of regulation
-
-A second line of later neuroscience develops another Wienerian theme: internal models.
-
-Wolpert, Ghahramani, and Jordan (1995) provided evidence that the nervous system uses internal models of sensorimotor dynamics. Forward models can predict the sensory consequences of actions; inverse models can help determine actions required to reach desired states.
-
-The logic is straightforward:
+The logic is:
 
 `current state + candidate action → predicted next state`
 
-Prediction then supports state estimation and control when sensory feedback is delayed or noisy.
+Prediction supports state estimation and control when feedback is delayed or noisy.
 
-This becomes more explicit in optimal feedback control. Todorov and Jordan (2002) argued that biological movement need not be understood as the execution of a rigid desired trajectory. Instead, the controller can selectively correct deviations that matter for the task while tolerating variability along irrelevant dimensions.
+Optimal feedback control makes the same principle sharper. Todorov and Jordan (2002) argued that biological movement need not be understood as execution of a rigid desired trajectory. A controller can selectively correct deviations that matter for the task while tolerating variability along irrelevant dimensions.
 
 The objective is not:
 
@@ -253,23 +237,17 @@ but:
 
 `preserve task success under noise and redundancy`
 
-That is a profound change in what counts as a good internal representation. The controller needs to represent what matters to the goal, not every degree of freedom equally.
+This changes what counts as a good representation. The controller must preserve the variables that matter to the goal, not every degree of freedom equally.
 
-Conant and Ashby's later "good regulator theorem" formalized a related cybernetic intuition: under stated conditions, a successful regulator must embody a model of the system it regulates (Conant & Ashby, 1970). This should not be read as a claim that brains contain literal miniature copies of the world. The point is more structural: effective regulation requires internal organization adequate to the regularities of the environment being controlled.
+Conant and Ashby's later "good regulator theorem" formalized a related cybernetic intuition: under stated conditions, a successful regulator must embody a model of the system it regulates (Conant & Ashby, 1970). This should not be read as a claim that brains contain miniature copies of the world. The structural point is that effective regulation requires internal organization adequate to the regularities of what is being controlled.
 
-From this perspective, a world model is not valuable because representation is intrinsically desirable.
+A world model is therefore useful not because representation is intrinsically desirable, but because **good control requires prediction of consequences**.
 
-A world model is valuable because **good control requires prediction of consequences**.
+### Predictive coding and active inference: descendants, not synonyms
 
----
+Predictive coding and active inference are often described in language that sounds immediately cybernetic, but the historical distinction matters.
 
-## 7. Predictive coding and active inference: descendants, not synonyms
-
-Predictive coding and active inference are often discussed in language that sounds immediately cybernetic, but it is important not to collapse distinct theories into one historical lineage.
-
-Rao and Ballard's predictive coding model of visual cortex proposes that higher levels predict lower-level activity while feedforward pathways carry residual prediction errors (Rao & Ballard, 1999). This turns recurrent cortical processing into a hierarchy of predictions and corrections.
-
-Friston's free-energy principle and active inference extend the logic much further. In this framework, perception updates internal beliefs to better account for sensory observations, while action changes sensory observations so that they become more consistent with expected states (Friston, 2010; Friston et al., 2016).
+Rao and Ballard's predictive coding model proposes that higher levels predict lower-level neural activity while feedforward pathways carry residual prediction errors (Rao & Ballard, 1999). Friston's free-energy principle and active inference go much further: perception updates beliefs to account for sensory observations, while action changes observations through intervention in the world (Friston, 2010; Friston et al., 2016).
 
 A useful schematic is:
 
@@ -277,159 +255,127 @@ A useful schematic is:
 
 `action: change sensory evidence through intervention in the world`
 
-This has an obvious family resemblance to cybernetics. Both center adaptive systems, feedback, prediction, and regulation.
+The family resemblance to cybernetics is obvious. Both center adaptive systems, prediction, feedback, and regulation.
 
-But active inference is not simply Wiener's theory rewritten with Bayesian notation. Its commitments about generative models, variational inference, expected free energy, and the relation between priors and action are later and more specific.
+But active inference is not Wiener's theory rewritten in Bayesian notation. Its commitments about generative models, variational inference, expected free energy, and priors are later and more specific.
 
-The productive historical claim is therefore weaker:
+The historically defensible claim is narrower and more useful:
 
 > **Wiener supplied a general problem structure—adaptive regulation through information and feedback—that later predictive and inference-based theories instantiate in more specialized mathematical forms.**
 
-This distinction matters if cybernetics is to function as more than a retrospective label for every recurrent theory of the brain.
+This distinction prevents cybernetics from becoming a retrospective label for every recurrent theory of the brain.
 
 ---
 
-## 8. Learning is feedback acting on the controller itself
+## III. Learning: the loop changes itself
 
-The transition from *Cybernetics* to *The Human Use of Human Beings* adds another layer.
+The move from *Cybernetics* to *The Human Use of Human Beings* expands the loop across time.
 
-In the chapter "Rigidity and Learning," Wiener discusses organisms and machines that can alter their patterns of behavior on the basis of experience. He is careful not to claim that an engineered learning machine must reproduce the detailed mechanism of biological learning. The more general question is whether a machine can modify its own future responses in a way that is functionally comparable to learning.
+In the chapter "Rigidity and Learning," Wiener discusses organisms and machines that can alter patterns of behavior on the basis of experience. The important distinction is between a controller that corrects the current error and a controller that changes how future errors will be corrected.
 
 That suggests two nested timescales.
 
-The fast loop regulates the world:
+The fast loop regulates behavior:
 
 `state_t → action_t → state_(t+1)`
 
-The slow loop regulates the regulator:
+The slow loop changes the regulator:
 
 `parameters_t → experience → parameters_(t+1)`
 
-The first changes behavior.
+The first changes what the system does now.
 
-The second changes how future behavior will be generated.
+The second changes how the system will act later.
 
-This is a useful way to distinguish adaptation from mere response. A fixed controller can correct deviations. A learning controller can change its own correction policy.
+In that sense, learning is feedback acting on the organization of the controller itself.
 
-In biological systems these levels are intertwined. Synaptic plasticity, neuromodulation, structural change, memory, and development reshape the dynamics that produce future actions.
+Biological systems intertwine these timescales. Synaptic plasticity, neuromodulation, memory, structural change, and development reshape the dynamics that produce future action. A theory that matches the adult endpoint may therefore miss the mechanism by which the endpoint was acquired.
 
-Recent NeuroAI work has begun to move in exactly this direction. The field increasingly recognizes that matching the adult endpoint may be insufficient if the mechanism of interest is the process by which intelligence is acquired. Ayzenberg, Bonner, and Bayet (2026), for example, argue for **developmental alignment**: models of human intelligence should incorporate developmental changes in architecture, experience, and learning objectives rather than only approximate adult performance.
+Recent NeuroAI work has begun to make that distinction explicit. Ayzenberg, Bonner, and Bayet (2026), for example, argue for **developmental alignment**: models of human intelligence should incorporate developmental changes in architecture, experience, and learning objectives rather than approximating only adult performance.
 
-From a cybernetic perspective, this is natural.
-
-An intelligent system is not merely a controller.
+From a cybernetic perspective, this is natural. An intelligent system is not merely a controller.
 
 It is a controller that **becomes a different controller through interaction**.
 
----
+### The environment is part of the learning algorithm
 
-## 9. The environment is part of the learning algorithm
+Once learning and action occupy the same loop, a consequence follows that is easy to miss in dataset-centered machine learning:
 
-Once learning and action are placed in the same loop, a consequence follows that is easy to miss in dataset-centered machine learning.
-
-The agent partly chooses the data from which it learns.
+> **The agent partly chooses the data from which it learns.**
 
 A passive learner receives:
 
 `dataset D → model θ`
 
-A behaving agent creates a path through the world:
+A behaving agent creates a trajectory:
 
 `policy π → visited states → observations → learning → new policy π'`
 
 The policy changes the future data distribution.
 
-This makes exploration, attention, eye movements, curiosity, play, and experimental action computationally important. They are not merely behaviors produced *after* learning. They can be mechanisms that determine what will be learned.
+Exploration, attention, eye movements, curiosity, play, and experimental action are therefore not merely outputs produced after learning. They can be mechanisms that determine what will be learned.
 
 The animal is simultaneously controller and experimenter.
 
-This idea also complicates the phrase "the model is trained on the environment." In an embodied system, the model and environment are coupled through a data-collection policy. What the model becomes depends partly on what its previous version chose to observe and do.
-
-That feedback is central to development.
-
-It is also central to modern AI systems that operate online. Recommender systems alter the behavior that later becomes training data. Agents choose tool calls that change the information they subsequently receive. Robots position their sensors to reduce uncertainty. Interactive models shape the human responses that enter later context or training pipelines.
+This logic also describes modern interactive AI. Recommender systems alter the behavior that later becomes training data. Agents choose tool calls that determine what information they subsequently receive. Robots position sensors to reduce uncertainty. Human responses to model outputs can become later context or training signal.
 
 The general loop is:
 
 `model → policy → data → model`
 
-Data is not external infrastructure surrounding the model.
+Data is no longer external infrastructure surrounding the model. In a closed-loop system, **data generation becomes part of the model's effective dynamics**.
 
-In a closed-loop system, **data generation is part of the model's effective dynamics**.
+### Viability before benchmark performance
 
----
+*The Human Use of Human Beings* also places cybernetics inside a broader discussion of life, organization, information, and entropy. Organisms persist by maintaining structured states despite disturbance and noise. Wiener's compact phrase—"To live effectively is to live with adequate information"—captures the regulatory role of communication.
 
-## 10. Homeostasis: intelligence begins with staying within viable states
-
-*The Human Use of Human Beings* places cybernetics inside an even larger thermodynamic picture.
-
-Wiener repeatedly connects life, organization, information, and entropy. Organisms persist by maintaining structured states despite disturbances and noise. His memorable line—"To live effectively is to live with adequate information"—captures the role of communication in this regulation.
-
-The deeper idea is that a living system cannot occupy arbitrary states.
-
-It must remain inside a restricted region compatible with continued existence:
+A living system cannot occupy arbitrary states. It must remain inside a restricted region compatible with continued existence:
 
 `state_t ∈ viable region`
 
-Temperature, energy balance, hydration, tissue integrity, posture, oxygenation, and countless other variables must remain within workable ranges. Before an organism solves abstract reasoning problems, it must remain an organism.
+Temperature, energy balance, hydration, tissue integrity, posture, oxygenation, and many other variables must remain within workable ranges. Before an organism solves an abstract reasoning problem, it must remain an organism.
 
-This suggests a biological grounding for purpose.
+This gives biological purpose a grounding absent from many externally specified reward functions. The most primitive control objectives are tied to continued organization of the agent itself.
 
-The most primitive control objectives are not arbitrary external reward functions. They are tied to the continued organization of the agent.
+Homeostasis is therefore not a minor physiological special case. It is a prototype of biological regulation. Later work on allostasis and active inference develops more explicitly anticipatory versions of the same general problem: use prediction and action to keep future states within viable ranges.
 
-Homeostasis is therefore not a minor physiological special case. It is a prototype for biological control.
-
-Later work on allostasis and active inference generalizes this idea by emphasizing anticipatory regulation: an organism can act before error becomes large, using predictions to keep future states within acceptable ranges.
-
-A cybernetic view of intelligence consequently begins not with classification accuracy but with a more basic problem:
+The cybernetic question is therefore more basic than classification accuracy:
 
 > **How does an adaptive system preserve its organization while acting in an uncertain world?**
 
-That question naturally joins neuroscience, control theory, reinforcement learning, active inference, embodiment, and development.
+That question joins control, learning, development, embodiment, and biological constraint in a single loop.
 
 ---
 
-## 11. NeuroAI today: from brain-like representations to embodied equivalence
+## IV. NeuroAI: benchmark the loop, not only the layer
 
-Modern NeuroAI has inherited several different ambitions.
-
-One is **neuroscience-inspired AI**: use principles discovered in biological intelligence to improve artificial systems (Hassabis et al., 2017).
-
-Another is **AI as a model of the brain**: train artificial networks on behaviorally relevant tasks and test whether their internal states predict neural and behavioral data.
-
-A third is **AI for neuroscience**: use machine learning to analyze, model, and intervene on increasingly large neural datasets. Recent field-level discussions emphasize this broader bidirectional exchange (Sadeh & Clopath, 2025).
+Modern NeuroAI contains several ambitions. One is **neuroscience-inspired AI**: use principles of biological intelligence to improve artificial systems (Hassabis et al., 2017). Another is **AI as a model of the brain**: train artificial networks on behaviorally relevant tasks and test whether their internal states predict neural and behavioral data. A third is **AI for neuroscience**: use machine learning to analyze, model, and intervene on increasingly large neural datasets. Recent field-level discussions emphasize this broader bidirectional exchange (Sadeh & Clopath, 2025).
 
 All three are useful.
 
-But Wiener exposes a blind spot that can appear when the model-brain comparison becomes too representation-centric.
+But Wiener exposes a blind spot that appears when model–brain comparison becomes too representation-centric.
 
-Suppose two systems receive the same image and produce highly similar hidden-state geometry. That is evidence of a shared representational constraint. It does not yet tell us whether those states have the same causal role.
+Suppose two systems receive the same image and produce highly similar hidden-state geometry. That is evidence of a shared representational constraint. It does not yet establish that the corresponding states play the same causal role.
 
-Do they support the same predictions?
+Do they support similar predictions?
 
-Do they guide the same actions?
+Do they guide similar actions?
 
-Do they update under the same errors?
+Do they update under similar errors?
 
 Do they remain stable under delay and noise?
 
 Do they learn from the consequences of their own behavior?
 
-Do they reorganize themselves over development?
-
 Would the similarity persist if both systems were placed inside the same interactive environment?
 
 These questions point toward **closed-loop functional equivalence** as a complement to representational similarity.
 
-This direction is already visible in the contemporary field. Zador and colleagues (2023) propose an **embodied Turing test** in which artificial animal models must interact with the sensorimotor world at the level of their biological counterparts. Their argument shifts the benchmark from disembodied tasks toward capabilities shared across animals: perception, control, adaptation, and interaction.
+This direction is already visible in contemporary NeuroAI. Zador and colleagues (2023) propose an **embodied Turing test** in which artificial animal models interact with the sensorimotor world at the level of their biological counterparts. The benchmark shifts from disembodied task performance toward perception, action, adaptation, and interaction.
 
-The 2026 NeuroAI literature has pushed further toward embodiment, learning through interaction, developmental trajectories, and efficient neural computation. That movement looks less like a departure from cybernetics than a return to its original unit of analysis.
+Krakauer and colleagues (2017), from a different direction, argue that detailed analysis of behavior is indispensable for understanding neural mechanism. A cybernetic framework strengthens that point: behavior is not merely an output variable to be explained after neural computation. It is part of the causal process that produces the next input.
 
----
-
-## 12. A Wienerian benchmark would test a loop, not only a layer
-
-What would it mean to take this seriously experimentally?
+### A Wienerian benchmark
 
 A conventional brain-model benchmark might look like:
 
@@ -437,55 +383,44 @@ A conventional brain-model benchmark might look like:
 
 `stimulus → model activity`
 
-then measure:
+followed by:
 
 `similarity(brain, model)`
 
-A cybernetic benchmark would add the missing arrows:
+A cybernetic benchmark adds the missing arrows:
 
 `environment → sensing → internal state → action → new environment`
 
-and compare biological and artificial systems at multiple levels.
+and compares biological and artificial systems along several dimensions:
 
-### State estimation
+- **State estimation:** can the system infer hidden variables needed for behavior from noisy, partial observations?
+- **Prediction:** can it anticipate sensory and environmental consequences of candidate actions?
+- **Feedback correction:** when the world deviates from expectation, does it correct the dimensions that matter for the task?
+- **Stability and robustness:** what happens under delay, noise, perturbation, missing sensory channels, or altered body dynamics?
+- **Active sensing:** does the system choose observations that reduce uncertainty relevant to action?
+- **Learning and development:** does interaction change the controller, and does competence emerge through a biologically informative trajectory?
+- **Representation:** do internal states resemble neural populations—and are those states used in comparable ways?
 
-Can the system infer hidden variables necessary for behavior from noisy, partial observations?
+This does not replace neural predictivity. It changes its role.
 
-### Prediction
+Neural predictivity becomes one constraint inside a larger causal theory.
 
-Can it anticipate the sensory and environmental consequences of candidate actions?
+The shift can be summarized as follows:
 
-### Feedback correction
+| Common NeuroAI question | Wienerian reformulation |
+| --- | --- |
+| Which model is most brain-like? | Which artificial system implements comparable closed-loop organization? |
+| What does a brain region encode? | What control-relevant variable does this neural state make available? |
+| Does a model predict neural activity? | Does the corresponding state play a similar causal role in behavior? |
+| Can a model predict the future? | Does prediction improve action under uncertainty? |
+| How does the model learn? | How does experience change the controller itself? |
+| Is the model embodied? | How do action and body dynamics shape the data-generating process? |
 
-When the world deviates from expectation, does the system correct the dimensions that matter for the task?
+The point is not that every neuroscience experiment must become robotics, or that every representation study is invalid without overt behavior. It is that the larger theory should specify **where a representation sits in the loop**.
 
-### Stability and robustness
+A neural variable becomes more mechanistically interpretable when we can say not only what predicts it, but what it predicts, what perturbs it, what action depends on it, and how feedback changes it.
 
-How does behavior change under delay, noise, perturbation, missing sensory channels, or altered body dynamics?
-
-### Active sensing
-
-Does the system choose observations that reduce uncertainty relevant to action?
-
-### Learning
-
-Does interaction change the controller in a way that improves future performance?
-
-### Development
-
-Does competence emerge through a trajectory comparable to biological acquisition, rather than appearing only at the adult endpoint?
-
-### Representation
-
-Do internal states resemble neural population activity—and, crucially, are those states used in comparable ways?
-
-This would not replace neural predictivity.
-
-It would make neural predictivity one constraint inside a larger causal theory.
-
----
-
-## 13. LLMs: prediction is not yet the whole cybernetic loop
+### LLMs: prediction is not yet the whole loop
 
 Large language models make the contrast especially clear.
 
@@ -493,33 +428,31 @@ The core pretrained objective is approximately:
 
 `context → distribution over next token`
 
-This is an extraordinarily powerful form of prediction. It can produce internal representations that encode syntax, semantics, world knowledge, and long-range context.
+This is an extraordinarily powerful form of prediction. It can produce internal states that encode syntax, semantics, world knowledge, and long-range context.
 
-But next-token prediction by itself does not imply a self-contained cybernetic agent.
+But next-token prediction by itself does not constitute a self-contained cybernetic agent.
 
 A closed-loop agent requires something more like:
 
 `observe → infer → choose action → change environment → observe consequence → adapt`
 
-The important difference is not "transformers versus neurons."
+The most important distinction is not "transformers versus neurons."
 
 It is **observer versus participant in the data-generating process**.
 
-This distinction should not be overstated. Modern LLM systems can already be embedded in larger loops with tools, memory, reinforcement learning, code execution, browsers, robots, other agents, and human feedback. Once that happens, the relevant scientific object is no longer the language model alone.
+This distinction should not be overstated. Modern LLM systems can be embedded in larger loops containing tools, memory, reinforcement learning, code execution, browsers, robots, other agents, and human feedback. Once that happens, however, the relevant scientific object is no longer the language model alone.
 
 It is the coupled system:
 
 `model + memory + tools + policy + environment + feedback`
 
-In cybernetic terms, agentification is therefore not simply the addition of an API.
+In cybernetic terms, agentification is therefore not merely the addition of an API. It is a transition from a predictive component toward a control architecture.
 
-It is a transition from a predictive component toward a control architecture.
-
-That transition also changes evaluation. A model that answers a static benchmark question correctly may still fail as an agent because it cannot maintain state, detect error, recover from perturbation, choose informative actions, or update its strategy when the world changes.
+That transition changes evaluation. A model may answer a static benchmark question correctly yet fail as an agent because it cannot maintain state, detect error, recover from perturbation, choose informative actions, or alter strategy when conditions change.
 
 The cybernetic question is not only:
 
-> How good is the model's prediction?
+> How good is the prediction?
 
 It is:
 
@@ -527,21 +460,21 @@ It is:
 
 ---
 
-## 14. *The Human Use of Human Beings*: the missing variable is who chooses the goal
+## V. *The Human Use of Human Beings*: who chooses the purpose?
 
-If the story ended here, Wiener would be remembered mainly as a precursor of control-theoretic AI.
+If the argument ended with better closed-loop benchmarks, Wiener would matter mainly as a precursor of control-theoretic AI.
 
-But *The Human Use of Human Beings* changes the scope of the argument.
+But *The Human Use of Human Beings* changes the scope of the problem again.
 
-Cybernetics can explain how a system pursues an objective. It cannot, by itself, determine which objectives are worth pursuing.
+Cybernetics can describe how a system pursues an objective. It cannot, by itself, determine which objectives are worth pursuing.
 
-In modern optimization notation, we might write:
+In modern optimization notation:
 
 `π* = argmin J(π)`
 
 Engineering asks how to find `π*`.
 
-Wiener's social and ethical question is prior:
+Wiener's social question is prior:
 
 > **Whose J?**
 
@@ -555,41 +488,31 @@ Which deviations are treated as failures?
 
 Who gets to modify the controller?
 
-Who bears the consequences when the optimization succeeds?
+Who bears the consequences when optimization succeeds?
 
-This is why *The Human Use of Human Beings* should be read together with *Cybernetics*, not as a separate popular appendix.
+This is why *The Human Use of Human Beings* belongs in the same intellectual arc as *Cybernetics*, rather than being treated as a popular ethical appendix. The same machinery that makes adaptive control possible also makes it possible to build organizations in which human beings are treated primarily as controllable components.
 
-The same formal machinery that makes adaptive machines possible also makes it possible to build organizations that treat people primarily as controllable components.
+Wiener's warning is memorable because it is not limited to metal machines. He worries about institutions that use people as "cogs and levers and rods" rather than as responsible human beings.
 
-Wiener's warning is memorable because it is not limited to metal machines. He worries about institutions in which people are used as "cogs and levers and rods" rather than as responsible human beings.
-
-The danger is therefore not simply:
+The danger is therefore not only:
 
 `machine replaces human`
 
 It is also:
 
-`human is reorganized as a component inside a machine-like objective`
+`human becomes a component inside a machine-like objective`
 
-This is startlingly relevant to contemporary AI.
-
-An optimization system can be technically successful while narrowing human agency. A recommender can increase engagement while reshaping the preferences it later claims merely to predict. A workplace system can improve throughput while reducing workers to measurable variables. An autonomous agent can satisfy a proxy objective while violating the intent that motivated it.
+That distinction is highly relevant to contemporary AI. An optimization system can be technically successful while narrowing human agency. A recommender can increase engagement while changing the preferences it later claims merely to predict. A workplace system can improve throughput while reducing workers to measurable variables. An autonomous agent can satisfy a proxy objective while violating the intention that motivated it.
 
 The cybernetic success condition and the human success condition are not automatically the same.
 
----
+### Alignment before "alignment"
 
-## 15. Alignment before "alignment"
-
-It would be anachronistic to call Wiener an AI alignment researcher in the modern technical sense. The contemporary field has its own history, formal problems, and vocabulary.
+It would be anachronistic to call Wiener an AI alignment researcher in the modern technical sense. Contemporary alignment has its own history, vocabulary, and formal problems.
 
 But the structural resemblance is real.
 
-Wiener understood that a learning machine might make decisions that differ from those its designers expected or would endorse. More importantly, he rejected the idea that responsibility could simply be transferred to the mechanism.
-
-A machine executes an objective inside a causal organization.
-
-It does not absolve the humans who selected the objective, designed the organization, or delegated the decision.
+A learning machine can produce decisions that its designers did not expect or would not endorse. More importantly, delegating a decision to a mechanism does not remove responsibility from the people who selected the objective, designed the organization, or authorized the delegation.
 
 This yields a distinction that remains central:
 
@@ -597,21 +520,23 @@ This yields a distinction that remains central:
 
 Improving the optimizer does not solve the problem of choosing what should be optimized.
 
-Nor does improving predictive accuracy solve the problem of deciding which predictions should guide action.
+Nor does improving prediction solve the problem of deciding which predictions should guide action.
 
-For NeuroAI, this is especially important because biological intelligence is inseparable from drives, needs, social structure, development, and value. If we model only the mechanisms that efficiently transform goals into actions, we have modeled one half of agency.
+For NeuroAI, the point is especially important because biological intelligence is inseparable from drives, needs, development, social structure, and value. If we model only the mechanisms that efficiently transform goals into actions, we have modeled one half of agency.
 
-The other half is where goals come from, how they change, and how multiple agents negotiate them.
+The other half concerns where goals come from, how they change, and how multiple agents negotiate them.
 
-A genuinely Wienerian NeuroAI therefore cannot stop at control.
+A genuinely Wienerian NeuroAI therefore cannot stop with the question **how does control work?** It eventually encounters three others:
 
-It must eventually confront **control of what, for whom, and by whom**.
+`control of what?`
 
----
+`for whom?`
 
-## 16. The system outside the system: society is also a feedback loop
+`by whom?`
 
-The move from *Cybernetics* to *The Human Use of Human Beings* can be represented as a change in system boundary.
+### Society is also a feedback loop
+
+The move from *Cybernetics* to *The Human Use of Human Beings* can be understood as another expansion of the system boundary.
 
 The first loop is:
 
@@ -627,157 +552,55 @@ The third is:
 
 Outputs become new inputs at every level.
 
-This matters because machine behavior changes human behavior, which changes the data, incentives, and institutions that shape later machine behavior.
-
-A deployed AI system is therefore rarely an isolated predictor.
-
-It participates in a social dynamical system.
+A deployed AI system is therefore rarely an isolated predictor. Machine behavior changes human behavior; human behavior changes the data, incentives, and institutions that shape later machine behavior.
 
 Recommendation is an obvious example:
 
 `ranking → attention → behavior → logged data → training → ranking`
 
-The model is not merely estimating preferences. It can help produce the preference distribution it later observes.
+The model is not merely estimating a fixed distribution of preferences. It participates in the process that produces the future distribution it will observe.
 
-The same logic appears in markets, organizational decision systems, education, public discourse, and human-agent collaboration.
-
-Once this feedback exists, static evaluation becomes incomplete. We need to ask about equilibria, amplification, adaptation, path dependence, and unintended control.
+The same logic applies to markets, organizational decision systems, education, public discourse, and human-agent collaboration. Once this feedback exists, static evaluation becomes incomplete. We need to ask about equilibria, amplification, adaptation, path dependence, and unintended control.
 
 Cybernetics is useful here precisely because it refuses to treat prediction as causally neutral.
 
 An output sent into the world becomes part of the next input.
 
----
+### Three principles that follow
 
-## 17. A research program: NeuroAI as the science of adaptive loops
+Putting the three Wiener texts together leaves three principles for NeuroAI.
 
-Putting the three Wiener texts together suggests a research program with a different center of gravity.
+First, **the natural unit of intelligence is often the closed loop**. Brains evolved inside bodies acting in environments. Perception changes action; action changes perception; learning changes both. `Brain + body + environment` is not merely context around intelligence. It is part of the mechanism through which intelligence is realized.
 
-| Common NeuroAI question | Wienerian reformulation |
-| --- | --- |
-| Which model is most brain-like? | Which artificial system implements comparable closed-loop organization? |
-| What does a brain region encode? | What control-relevant variable does this neural state make available? |
-| Does a model predict neural activity? | Does the corresponding state play a similar causal role in behavior? |
-| Can a model predict the future? | Does prediction improve action under uncertainty? |
-| What is the representation? | What information is sufficient for regulation? |
-| What is the policy? | How does feedback continuously reshape action? |
-| How does the model learn? | How does experience change the controller itself? |
-| Is the model embodied? | How do body dynamics and action shape the data-generating process? |
-| Is the agent aligned? | Who specifies the goal, and whose agency is preserved by the control system? |
-
-This does not imply that every neuroscience experiment must become robotics, or that every representation study is incomplete unless it includes behavior.
-
-It means that the larger theory should specify where a representation sits in the loop.
-
-A neural variable becomes more mechanistically interpretable when we can say not only what predicts it, but also what it predicts, what perturbs it, what action depends on it, and how feedback changes it.
-
-The basic explanatory object becomes:
-
-`representation ↔ dynamics ↔ action ↔ consequence ↔ learning`
-
-rather than representation alone.
-
----
-
-## 18. Three principles for a Wienerian NeuroAI
-
-The literature can be compressed into three principles.
-
-### 1. The natural unit of intelligence is the closed loop
-
-Brains evolved inside bodies acting in environments. Perception changes action; action changes perception; learning changes both.
-
-The scientific unit is therefore often larger than the neural network itself.
-
-`brain + body + environment`
-
-is not merely context around intelligence.
-
-It is part of the mechanism through which intelligence is realized.
-
-This is why the contemporary shift toward embodied NeuroAI is conceptually important, not merely an engineering trend (Zador et al., 2023).
-
-### 2. Brain-likeness should include cybernetic organization
-
-Representational similarity is valuable but underdetermines mechanism.
-
-Two systems may have similar internal geometry while differing in recurrence, prediction, control law, learning rule, perturbation response, or coupling to action.
-
-The stronger comparison is multi-level:
+Second, **brain-likeness should include cybernetic organization**. Representational similarity is valuable but underdetermines mechanism. Two systems can occupy similar internal geometries while differing in recurrence, prediction, control law, learning rule, perturbation response, and coupling to action. A stronger comparison therefore includes:
 
 `representation + dynamics + control + adaptation`
 
-This is close to the direction urged by behavior-centered neuroscience more broadly. Krakauer and colleagues (2017) argue that detailed analysis of behavior is indispensable for understanding neural mechanisms; neural data without a sufficiently rich theory of behavior can encourage reductionist explanation.
+Third, **better control does not answer the question of better ends**. No increase in optimization competence can, by itself, tell us which objective deserves optimization. That question belongs to human judgment, social institutions, ethics, and politics.
 
-A cybernetic framework makes behavior not merely an output variable but part of the causal loop.
-
-### 3. Better control does not answer the question of better ends
-
-Wiener's final lesson is a limit theorem of a different kind.
-
-No increase in optimization competence can, by itself, tell us which objective deserves optimization.
-
-That question belongs to human judgment, social institutions, ethics, and politics.
-
-A science of intelligence that ignores this may build increasingly capable controllers while becoming less clear about what the control is for.
-
----
-
-## 19. From "the model" to "the system"
-
-There is a broader connection here to how machine learning itself is changing.
-
-We often speak as though the model were the central object:
-
-`data → model → prediction`
-
-But deployed intelligence increasingly looks like:
-
-`data ↔ model ↔ tools ↔ users ↔ environment ↔ infrastructure`
-
-The boundaries blur.
-
-The model selects data.
-
-The data changes the model.
-
-Infrastructure constrains what models can be trained and how often they can adapt.
-
-Users respond to outputs.
-
-Those responses become data.
-
-Agents modify the environment that generates future observations.
-
-In this sense, the slogan **the system is the model** becomes even stronger under cybernetics.
-
-The intelligence we observe may not be attributable to a single parameterized function. It may emerge from the organization of a loop containing models, memory, bodies, tools, other agents, and institutions.
-
-For biological intelligence, that loop has always been there.
-
-NeuroAI gives us a chance to study it explicitly.
+A science of intelligence that ignores the third principle may build increasingly capable controllers while becoming less clear about what the control is for.
 
 ---
 
 ## Conclusion: intelligence is in the loop
 
-Wiener's relevance to NeuroAI is sometimes summarized with the word **feedback**.
+Wiener's relevance to NeuroAI is often summarized with a single word: **feedback**.
 
-That is correct but incomplete.
+That is correct, but incomplete.
 
-Read together, *Behavior, Purpose and Teleology*, *Cybernetics*, and *The Human Use of Human Beings* offer a much larger picture.
+Read together, *Behavior, Purpose and Teleology*, *Cybernetics*, and *The Human Use of Human Beings* describe a progressive expansion of the control loop.
 
-The 1943 paper asks how purposive behavior can be described without invoking mysterious final causes. Its answer is organization around feedback, error correction, and prediction.
+The 1943 paper closes the loop around purposeful behavior. Purpose becomes scientifically tractable through feedback, error correction, and prediction.
 
-*Cybernetics* generalizes that insight into a common science of animals and machines based on communication, control, noise, prediction, and regulation.
+*Cybernetics* generalizes the loop across animals and machines. The common scientific language is no longer substrate but organization: communication, control, noise, prediction, and regulation.
 
-*The Human Use of Human Beings* then expands the system boundary again. Adaptive control becomes learning; information becomes a condition for maintaining organization; machines become elements in social systems; and technical optimization becomes inseparable from the question of who sets the purpose.
+*The Human Use of Human Beings* expands the loop across time and society. Feedback changes not only behavior but the controller itself; intelligent systems become embedded in institutions; and technical optimization becomes inseparable from the question of who sets the purpose.
 
-That progression can be summarized as:
+The progression is:
 
 `purpose → control and communication → learning → social consequence`
 
-For NeuroAI, the implication is straightforward.
+For NeuroAI, the implication is not that representation should be abandoned. It is that representation should be placed back inside the causal organization that gives it a role.
 
 The field should continue asking which artificial representations resemble neural representations. But it should also ask a larger question:
 
@@ -785,19 +608,21 @@ The field should continue asking which artificial representations resemble neura
 
 That question places brains and machines on genuinely common ground without pretending that they are the same material object.
 
-And it suggests a stronger definition of intelligence:
+Seen this way, the broader claim that *the system is the model* acquires a specifically cybernetic meaning. The intelligence we observe may not be attributable to a single parameterized function. It may emerge from the organization of models, memory, bodies, tools, other agents, and environments inside a feedback process.
+
+For biological intelligence, that loop has always been there.
+
+NeuroAI gives us a chance to study it explicitly.
 
 > **Intelligence is not merely a property of a model. It is a property of an organized system that uses information to predict, act, learn, and regulate itself through feedback.**
 
-Wiener's final warning prevents this definition from becoming pure engineering:
+Wiener's final warning prevents this definition from collapsing into pure engineering:
 
 > **The ability to optimize a purpose is not the wisdom to choose one.**
 
-A Wienerian NeuroAI would need both insights.
+A Wienerian NeuroAI needs both insights.
 
-It would study how intelligent loops work.
-
-And it would remain explicit about what—and whom—the loop is for.
+It should study how intelligent loops work—and remain explicit about what, and whom, the loop is for.
 
 ---
 
