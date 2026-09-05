@@ -1,0 +1,24 @@
+title: "Ruogu (Franklin) Lin"
+description: "Personal website and writing by Ruogu (Franklin) Lin."
+author: "Ruogu (Franklin) Lin"
+url: "https://lrgthu.github.io"
+baseurl: ""
+timezone: America/Chicago
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+permalink: /blog/:title/
+
+# Posts inherit the blog article layout and visual treatment.
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      body_class: blog-page
+
+exclude:
+  - README.md
