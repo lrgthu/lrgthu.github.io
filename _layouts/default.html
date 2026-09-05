@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.url == '/' %}{{ site.title }}{% else %}{{ page.title }} — {{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <meta name="author" content="{{ site.author }}">
+  {% if page.use_vis %}<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>{% endif %}
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v=retro-11">
+  <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-2">
+</head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+  <div class="layout">
+    {% include sidebar.html %}
+    <main class="content">
+      {{ content }}
+    </main>
+  </div>
+  <script src="{{ '/script.js' | relative_url }}"></script>
+</body>
+</html>
