@@ -23,8 +23,7 @@ permalink: /blog/:title/
 plugins:
   - jekyll-sitemap
 
-# Add the token from Google Search Console here after verification is created.
-# google_site_verification: "YOUR_TOKEN"
+google_site_verification: "jMQRwBsvY4lkIa5YbhezOHBtTYJzyp80N3LYEFMx7qs"
 
 # Posts inherit the blog article layout and visual treatment.
 defaults:
