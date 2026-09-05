@@ -1,0 +1,107 @@
+<aside class="sidebar">
+  <div class="sidebar-profile">
+    <a href="{{ '/' | relative_url }}" aria-label="Back to home">
+      <img class="sidebar-photo" src="{{ '/assets/avatar-macpaint.png' | relative_url }}" alt="Ruogu Lin">
+    </a>
+    <div>
+      <h1 class="sidebar-name">Ruogu Lin</h1>
+    </div>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <nav class="blog-sidebar-nav" aria-label="Site navigation">
+    <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
+    <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+  </nav>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-links" aria-label="External links">
+    <a href="https://www.linkedin.com/in/ruogu-lin-b6b9119a/" class="sidebar-icon-link" target="_blank" rel="noopener" title="LinkedIn">
+      <img src="{{ '/icons/linkedin.svg' | relative_url }}" width="22" height="22" alt="LinkedIn">
+    </a>
+    <a href="https://github.com/lrgthu" class="sidebar-icon-link" target="_blank" rel="noopener" title="GitHub">
+      <img src="{{ '/icons/github.svg' | relative_url }}" width="22" height="22" alt="GitHub">
+    </a>
+    <a href="https://scholar.google.com/citations?user=FsDBOS4AAAAJ&hl=en" class="sidebar-icon-link" target="_blank" rel="noopener" title="Google Scholar">
+      <img src="{{ '/icons/scholar.svg' | relative_url }}" width="22" height="22" alt="Google Scholar">
+    </a>
+  </div>
+
+  <div class="sidebar-divider"></div>
+
+  <section class="sidebar-automaton" aria-label="Two-dimensional cellular automaton">
+    <canvas id="cellular-automaton" width="189" height="189"></canvas>
+  </section>
+
+  <div class="sidebar-invisible-poem" aria-label="Hidden poem excerpt">
+    <p class="invisible-poem-title">I. The Burial of the Dead</p>
+    <p>April is the cruellest month, breeding</p>
+    <p>Lilacs out of the dead land, mixing</p>
+    <p>Memory and desire, stirring</p>
+    <p>Dull roots with spring rain.</p>
+    <p>Winter kept us warm, covering</p>
+    <p>Earth in forgetful snow, feeding</p>
+    <p>A little life with dried tubers.</p>
+  </div>
+
+  <!-- Remove `is-hidden` from these poem blocks to show them again. -->
+  <figure class="sidebar-poem is-hidden" aria-label="Poem excerpt">
+    <figcaption>I. THE BURIAL OF THE DEAD</figcaption>
+    <div class="poem-lines">
+      <p class="poem-first"><span class="poem-dropcap">A</span><span>PRIL is the cruellest month, breeding</span></p>
+      <p>Lilacs out of the dead land, mixing</p>
+      <p>Memory and desire, stirring</p>
+      <p>Dull roots with spring rain.</p>
+      <p>Winter kept us warm, covering</p>
+      <p>Earth in forgetful snow, feeding</p>
+      <p>A little life with dried tubers.</p>
+      <p>Summer surprised us, coming over the</p>
+      <p class="poem-indent">Starnbergersee</p>
+      <p>With a shower of rain; we stopped in the</p>
+      <p class="poem-indent">colonnade,</p>
+      <p>And went on in sunlight, into the Hof-</p>
+      <p class="poem-indent poem-line-numbered"><span>garten,</span><span class="poem-line-number">10</span></p>
+    </div>
+    <div class="poem-footer">
+      <span>[ 9 ]</span>
+    </div>
+  </figure>
+
+  <figure class="sidebar-poem sidebar-poem-fr is-hidden" aria-label="French poem excerpt">
+    <figcaption>LE PHÉNIX</figcaption>
+    <div class="poem-lines">
+      <p class="poem-first"><span class="poem-dropcap">J</span><span>E suis le dernier sur ta route</span></p>
+      <p>Le dernier printemps la dernière neige</p>
+      <p>Le dernier combat pour ne pas mourir</p>
+      <p class="poem-gap">Et nous voici plus bas et plus haut que jamais.</p>
+      <p class="poem-star">*</p>
+      <p>Il y a de tout dans notre bûcher</p>
+      <p>Des pommes de pin des sarments</p>
+      <p>Mais aussi des fleurs plus fortes que l’eau</p>
+      <p class="poem-gap">De la boue et de la rosée.</p>
+      <p class="poem-star">*</p>
+      <p>La flamme est sous nos pieds la flamme nous couronne</p>
+      <p>A nos pieds des insectes des oiseaux des hommes</p>
+      <p>Vont s’envoler</p>
+      <p class="poem-gap">Ceux qui volent vont se poser.</p>
+      <p class="poem-star">*</p>
+      <p>Le ciel est clair la terre est sombre</p>
+      <p>Mais la fumée s’en va au ciel</p>
+      <p>Le ciel a perdu tous ses feux</p>
+      <p class="poem-gap">La flamme est restée sur la terre.</p>
+      <p class="poem-star">*</p>
+      <p>La flamme est la nuée du cœur</p>
+      <p>Et toutes les branches du sang</p>
+      <p>Elle chante notre air</p>
+      <p class="poem-gap">Elle dissipe la buée de notre hiver.</p>
+    </div>
+    <div class="poem-footer">
+      <span>9</span>
+    </div>
+  </figure>
+
+  <div class="sidebar-spacer"></div>
+  <p class="sidebar-footer">Ruogu Lin © 2026</p>
+</aside>
