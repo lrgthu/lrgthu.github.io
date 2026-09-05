@@ -15,27 +15,29 @@ The analogy is deliberately loose, but useful:
 
 > **Saussure is closer to the data structure; Chomsky is closer to the algorithm.**
 
-Saussure emphasized that linguistic units do not carry value independently. Their meaning is shaped by relations and contrasts within a larger symbolic system. Chomsky shifted attention toward an internal faculty capable of constructing an unbounded range of hierarchical expressions from finite means.
+Saussure emphasized that linguistic units do not carry value independently. Their meaning is shaped by relations and contrasts within a larger symbolic system. Chomsky shifted attention toward an internal faculty capable of constructing an open-ended range of hierarchical expressions from finite means.
 
 These traditions are often treated as competitors. I think modern neuroscience and machine learning suggest a different reading: they illuminate different parts of a coupled system.
 
-An algorithm needs a representation to operate on. A representation is useful partly because of the operations it supports. In a learned system, computation continually changes representation; the resulting representational geometry shapes the next computation. Both are molded by experience. Communication exposes internal states to other agents. Coordination changes the shared environment. Culture preserves the consequences and turns them into data for the next learner.
+The central claim of this essay is not that representation and computation are the same thing. They are not. It is that, in a learned system, they are not causally independent either. Computation continually changes representation; the resulting representational structure determines what computations become easy or available next. Both are shaped by experience. Communication exposes internal states to other agents. Coordination changes shared environments. Culture preserves the consequences and turns them into data for future learners.
 
-The resulting picture is not
+The resulting picture is therefore not
 
 `representation + computation + communication`
 
-as a set of independent modules. It is closer to a loop:
+as a collection of independently specified modules. It is closer to a loop:
 
 `world → experience → representation ↔ computation → communication → coordination → culture → new experience`
 
-Classical theories illuminate different transitions in this loop. Contemporary neuroscience is beginning to connect them. Large language models make some of those connections computationally explicit.
+The question is no longer only *where* language or intelligence resides. It is also **what sequence of transformations produces, communicates, stabilizes, and reconstructs it over time**.
 
-The deeper possibility is that intelligence does not reside in any single component. It emerges from the organization of the whole system.
+Classical theories illuminate different transitions in this loop. Contemporary neuroscience is beginning to connect them. Large language models make some of those connections computationally explicit.
 
 ---
 
-## 1. Saussure: meaning as relational structure
+## 1. The old divide: representation and computation
+
+### Saussure: meaning as relational structure
 
 Saussure's *Course in General Linguistics* introduced a distinction between *langue*, the socially shared system of language, and *parole*, particular acts of speaking. A linguistic sign joins a *signifier*—a sound pattern or other form—to a *signified*, a concept. The connection is largely arbitrary: there is nothing intrinsically tree-like about the sound *tree*.
 
@@ -47,29 +49,27 @@ It depends on a network:
 
 `word → relations to other signs within a system`
 
-Saussure was not proposing vector embeddings, and it would be anachronistic to read modern distributional semantics directly back into structural linguistics. His theory was social and semiotic, not a neural representation model. But the family resemblance is hard to miss: both make **relations among representations** central to meaning.
+This is not a claim that modern embeddings implement Saussurean linguistics. That would be anachronistic. Saussure's theory was social and semiotic, not a neural representation model. The connection is at the level of an organizing intuition: **meaning is relational rather than atomistic**.
 
-Modern language models sharpen that intuition. A lexical item is represented within a high-dimensional space, and its useful properties depend on its position relative to other representations. Contextual models go further: the representation itself is reconstructed as context changes. *Bank* in *river bank* and *bank loan* is not simply a fixed symbol handed to two different downstream rules; its internal state is different in the two contexts.
+Modern language models make that intuition computationally concrete. A lexical item is represented within a high-dimensional space, and its useful properties depend partly on its position relative to other representations. Contextual models go further: the representation itself changes with context. *Bank* in *river bank* and *bank loan* is not simply a fixed symbol passed into two different downstream rules; its internal state is different in the two contexts.
 
 A modern computational restatement of the Saussurean intuition might therefore be:
 
 > **Meaning partly lives in representational geometry.**
 
-The important word is *partly*. Human meaning is not reducible to geometry in a text-trained model. It also depends on perception, action, memory, goals, social knowledge, and the world to which language is ultimately connected. But relational structure is no longer just a philosophical metaphor. It is something we can measure in both models and brains.
+The important word is *partly*. Human meaning is not reducible to geometry in a text-trained model. It also depends on perception, action, memory, goals, social knowledge, and the world to which language is ultimately connected. But relational structure is no longer only a philosophical metaphor. It is something we can measure in both models and brains.
 
----
-
-## 2. Chomsky: language as generative computation
+### Chomsky: language as generative computation
 
 Chomsky changed the center of gravity. The central mystery of language, on this view, is not only that words have meanings, but that humans can generate and understand expressions they have never encountered before.
 
-A finite vocabulary supports an effectively unbounded number of sentences. More importantly, sentences have hierarchical structure.
+A finite vocabulary supports an open-ended range of sentences. More importantly, sentences have hierarchical structure.
 
 Consider:
 
 > Alice thinks Bob believes Carol left.
 
-The sentence is not merely a sequence of six lexical items. It contains nested relations:
+The sentence is not merely a sequence of lexical items. It contains nested relations:
 
 `Alice thinks [Bob believes [Carol left]]`
 
@@ -77,85 +77,97 @@ Human language therefore appears to depend on operations that construct and mani
 
 The computer-science analogy is an algorithm operating over structured states.
 
-If Saussure asks how the symbolic space is organized, Chomsky asks what transformations can generate new structure within that space.
+If Saussure asks how a symbolic space is organized, Chomsky asks what transformations can generate new structure within that space.
 
-This makes the apparent disagreement look less like a contradiction than a difference in explanatory target. In Marr's terminology, questions about representation, algorithm, and physical implementation need not have one-to-one answers. A theory can be insightful at one level while incomplete at another.
+This makes their apparent disagreement look less like a contradiction than a difference in explanatory target. In Marr's terms, representational, algorithmic, and implementational questions need not have one-to-one answers. A theory can identify the right level of question while remaining incomplete about the mechanism.
 
-Language needs both structure and operations over structure.
-
----
-
-## 3. What neuroscience preserved from Chomsky—and what it complicated
-
-Modern cognitive neuroscience gives substantial support to one broad Chomskyan intuition: language is not merely an observable pattern of speech or a social convention. There is a reproducible internal neural system supporting linguistic processing.
-
-A large body of work identifies a predominantly left-lateralized frontotemporal **core language network**. Across individuals, it is strongly interconnected, works across input and output modalities, is causally important for language, and is functionally distinguishable from several neighboring systems involved in domain-general control and other forms of cognition (Fedorenko, Ivanova, & Regev, 2024).
-
-This is much closer to an internal computational conception of language than to a theory restricted to external linguistic behavior.
-
-There is also strong evidence that the brain represents linguistic organization above the level of linear word sequences. During continuous speech, neural activity can track structure at multiple linguistic timescales—words, phrases, and sentences—even when those boundaries are not directly marked in the acoustic signal (Ding et al., 2016).
-
-The broad principle
-
-> **language is structure, not merely sequence**
-
-has survived remarkably well.
-
-What has not survived as cleanly is a strongly modular picture of how that structure is neurally implemented.
-
-Precision fMRI work increasingly suggests that syntactic and semantic sensitivity is distributed across overlapping portions of the language network. Shain and colleagues (2024), for example, found widespread sensitivity to both syntax and semantics across frontotemporal language regions, with specialization appearing more graded than categorical.
-
-So neuroscience gives an interesting verdict.
-
-There is an identifiable internal language system. There is hierarchical and compositional processing. But the division of labor inside that system may be considerably more distributed and integrated than a simple architecture of independent symbolic modules would suggest.
-
-In that sense, **the existence of language computation looks Chomskyan; its neural implementation looks less cleanly modular.**
+That distinction becomes important once we look at the brain.
 
 ---
 
-## 4. What neuroscience makes newly Saussurean
+## 2. What neuroscience preserves—and what it complicates
+
+Modern cognitive neuroscience has vindicated the **internalist turn** more clearly than it has vindicated any particular Chomskyan implementation.
+
+A large body of work identifies a predominantly left-lateralized frontotemporal **core language network**. Across individuals, this network is strongly interconnected, works across input and output modalities, is causally important for language, and is functionally distinguishable from several neighboring systems involved in domain-general control and other forms of cognition (Fedorenko, Ivanova, & Regev, 2024).
+
+There is also strong evidence that linguistic processing cannot be reduced to a linear sequence of words. During continuous speech, neural activity tracks information at multiple linguistic timescales, including words, phrases, and sentences, even when those boundaries are not directly marked in the acoustic signal (Ding et al., 2016).
+
+So two broad Chomskyan intuitions have aged well:
+
+1. language is supported by an internal biological system; and
+2. linguistic computation is sensitive to structure beyond surface sequence.
+
+But neuroscience has been much less kind to a cleanly modular interpretation of that system.
+
+Precision fMRI work suggests that syntactic and semantic sensitivity is distributed across overlapping portions of the language network. Shain and colleagues (2024), for example, found widespread sensitivity to both syntax and semantics across frontotemporal language regions, with specialization appearing more graded than categorical.
+
+So the strongest conclusion is not that neuroscience has "proved Chomsky." It is narrower and, I think, more interesting:
+
+> **Chomsky's level of question has survived better than many specific answers to it.**
+
+The brain does seem to contain an internal language system capable of structured computation. Its implementation, however, appears more distributed and interactive than a simple collection of independent symbolic modules.
+
+### A relational geometry of meaning
 
 The representational side of the story has changed just as dramatically.
 
-Contemporary computational neuroscience often describes neural representations geometrically: stimuli correspond to patterns in high-dimensional population activity, and information is expressed through relations among those patterns. This shift has made language models unusually useful scientific comparison systems.
+Contemporary computational neuroscience often describes neural representations geometrically: stimuli correspond to patterns in high-dimensional population activity, and information is expressed through relations among those patterns. This has made language models unusually useful comparison systems.
 
 Goldstein and colleagues (2024) recorded intracranial activity from the inferior frontal gyrus while participants listened to natural speech and constructed neural population representations—"brain embeddings"—for individual words. They found that the relational geometry of these neural representations could be aligned with contextual embeddings from deep language models. Contextual embeddings captured the geometry better than static word embeddings.
 
-The result requires caution. The study involved three participants, and geometric correspondence does not imply that cortex implements the same algorithm as a transformer. But the conceptual point is important: a neural representation can be characterized partly by **its relations to other representations in a continuous space**.
+The result requires caution. The study involved three participants, and geometric correspondence does not imply that cortex implements the same algorithm as a transformer. Still, the conceptual point is important: a neural representation can be characterized partly by **its relations to other representations in a continuous space**.
 
-That is an unexpectedly modern echo of Saussure.
+That is not Saussure implemented in cortex. It is a modern empirical result that resonates with a Saussurean organizing principle: the informational role of an element depends on its relations within a larger system.
 
-Recent work also suggests that this comparison may extend beyond language narrowly construed. Doerig and colleagues (2025) showed that LLM representations derived from descriptions of natural scenes can explain high-level visually evoked brain activity, with controlled analyses indicating that the advantage depends on integration of complex contextual information rather than isolated words alone.
+Recent work suggests that this comparison may extend beyond language narrowly construed. Doerig and colleagues (2025) showed that LLM representations derived from descriptions of natural scenes can explain high-level visually evoked brain activity, with controlled analyses indicating that the advantage depends on integration of complex contextual information rather than isolated words alone.
 
-This should not be interpreted as evidence that visual cortex secretly represents scenes in English. A more interesting interpretation is that language models may learn a relational coordinate system that approximates some of the conceptual structure useful to the brain.
+This should not be interpreted as evidence that visual cortex secretly represents scenes in English. A more useful interpretation is that language models may learn a relational coordinate system that approximates some of the conceptual structure also useful to the brain.
 
-The modernized Saussurean claim is therefore not that meaning is "just language." It is that:
+### Language is not the same thing as thought
 
-> **Meaning may be deeply relational, and relational structure can be expressed as geometry.**
+A further result complicates both classical linguistics and modern enthusiasm about LLMs: the core language network can be dissociated from several forms of nonlinguistic cognition.
+
+People with severe aphasia can retain substantial capacities for reasoning, while demanding tasks in mathematics, executive control, or social inference need not strongly recruit language-selective cortex. Fedorenko, Piantadosi, and Gibson (2024) synthesize this literature into a provocative thesis: in modern humans, language is primarily a tool for communication rather than the machinery of thought itself.
+
+Whether one accepts that conclusion in its strongest form, the dissociation matters. It suggests that we should distinguish at least two questions:
+
+1. What systems construct and manipulate thoughts?
+2. What systems map those thoughts into communicable linguistic form?
+
+A parallel distinction is useful for thinking about LLMs. Mahowald and colleagues (2024) distinguish **formal linguistic competence**—mastery of linguistic patterns and structure—from **functional linguistic competence**, which requires using language together with world knowledge, reasoning, goals, and social context.
+
+The familiar question "Does an LLM understand language?" can therefore be decomposed into more tractable ones: What representational structures has it acquired? What computations can it perform over them? What is grounded in perception or action? Can it infer communicative intentions? What additional machinery is required when language becomes persistent action and social commitment?
+
+Those are different scientific questions.
 
 ---
 
-## 5. Representation and computation do not stay separate
+## 3. Learned systems: when representation and computation co-adapt
 
-At this point, the algorithm/data-structure analogy starts to break down in a productive way.
+The algorithm/data-structure analogy now starts to break down in a productive way.
 
-In a conventional program, we can cleanly imagine an algorithm acting on a data structure. In a deep network, the separation is less stable.
+In a conventional program, we can imagine an algorithm acting on a data structure that is specified independently. In a learned neural system, the separation is less stable.
 
-At layer `l`, the system contains a representation `h(l)`. A learned transformation maps it to a new representation:
+At layer `l`, a network contains a representation `h(l)`. A learned transformation maps it to a new representation:
 
 `h(l) → fθ(h(l)) → h(l+1)`
 
-The output representation is the input state for the next computation.
+The output representation becomes the input state for the next computation.
 
-Computation therefore creates representation, while representation determines the state over which the next computation operates:
+This does **not** imply
 
-`representation ↔ computation`
+`representation = computation`.
 
-This may be one of the most useful lessons machine learning contributes to cognitive theory. The structure on which an algorithm operates is not necessarily fixed in advance. A learned system can construct the representational space that makes its own later computations possible.
+The distinction remains analytically useful. But it does imply something weaker and more consequential:
 
-Language models provide a particularly striking demonstration. They are not explicitly programmed with a traditional symbolic grammar, yet prediction-trained models develop internal states that encode substantial lexical, syntactic, semantic, and contextual structure.
+> **In a learned system, representation and computation need not be independent causal modules.**
 
-Some of these learned states predict human neural responses.
+Computation constructs new representational states; those states constrain what subsequent computations are easy or even possible. Training changes both together.
+
+Language models provide a striking demonstration. They are not explicitly programmed with a traditional symbolic grammar, yet prediction-trained models develop internal states that encode substantial lexical, syntactic, semantic, and contextual structure.
+
+Some of these learned states also predict human neural responses.
 
 Goldstein and colleagues (2022), using intracranial recordings during natural speech, reported correspondences between autoregressive language models and human neural processing in contextual word representations, pre-word prediction, and post-word surprise. Caucheteux and King (2022), using fMRI and MEG, found that a model's ability to predict words from context was strongly associated with its ability to predict human brain responses.
 
@@ -167,43 +179,19 @@ A model can predict a neural response for the wrong reason. Different algorithms
 
 But LLMs have changed what kinds of theories are experimentally available. We can now compare complete computational systems to brain data and ask which properties—architecture, objective, context, scale, training data, or intermediate representations—improve explanatory power.
 
-Instead of debating only whether the brain is "symbolic" or "statistical," we can study how particular computations generate particular geometries, and how both compare with biology.
+This is one reason language models are useful to neuroscience even if brains are not transformers. They let us study, in explicit computational systems, how learning rules produce representational geometries and how those geometries support later computation.
+
+The useful comparison is therefore not "symbolic versus statistical." It is:
+
+`experience → learned representation ↔ learned computation`
+
+and then, separately, which parts of that transformation resemble biology.
 
 ---
 
-## 6. Language is not the same thing as thought
+## 4. From individual language to a coupled cognitive system
 
-The success of language models creates a temptation to collapse language, meaning, and thought into a single system. Human neuroscience gives us good reasons not to do so.
-
-One of the strongest findings in the modern neurobiology of language is the dissociation between the core language network and several forms of nonlinguistic cognition. People with severe aphasia can retain substantial capacities for reasoning, while demanding tasks in mathematics, executive control, or social inference need not strongly recruit language-selective cortex.
-
-Fedorenko, Piantadosi, and Gibson (2024) synthesize this evidence into a provocative thesis: in modern humans, language is primarily a tool for communication rather than the machinery of thought itself.
-
-Whether one accepts that conclusion in its strongest form, the dissociation matters. It suggests that we should distinguish at least two questions:
-
-1. What system constructs and manipulates thoughts?
-2. What system maps those thoughts into communicable linguistic form?
-
-A parallel distinction is useful for thinking about LLMs. Mahowald and colleagues (2024) distinguish **formal linguistic competence**—mastery of linguistic patterns and structure—from **functional linguistic competence**, which requires using language together with world knowledge, reasoning, goals, and social context.
-
-This reframes the familiar question "Does an LLM understand language?"
-
-The answer need not be binary. We can ask instead:
-
-- What representational structures has the model acquired?
-- What computations can it perform over them?
-- What parts of those representations are grounded in perception or action?
-- Can it infer communicative intentions?
-- Can it maintain persistent goals and social commitments?
-- What additional systems are required when language becomes action?
-
-Those are different scientific questions, and treating them separately makes the comparison between brains and models more precise.
-
----
-
-## 7. From communication to coordination
-
-Language does more than transfer an internal representation from one brain to another.
+So far the unit of analysis has mostly been one agent. Language becomes more interesting when the boundary expands.
 
 Suppose I say:
 
@@ -227,6 +215,8 @@ Neuroscience has begun to move in the same direction. Classical language experim
 
 The unit of analysis can therefore expand from one language system to an interacting pair.
 
+### Coordination becomes culture
+
 Once linguistic structures are transmitted across many people and generations, another level appears. Kirby, Cornish, and Smith (2008) showed experimentally that artificial languages passed through chains of learners can become progressively more structured and learnable. Some properties of a language can therefore arise through **cultural transmission**, not only from the inductive biases of one learner considered in isolation.
 
 The causal arrow becomes circular:
@@ -239,85 +229,17 @@ and
 
 Communication becomes coordination. Coordination becomes culture. Culture becomes the learning environment of the next generation.
 
----
+Reading provides a concrete example of this feedback. Writing is far too recent a cultural invention for natural selection to have produced a dedicated reading organ. Yet literacy produces reproducible functional organization in the brain. Dehaene and Cohen's neuronal recycling hypothesis proposes that cultural inventions recruit and reshape evolutionarily older neural circuits whose pre-existing properties make them suitable for new functions.
 
-## 8. Culture is part of the computational loop
+Culture is therefore not merely output from a fixed biological brain. It changes the developmental inputs under which brains organize themselves.
 
-This feedback loop makes the boundary of the language system difficult to draw.
+`brain → culture → developmental environment → brain`
 
-Consider reading. Writing is far too recent a cultural invention for natural selection to have produced a dedicated reading organ. Yet literacy produces reproducible functional organization in the brain. Dehaene and Cohen's neuronal recycling hypothesis proposes that cultural inventions occupy and reshape evolutionarily older neural circuits whose pre-existing properties make them suitable for new functions.
+This is where extended-cognition arguments become relevant, though they are not required for the narrower claim of this essay. Clark and Chalmers ask whether a reliably integrated external resource can sometimes count as part of a cognitive process. One need not accept the strongest constitutive version of that thesis to recognize a weaker empirical point: external structures can be **causally indispensable components of intelligent behavior**.
 
-Culture is therefore not merely output from a fixed biological brain.
+A notebook can participate in memory. A calendar can participate in prospective cognition. Language can preserve representations outside individual brains, transmit them between people, and accumulate them across generations.
 
-Cultural structures alter developmental input and change how neural machinery is recruited:
-
-`brain → culture`
-
-and
-
-`culture → brain`
-
-The same intuition appears in a more philosophical form in Clark and Chalmers's extended-mind argument. If an external resource is reliably integrated into cognition, why must the relevant cognitive system stop at the skull?
-
-A notebook can participate in memory. A calendar can participate in prospective cognition. A search engine can participate in information retrieval. Language may be the oldest and most consequential example of cognitive infrastructure outside a single brain: it allows representations to persist outside the organism, move between individuals, and accumulate across generations.
-
-Human cognition is therefore embedded in a larger loop:
-
-`brain ↔ language ↔ tools ↔ culture ↔ environment`
-
-This does not require claiming that every external artifact is literally part of the brain. It requires recognizing that the causal system producing intelligent behavior often extends beyond it.
-
----
-
-## 9. "Model is data, data is infra, infra is model"
-
-There is a strikingly similar intuition in modern machine-learning engineering.
-
-A useful, deliberately provocative maxim is:
-
-> **model is data, data is infrastructure, infrastructure is model.**
-
-Taken literally, this is false. A checkpoint is not a dataset, and a cluster scheduler is not a transformer.
-
-Taken as a systems principle, however, it captures something important.
-
-### Model is data
-
-A trained parameter vector is partly a compressed consequence of the distribution it has encountered.
-
-`parameters = F(architecture, data, objective, optimization, training dynamics)`
-
-Change the data mixture and you change the effective model. Change filtering, curriculum, synthetic-data generation, preference data, or sampling and you change what capabilities emerge.
-
-The architecture is not the whole model. The training distribution has been folded into the parameters.
-
-### Data is infrastructure
-
-At large scale, "the dataset" is not a static file. It is a running system of acquisition, filtering, deduplication, ranking, tokenization, mixing, storage, streaming, retrieval, feedback, and refresh.
-
-The effective data distribution is an infrastructural product.
-
-### Infrastructure is model
-
-Infrastructure also constrains the space of models that can exist economically and reliably. Memory affects context length. Interconnect topology affects parallelism. Serving systems determine whether retrieval, external memory, tool use, mixture-of-experts routing, or long-horizon agents are feasible.
-
-For a deployed AI system, the effective model increasingly looks like:
-
-`parameters + context + retrieval + memory + tools + orchestration + serving system`
-
-The model has become a system.
-
-This is structurally similar to what happens when we move from a narrow view of language to a broader view of cognition.
-
-The brain matters enormously. But so do developmental data, learned representations, cultural history, interlocutors, external symbols, and tools.
-
-The explanatory boundaries remain useful. They should not be mistaken for causal independence.
-
----
-
-## 10. The full stack
-
-The picture can now be written as a cycle:
+The closed loop is therefore not meant as a metaphysical claim that "everything is cognition." It is an explanatory proposal about the appropriate causal unit:
 
 ```text
 WORLD
@@ -328,13 +250,9 @@ REPRESENTATION
   ↕
 COMPUTATION
   ↓
-PREDICTION / THOUGHT
-  ↓
-EXTERNALIZATION / LANGUAGE
+LANGUAGE / EXTERNALIZATION
   ↓
 COMMUNICATION
-  ↓
-PRAGMATIC INFERENCE
   ↓
 COORDINATION
   ↓
@@ -344,43 +262,57 @@ NEW EXPERIENCE / DATA
   ↺
 ```
 
-Different intellectual traditions emphasize different transitions.
-
-**Saussure** helps us think about the relational organization of symbolic representations.
-
-**Chomsky** helps us think about the internal computations that build compositional and hierarchical structure.
-
-**Grice, Austin, and Searle** move from sentence meaning toward inference and action.
-
-**Tomasello** emphasizes shared intentionality and cooperative coordination.
-
-**Cultural-evolution approaches** ask how languages themselves are reshaped through transmission.
-
-**Extended-cognition theories** question whether the relevant system boundary should always be placed at the skull.
-
-Modern neuroscience can increasingly measure several of these levels. Modern AI can increasingly instantiate them.
-
-The corresponding AI stack has a similar organization:
-
-```text
-DATA
-  ↕
-MODEL
-  ↕
-INFRASTRUCTURE
-  ↕
-AGENT
-  ↕
-ENVIRONMENT
-```
-
-Neither diagram should be interpreted as a literal one-to-one analogy between brains and artificial networks. The deeper similarity is organizational:
-
-> **the behavior of the whole system cannot be understood by treating its components as independently specified.**
+The individual brain remains essential. It is simply not the only part of the loop that explains what the system becomes over time.
 
 ---
 
-## 11. Why LLMs make this question newly interesting
+## 5. The system is the model
+
+This is where an apparently unrelated engineering intuition becomes useful.
+
+In modern machine learning one sometimes hears the deliberately provocative maxim:
+
+> **model is data, data is infra, infra is model.**
+
+Taken literally, this is false. A checkpoint is not a dataset, and a cluster scheduler is not a transformer.
+
+The analogy I want to draw is also **not** between GPUs and neurons. It is between two failures of modular decomposition.
+
+In both cases, boundaries that are useful for engineering or analysis can become misleading when they are mistaken for causal independence.
+
+### Model is data
+
+A trained parameter vector is partly a compressed consequence of the distribution it has encountered:
+
+`parameters = F(architecture, data, objective, optimization, training dynamics)`
+
+Change the data mixture and you change the effective model. Change filtering, curriculum, synthetic-data generation, preference data, or sampling and you change what capabilities emerge.
+
+The training distribution has been folded into the parameters. What looks like one component contains the causal history of another.
+
+### Data is infrastructure
+
+At large scale, "the dataset" is not a static file. It is a running system of acquisition, filtering, deduplication, ranking, tokenization, mixing, storage, streaming, retrieval, feedback, and refresh.
+
+The effective data distribution is an infrastructural product.
+
+### Infrastructure is model
+
+Infrastructure constrains the class of systems that can exist economically and reliably. Memory affects context length. Interconnect topology affects parallelism. Serving systems determine whether retrieval, external memory, tool use, mixture-of-experts routing, or long-horizon agents are feasible.
+
+For a deployed AI system, the effective model increasingly looks like:
+
+`parameters + context + retrieval + memory + tools + orchestration + serving system`
+
+The point is not that these things are literally identical. It is that they **jointly determine the behavior of the deployed system**.
+
+That is structurally similar to the argument developed above for language and cognition:
+
+`representation ↔ computation ↔ interaction ↔ environment`
+
+The explanatory boundaries remain useful. They should not be mistaken for independent causes.
+
+### Why LLMs make the old debate newly interesting
 
 Large language models introduce an unusual intervention into this history because their training data is not simply raw sensory experience.
 
@@ -401,37 +333,19 @@ Books, scientific papers, software, laws, conversations, histories, arguments, a
 
 An LLM is therefore trained on what we might call **compressed traces of human cognition and culture**.
 
-This matters when interpreting what emerges from prediction objectives.
-
-The remarkable linguistic and conceptual structure acquired by LLMs does not by itself demonstrate that prediction can reconstruct intelligence from unstructured data. The data is already profoundly structured. It was generated by intelligent agents living in a shared world and filtered through language and culture.
+This matters when interpreting what emerges from prediction objectives. The remarkable linguistic and conceptual structure acquired by LLMs does not by itself demonstrate that prediction can reconstruct intelligence from unstructured data. The data is already profoundly structured. It was generated by intelligent agents living in a shared world and filtered through language and culture.
 
 This complicates the classical opposition between innate structure and learning from data.
 
-Data can contain structure.
+Data can contain structure. Architecture determines what regularities can be extracted. Optimization converts those regularities into internal geometry. Internal geometry changes what computations become accessible. Outputs alter the environment that produces future data.
 
-Architecture determines what regularities can be extracted.
+Again, we return to the loop.
 
-Optimization converts regularities into internal geometry.
-
-Internal geometry changes what computations become accessible.
-
-Outputs alter the environment that produces future data.
-
-We are back to the loop.
-
----
-
-## 12. What, then, might be uniquely human?
+### What might be uniquely human?
 
 This framework also changes how I would pose the question of whether language is uniquely human.
 
-Communication is not uniquely human.
-
-Representation is not uniquely human.
-
-Complex computation is not uniquely human.
-
-Social coordination is not uniquely human.
+Communication is not uniquely human. Representation is not uniquely human. Complex computation is not uniquely human. Social coordination is not uniquely human.
 
 The distinctive feature may instead be their integration into a self-reinforcing system:
 
@@ -451,37 +365,21 @@ The cycle compounds.
 
 Under this view, human linguistic uniqueness may not reside in a single magical operation. It may lie in the way multiple capacities lock together and create a cultural ratchet.
 
-LLMs complicate the picture because they show that an artificial system can acquire unexpectedly rich formal linguistic competence by learning from the outputs of that ratchet.
+LLMs complicate the picture because they show that an artificial system can acquire unexpectedly rich formal linguistic competence by learning from the outputs of that ratchet. But a text-trained model inherits an enormous cultural environment without independently reproducing the evolutionary, developmental, embodied, and interpersonal process that generated it.
 
-But they do not make the distinction disappear. A text-trained model inherits an enormous cultural environment without independently reproducing the evolutionary, developmental, embodied, and interpersonal process that generated it.
-
-That is precisely why LLMs are scientifically interesting.
-
-They allow us to experimentally separate components of a system that, in humans, normally arrive tightly coupled.
+That is precisely why LLMs are scientifically interesting: they let us experimentally separate components of a system that, in humans, normally arrive tightly coupled.
 
 ---
 
-## 13. From "where is intelligence?" to "what loop produces it?"
+## Conclusion: from localization to dynamics
 
 There is a methodological lesson here for both neuroscience and AI.
 
-We often ask localization questions:
-
-Where is syntax?
-
-Where is meaning?
-
-Where is memory?
-
-Where is knowledge in a language model?
-
-Which layer contains the concept?
-
-Which brain region performs the computation?
+We often ask localization questions: Where is syntax? Where is meaning? Which brain region performs a computation? Which layer contains a concept? Where is knowledge stored in a model?
 
 These are useful questions, but they can encourage an overly static picture.
 
-A representation is meaningful partly because of the computations available over it. A computation is useful because of the representational state on which it operates. Those representations are shaped by learning. Learning is shaped by data. Data is shaped by previous agents and environments. Communication changes other agents. Collective action changes the environment.
+A representation is useful partly because of the computations available over it. A computation is effective because of the representational state on which it operates. Those representations are shaped by learning. Learning is shaped by data. Data is shaped by previous agents and environments. Communication changes other agents. Collective action changes the environment.
 
 The more complete scientific question is therefore not simply:
 
@@ -499,55 +397,29 @@ but:
 
 > **What closed loop produces intelligent behavior?**
 
-This reframing matters for NeuroAI.
+This reframing matters for NeuroAI. A model that matches a static representational geometry may still implement the wrong transformation. A model that predicts neural responses during passive comprehension may fail during interactive cognition. A system that performs well on linguistic benchmarks may still lack mechanisms required for grounded, persistent coordination.
 
-A model that matches a static representational geometry may still implement the wrong transformation. A model that predicts neural responses during passive comprehension may fail during interactive cognition. A system that performs well on linguistic benchmarks may still lack mechanisms required for grounded, persistent coordination.
+Conversely, an artificial model need not resemble biological implementation at every level to provide a useful theory of a particular computation. The goal is not to decide whether brains "are transformers." It is to identify the levels at which artificial and biological systems converge, the levels at which they diverge, and the constraints that produce each pattern.
 
-Conversely, an artificial model need not resemble biological implementation at every level to provide a useful theory of a particular computation.
+Saussure and Chomsky are useful here not because one must defeat the other. They identify different explanatory objects. Saussure helps us ask how representations acquire value through relations within a system. Chomsky helps us ask what internal computations construct new structured states. Modern neuroscience suggests that both questions matter, while learned systems show why their answers cannot always be cleanly separated.
 
-The goal is not to decide whether brains "are transformers."
-
-It is to identify the levels at which artificial and biological systems converge, the levels at which they diverge, and the constraints that produce each pattern.
-
----
-
-## Conclusion: the system is the model
-
-Saussure and Chomsky are often presented as representatives of fundamentally different theories of language. From a contemporary computational perspective, I find it more useful to see them as describing different pieces of the same problem.
-
-Saussure asks how symbols acquire value through a relational system.
-
-Chomsky asks how an internal system constructs new structure from finite elements.
-
-Modern neuroscience suggests that both questions matter. Language depends on an identifiable biological network and supports hierarchical processing, but its neural implementation is distributed, contextual, and naturally described in terms of population representations and representational geometry.
-
-Modern language models make the interaction even harder to ignore. Their computations continually reshape representations; their representations are products of training data; their training data is a product of human culture; and their deployed capabilities increasingly depend on context, retrieval, memory, tools, and infrastructure.
-
-At that point, the clean decomposition begins to dissolve:
-
-> **representation is shaped by computation;  
-> computation is shaped by representation;  
-> both are shaped by data;  
-> data is shaped by agents;  
-> agents reshape the environment that generates future data.**
-
-This is why the engineering intuition that *model is data, data is infra, infra is model* feels unexpectedly close to an old debate about language.
+The engineering intuition that *model is data, data is infra, infra is model* points toward the same methodological lesson.
 
 The deeper principle is not that these categories are literally identical.
 
-It is that **they jointly constitute the system we are trying to explain**.
+It is that **they mutually constrain the system we are trying to explain**.
 
 For artificial intelligence, this suggests:
 
 > **The system is the model.**
 
-For cognitive science, the corresponding claim is:
+For cognitive science, a corresponding caution is:
 
-> **The brain is not the whole cognitive system.**
+> **The brain is not the whole explanatory system.**
 
-And perhaps the most useful hypothesis connecting the two is this:
+The strongest claim I want to make is therefore methodological rather than metaphysical:
 
-> **Intelligence may not reside in a model, a representation, an algorithm, or a brain alone. It may be a property of the closed loop through which representations, computations, agents, and environments continually construct one another.**
+> **Intelligence is not well explained by locating it in a single component. It is better understood through the dynamics by which representations, computations, agents, and environments constrain and reconstruct one another over time.**
 
 ---
 
