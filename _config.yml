@@ -1,15 +1,31 @@
 title: "Ruogu (Franklin) Lin"
-description: "Personal website and writing by Ruogu (Franklin) Lin."
+description: "Ruogu (Franklin) Lin — machine learning engineer and researcher working on recommendation systems, multimodal representation learning, computational neuroscience, and NeuroAI."
 author: "Ruogu (Franklin) Lin"
 url: "https://lrgthu.github.io"
 baseurl: ""
 timezone: America/Chicago
+lang: en_US
+
+# Identity signals used by jekyll-seo-tag structured data.
+social:
+  name: "Ruogu (Franklin) Lin"
+  links:
+    - "https://github.com/lrgthu"
+    - "https://www.linkedin.com/in/ruogu-lin-b6b9119a/"
+    - "https://scholar.google.com/citations?user=FsDBOS4AAAAJ&hl=en"
 
 markdown: kramdown
 kramdown:
   input: GFM
 
 permalink: /blog/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Add the token from Google Search Console here after verification is created.
+# google_site_verification: "YOUR_TOKEN"
 
 # Posts inherit the blog article layout and visual treatment.
 defaults:
