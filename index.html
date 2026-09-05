@@ -93,7 +93,6 @@ use_vis: true
         <ul class="blog-post-list blog-home-list">
           {% for post in site.posts limit:3 %}
             <li class="blog-post-row">
-              <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
               <div>
                 <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
                 {% if post.summary %}<p class="blog-post-summary">{{ post.summary }}</p>{% endif %}
