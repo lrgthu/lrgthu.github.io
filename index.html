@@ -1,317 +1,232 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ruogu (Franklin) Lin</title>
-  <meta name="description" content="Personal website for Ruogu (Franklin) Lin.">
-  <meta name="author" content="Ruogu (Franklin) Lin">
-  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-  <link rel="stylesheet" href="style.css?v=retro-11">
-</head>
-<body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-profile">
-        <img class="sidebar-photo" src="assets/avatar-macpaint.png" alt="Ruogu Lin">
-        <div>
-          <h1 class="sidebar-name">Ruogu Lin</h1>
-        </div>
-      </div>
+---
+layout: default
+title: "Ruogu (Franklin) Lin"
+description: "Personal website for Ruogu (Franklin) Lin."
+use_vis: true
+---
+<section class="section" id="about">
+  <h2 class="section-title">About</h2>
+  <div class="about-text">
+    <p>
+      I currently work at Meta Recommendation System as a Software Engineer, building machine learning systems
+      for products used at Meta scale. My interests sit at the intersection of multimodal representation
+      learning, recommendation, and human-centered intelligence.
+    </p>
+    <p>
+      I received my Ph.D. in Computer Science from Carnegie Mellon University, where I was advised by Dr.
+      <a href="https://www.cs.cmu.edu/~lwehbe/">Leila Wehbe</a>. My doctoral work investigated the bridge
+      between deep neural networks and the human brain, asking how visual intelligence emerges across
+      biological and artificial systems.
+    </p>
+    <p>
+      During my PhD, I have done research internships at Meta Reality Labs, working on self-supervised learning
+      methods for neuromuscular data representation and downstream adaptation.
+    </p>
+    <p>
+      Prior to CMU, I received my Bachelor of Engineering from the Department of Automation at Tsinghua
+      University. During my undergrad time, I worked with Dr.
+      <a href="https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/">Jiwen Lu</a>.
+    </p>
+  </div>
+</section>
 
-      <div class="sidebar-divider"></div>
+<section class="section" id="blog">
+  <h2 class="section-title">Blog</h2>
+  <div class="blog-home">
+    <div class="blog-home-main">
+      <p class="blog-eyebrow">Essays / notes / field notes</p>
+      <p class="blog-home-copy">
+        Notes from between models and minds — intelligence, representation, learning, systems,
+        and ideas that are still too unfinished to become papers.
+      </p>
 
-      <div class="sidebar-links" aria-label="External links">
-        <a href="https://www.linkedin.com/in/ruogu-lin-b6b9119a/" class="sidebar-icon-link" target="_blank" rel="noopener" title="LinkedIn">
-          <img src="icons/linkedin.svg" width="22" height="22" alt="LinkedIn">
-        </a>
-        <a href="https://github.com/lrgthu" class="sidebar-icon-link" target="_blank" rel="noopener" title="GitHub">
-          <img src="icons/github.svg" width="22" height="22" alt="GitHub">
-        </a>
-        <a href="https://scholar.google.com/citations?user=FsDBOS4AAAAJ&hl=en" class="sidebar-icon-link" target="_blank" rel="noopener" title="Google Scholar">
-          <img src="icons/scholar.svg" width="22" height="22" alt="Google Scholar">
-        </a>
-      </div>
+      {% if site.posts.size > 0 %}
+        <ul class="blog-home-latest" aria-label="Latest blog posts">
+          {% for post in site.posts limit:3 %}
+            <li>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="blog-home-empty">No notes published yet.</p>
+      {% endif %}
+    </div>
+    <a class="blog-enter" href="{{ '/blog/' | relative_url }}">Enter Blog →</a>
+  </div>
+</section>
 
-      <div class="sidebar-divider"></div>
+<!-- Remove `is-hidden` from this section to show the CV again. -->
+<section class="section is-hidden" id="cv">
+  <h2 class="section-title">CV</h2>
 
-      <section class="sidebar-automaton" aria-label="Two-dimensional cellular automaton">
-        <canvas id="cellular-automaton" width="189" height="189"></canvas>
-      </section>
-
-      <div class="sidebar-invisible-poem" aria-label="Hidden poem excerpt">
-        <p class="invisible-poem-title">I. The Burial of the Dead</p>
-        <p>April is the cruellest month, breeding</p>
-        <p>Lilacs out of the dead land, mixing</p>
-        <p>Memory and desire, stirring</p>
-        <p>Dull roots with spring rain.</p>
-        <p>Winter kept us warm, covering</p>
-        <p>Earth in forgetful snow, feeding</p>
-        <p>A little life with dried tubers.</p>
-      </div>
-
-      <!-- Remove `is-hidden` from these poem blocks to show them again. -->
-      <figure class="sidebar-poem is-hidden" aria-label="Poem excerpt">
-        <figcaption>I. THE BURIAL OF THE DEAD</figcaption>
-        <div class="poem-lines">
-          <p class="poem-first"><span class="poem-dropcap">A</span><span>PRIL is the cruellest month, breeding</span></p>
-          <p>Lilacs out of the dead land, mixing</p>
-          <p>Memory and desire, stirring</p>
-          <p>Dull roots with spring rain.</p>
-          <p>Winter kept us warm, covering</p>
-          <p>Earth in forgetful snow, feeding</p>
-          <p>A little life with dried tubers.</p>
-          <p>Summer surprised us, coming over the</p>
-          <p class="poem-indent">Starnbergersee</p>
-          <p>With a shower of rain; we stopped in the</p>
-          <p class="poem-indent">colonnade,</p>
-          <p>And went on in sunlight, into the Hof-</p>
-          <p class="poem-indent poem-line-numbered"><span>garten,</span><span class="poem-line-number">10</span></p>
-        </div>
-        <div class="poem-footer">
-          <span>[ 9 ]</span>
-        </div>
-      </figure>
-
-      <figure class="sidebar-poem sidebar-poem-fr is-hidden" aria-label="French poem excerpt">
-        <figcaption>LE PHÉNIX</figcaption>
-        <div class="poem-lines">
-          <p class="poem-first"><span class="poem-dropcap">J</span><span>E suis le dernier sur ta route</span></p>
-          <p>Le dernier printemps la dernière neige</p>
-          <p>Le dernier combat pour ne pas mourir</p>
-          <p class="poem-gap">Et nous voici plus bas et plus haut que jamais.</p>
-          <p class="poem-star">*</p>
-          <p>Il y a de tout dans notre bûcher</p>
-          <p>Des pommes de pin des sarments</p>
-          <p>Mais aussi des fleurs plus fortes que l’eau</p>
-          <p class="poem-gap">De la boue et de la rosée.</p>
-          <p class="poem-star">*</p>
-          <p>La flamme est sous nos pieds la flamme nous couronne</p>
-          <p>A nos pieds des insectes des oiseaux des hommes</p>
-          <p>Vont s’envoler</p>
-          <p class="poem-gap">Ceux qui volent vont se poser.</p>
-          <p class="poem-star">*</p>
-          <p>Le ciel est clair la terre est sombre</p>
-          <p>Mais la fumée s’en va au ciel</p>
-          <p>Le ciel a perdu tous ses feux</p>
-          <p class="poem-gap">La flamme est restée sur la terre.</p>
-          <p class="poem-star">*</p>
-          <p>La flamme est la nuée du cœur</p>
-          <p>Et toutes les branches du sang</p>
-          <p>Elle chante notre air</p>
-          <p class="poem-gap">Elle dissipe la buée de notre hiver.</p>
-        </div>
-        <div class="poem-footer">
-          <span>9</span>
-        </div>
-      </figure>
-
-      <div class="sidebar-spacer"></div>
-      <p class="sidebar-footer">Ruogu Lin © 2026</p>
-    </aside>
-
-    <main class="content">
-      <section class="section" id="about">
-        <h2 class="section-title">About</h2>
-        <div class="about-text">
-          <p>
-            I currently work at Meta Recommendation System as a Software Engineer, building machine learning systems
-            for products used at Meta scale. My interests sit at the intersection of multimodal representation
-            learning, recommendation, and human-centered intelligence.
-          </p>
-          <p>
-            I received my Ph.D. in Computer Science from Carnegie Mellon University, where I was advised by Dr.
-            <a href="https://www.cs.cmu.edu/~lwehbe/">Leila Wehbe</a>. My doctoral work investigated the bridge
-            between deep neural networks and the human brain, asking how visual intelligence emerges across
-            biological and artificial systems.
-          </p>
-          <p>
-            During my PhD, I have done research internships at Meta Reality Labs, working on self-supervised learning
-            methods for neuromuscular data representation and downstream adaptation.
-          </p>
-          <p>
-            Prior to CMU, I received my Bachelor of Engineering from the Department of Automation at Tsinghua
-            University. During my undergrad time, I worked with Dr.
-            <a href="https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/">Jiwen Lu</a>.
-          </p>
-        </div>
-      </section>
-
-      <!-- Remove `is-hidden` from this section to show the CV again. -->
-      <section class="section is-hidden" id="cv">
-        <h2 class="section-title">CV</h2>
-
-        <div class="cv-grid">
-          <div class="cv-block">
-            <h3 class="cv-block-title">Work Experience</h3>
-            <div class="cv-block-body">
-              <div class="company-group">
-                <div class="company-header">
-                  <img class="company-logo meta-logo" src="icons/meta-logo.svg" alt="Meta logo">
-                </div>
-                <ul class="cv-list company-role-list">
-                  <li class="cv-item">
-                    <div class="cv-details">
-                      <strong>Software Engineer</strong><br>
-                      Meta Recommendation System
-                    </div>
-                    <img class="entry-logo org-logo mrs-logo" src="icons/mrs-logo-transparent.png" alt="Meta RecSys logo">
-                  </li>
-                  <li class="cv-item">
-                    <div class="cv-details">
-                      <strong>Research Scientist Intern</strong><br>
-                      Reality Labs
-                    </div>
-                    <img class="entry-logo org-logo" src="icons/reality-labs.svg" alt="Reality Labs logo">
-                  </li>
-                </ul>
+  <div class="cv-grid">
+    <div class="cv-block">
+      <h3 class="cv-block-title">Work Experience</h3>
+      <div class="cv-block-body">
+        <div class="company-group">
+          <div class="company-header">
+            <img class="company-logo meta-logo" src="{{ '/icons/meta-logo.svg' | relative_url }}" alt="Meta logo">
+          </div>
+          <ul class="cv-list company-role-list">
+            <li class="cv-item">
+              <div class="cv-details">
+                <strong>Software Engineer</strong><br>
+                Meta Recommendation System
               </div>
+              <img class="entry-logo org-logo mrs-logo" src="{{ '/icons/mrs-logo-transparent.png' | relative_url }}" alt="Meta RecSys logo">
+            </li>
+            <li class="cv-item">
+              <div class="cv-details">
+                <strong>Research Scientist Intern</strong><br>
+                Reality Labs
+              </div>
+              <img class="entry-logo org-logo" src="{{ '/icons/reality-labs.svg' | relative_url }}" alt="Reality Labs logo">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <h3 class="cv-block-title">Education</h3>
+      <ul class="cv-list">
+        <li class="cv-item">
+          <div class="cv-details">
+            <strong>Doctor of Philosophy</strong><br>
+            School of Computer Science, Carnegie Mellon University
+          </div>
+          <img class="entry-logo school-emblem cmu-logo" src="{{ '/icons/cmu-seal-transparent.png' | relative_url }}" alt="Carnegie Mellon University seal">
+        </li>
+        <li class="cv-item">
+          <div class="cv-details">
+            <strong>Bachelor of Engineering</strong><br>
+            Department of Automation, Tsinghua University
+          </div>
+          <img class="entry-logo school-emblem" src="{{ '/icons/tsinghua-emblem-transparent.png' | relative_url }}" alt="Tsinghua University emblem">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="publications">
+  <h2 class="section-title">Publications</h2>
+
+  <!-- Remove `is-hidden` from this block to show the co-author network again. -->
+  <div class="pub-group coauthor-network-section is-hidden">
+    <h3 class="pub-group-title">Co-author Network</h3>
+    <div id="coauthor-graph" aria-label="Interactive co-author network"></div>
+  </div>
+
+  <div class="pub-group">
+    <h3 class="pub-group-title">Selected Articles</h3>
+    <div class="pub-year-group">
+      <h4 class="pub-year-label">2024</h4>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors"><span class="pub-me">R Lin</span>, T Naselaris, K Kay, L Wehbe</span>
+              <span class="pub-title">Stacked regressions and structured variance partitioning for interpretable brain maps</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">NeuroImage 298, 120772, 2024</span>
             </div>
           </div>
+        </li>
+      </ul>
+    </div>
 
-          <div class="cv-block">
-            <h3 class="cv-block-title">Education</h3>
-            <ul class="cv-list">
-              <li class="cv-item">
-                <div class="cv-details">
-                  <strong>Doctor of Philosophy</strong><br>
-                  School of Computer Science, Carnegie Mellon University
-                </div>
-                <img class="entry-logo school-emblem cmu-logo" src="icons/cmu-seal-transparent.png" alt="Carnegie Mellon University seal">
-              </li>
-              <li class="cv-item">
-                <div class="cv-details">
-                  <strong>Bachelor of Engineering</strong><br>
-                  Department of Automation, Tsinghua University
-                </div>
-                <img class="entry-logo school-emblem" src="icons/tsinghua-emblem-transparent.png" alt="Tsinghua University emblem">
-              </li>
-            </ul>
+    <div class="pub-year-group">
+      <h4 class="pub-year-label">2023</h4>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors">N Jain, A Wang, MM Henderson, <span class="pub-me">R Lin</span>, JS Prince, MJ Tarr, L Wehbe</span>
+              <span class="pub-title">Selectivity for food in human ventral visual cortex</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">Communications Biology 6 (1), 175, 2023</span>
+            </div>
           </div>
-        </div>
-      </section>
+        </li>
+      </ul>
+    </div>
 
-      <section class="section" id="publications">
-        <h2 class="section-title">Publications</h2>
-
-        <!-- Remove `is-hidden` from this block to show the co-author network again. -->
-        <div class="pub-group coauthor-network-section is-hidden">
-          <h3 class="pub-group-title">Co-author Network</h3>
-          <div id="coauthor-graph" aria-label="Interactive co-author network"></div>
-        </div>
-
-        <div class="pub-group">
-          <h3 class="pub-group-title">Selected Articles</h3>
-          <div class="pub-year-group">
-            <h4 class="pub-year-label">2024</h4>
-            <ul class="pub-list">
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors"><span class="pub-me">R Lin</span>, T Naselaris, K Kay, L Wehbe</span>
-                    <span class="pub-title">Stacked regressions and structured variance partitioning for interpretable brain maps</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">NeuroImage 298, 120772, 2024</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
+    <div class="pub-year-group">
+      <h4 class="pub-year-label">2019</h4>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors">R Li, X Zeng, SE Sigmund, <span class="pub-me">R Lin</span>, B Zhou, C Liu, K Wang, R Jiang, ...</span>
+              <span class="pub-title">Automatic localization and identification of mitochondria in cellular electron cryo-tomography using faster-RCNN</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">BMC bioinformatics 20 (Suppl 3), 132, 2019</span>
+            </div>
           </div>
-
-          <div class="pub-year-group">
-            <h4 class="pub-year-label">2023</h4>
-            <ul class="pub-list">
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors">N Jain, A Wang, MM Henderson, <span class="pub-me">R Lin</span>, JS Prince, MJ Tarr, L Wehbe</span>
-                    <span class="pub-title">Selectivity for food in human ventral visual cortex</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">Communications Biology 6 (1), 175, 2023</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
+        </li>
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors"><span class="pub-me">R Lin</span>, X Zeng, K Kitani, M Xu</span>
+              <span class="pub-title">Adversarial domain adaptation for cross data source macromolecule in situ structural classification in cellular electron cryo-tomograms</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">Bioinformatics 35 (14), i260-i268, 2019</span>
+            </div>
           </div>
+        </li>
+      </ul>
+    </div>
 
-          <div class="pub-year-group">
-            <h4 class="pub-year-label">2019</h4>
-            <ul class="pub-list">
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors">R Li, X Zeng, SE Sigmund, <span class="pub-me">R Lin</span>, B Zhou, C Liu, K Wang, R Jiang, ...</span>
-                    <span class="pub-title">Automatic localization and identification of mitochondria in cellular electron cryo-tomography using faster-RCNN</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">BMC bioinformatics 20 (Suppl 3), 132, 2019</span>
-                  </div>
-                </div>
-              </li>
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors"><span class="pub-me">R Lin</span>, X Zeng, K Kitani, M Xu</span>
-                    <span class="pub-title">Adversarial domain adaptation for cross data source macromolecule in situ structural classification in cellular electron cryo-tomograms</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">Bioinformatics 35 (14), i260-i268, 2019</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
+    <div class="pub-year-group">
+      <h4 class="pub-year-label">2018</h4>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors">C Che, <span class="pub-me">R Lin</span>, X Zeng, K Elmaaroufi, J Galeotti, M Xu</span>
+              <span class="pub-title">Improved deep learning-based macromolecules structure classification from electron cryo-tomograms</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">Machine vision and applications 29 (8), 1227-1236, 2018</span>
+            </div>
           </div>
+        </li>
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors">C Liu, X Zeng, <span class="pub-me">R Lin</span>, X Liang, Z Freyberg, E Xing, M Xu</span>
+              <span class="pub-title">Deep learning based supervised semantic segmentation of electron cryo-subtomograms</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">2018 25th IEEE International Conference on Image Processing (ICIP), 1578-1582, 2018</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-          <div class="pub-year-group">
-            <h4 class="pub-year-label">2018</h4>
-            <ul class="pub-list">
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors">C Che, <span class="pub-me">R Lin</span>, X Zeng, K Elmaaroufi, J Galeotti, M Xu</span>
-                    <span class="pub-title">Improved deep learning-based macromolecules structure classification from electron cryo-tomograms</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">Machine vision and applications 29 (8), 1227-1236, 2018</span>
-                  </div>
-                </div>
-              </li>
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors">C Liu, X Zeng, <span class="pub-me">R Lin</span>, X Liang, Z Freyberg, E Xing, M Xu</span>
-                    <span class="pub-title">Deep learning based supervised semantic segmentation of electron cryo-subtomograms</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">2018 25th IEEE International Conference on Image Processing (ICIP), 1578-1582, 2018</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
+    <div class="pub-year-group">
+      <h4 class="pub-year-label">2016</h4>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-content">
+            <div class="pub-main">
+              <span class="pub-authors">Z Wang, J Lu, <span class="pub-me">R Lin</span>, J Feng</span>
+              <span class="pub-title">Correlated and individual multi-modal deep learning for RGB-D object recognition</span>
+            </div>
+            <div class="pub-meta">
+              <span class="pub-note">arXiv preprint arXiv:1604.01655, 2016</span>
+            </div>
           </div>
-
-          <div class="pub-year-group">
-            <h4 class="pub-year-label">2016</h4>
-            <ul class="pub-list">
-              <li class="pub-item">
-                <div class="pub-content">
-                  <div class="pub-main">
-                    <span class="pub-authors">Z Wang, J Lu, <span class="pub-me">R Lin</span>, J Feng</span>
-                    <span class="pub-title">Correlated and individual multi-modal deep learning for RGB-D object recognition</span>
-                  </div>
-                  <div class="pub-meta">
-                    <span class="pub-note">arXiv preprint arXiv:1604.01655, 2016</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
+        </li>
+      </ul>
+    </div>
   </div>
-  <script src="script.js"></script>
-</body>
-</html>
+</section>
