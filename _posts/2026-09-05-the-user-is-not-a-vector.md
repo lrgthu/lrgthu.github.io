@@ -1,7 +1,7 @@
 ---
 title: "The User Is Not a Vector"
 date: 2026-09-05 16:37:00 -0500
-summary: "Recommendation does not merely discover preference; it becomes part of the environment through which preference, memory, attention, and the future user are formed."
+summary: "A recommender does not merely learn a user from their past; it becomes part of the environment through which the user's future is formed."
 tags: [recommender-systems, user-modeling, cognitive-science, neuroscience, cybernetics, philosophy, ai]
 ---
 
@@ -34,6 +34,8 @@ Or are preferences themselves things that emerge, disappear, strengthen, weaken,
 The distinction matters because a recommender does not merely observe a person from the outside.
 
 It participates in that person's experience.
+
+> **A recommender does not merely learn a user from their past; it becomes part of the environment through which the user's future is formed.**
 
 And once this is recognized, the problem of recommendation changes completely.
 
