@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Ruogu (Franklin) Lin"
-description: "Personal website for Ruogu (Franklin) Lin."
+description: "Ruogu (Franklin) Lin — machine learning engineer and researcher working on recommendation systems, multimodal representation learning, computational neuroscience, and NeuroAI."
 use_vis: true
 ---
 <section class="section" id="about">
@@ -27,33 +27,6 @@ use_vis: true
       University. During my undergrad time, I worked with Dr.
       <a href="https://ivg.au.tsinghua.edu.cn/Jiwen_Lu/">Jiwen Lu</a>.
     </p>
-  </div>
-</section>
-
-<section class="section" id="blog">
-  <h2 class="section-title">Blog</h2>
-  <div class="blog-home">
-    <div class="blog-home-main">
-      <p class="blog-eyebrow">Essays / notes / field notes</p>
-      <p class="blog-home-copy">
-        Notes from between models and minds — intelligence, representation, learning, systems,
-        and ideas that are still too unfinished to become papers.
-      </p>
-
-      {% if site.posts.size > 0 %}
-        <ul class="blog-home-latest" aria-label="Latest blog posts">
-          {% for post in site.posts limit:3 %}
-            <li>
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p class="blog-home-empty">No notes published yet.</p>
-      {% endif %}
-    </div>
-    <a class="blog-enter" href="{{ '/blog/' | relative_url }}">Enter Blog →</a>
   </div>
 </section>
 
@@ -108,6 +81,34 @@ use_vis: true
         </li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="section" id="blog">
+  <h2 class="section-title">Blog</h2>
+  <div class="blog-home">
+    <div>
+      <p class="blog-eyebrow">Essays / notes / field notes</p>
+      {% if site.posts.size > 0 %}
+        <ul class="blog-post-list blog-home-list">
+          {% for post in site.posts limit:3 %}
+            <li class="blog-post-row">
+              <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+              <div>
+                <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                {% if post.summary %}<p class="blog-post-summary">{{ post.summary }}</p>{% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="blog-home-copy">
+          Notes from between models and minds — intelligence, representation, learning, systems,
+          and ideas that are still too unfinished to become papers.
+        </p>
+      {% endif %}
+    </div>
+    <a class="blog-enter" href="{{ '/blog/' | relative_url }}">All writing →</a>
   </div>
 </section>
 
