@@ -6,7 +6,7 @@ baseurl: ""
 timezone: America/Chicago
 lang: en_US
 
-# Identity signals used by jekyll-seo-tag structured data.
+# Identity signals used in structured metadata.
 social:
   name: "Ruogu (Franklin) Lin"
   links:
@@ -21,7 +21,6 @@ kramdown:
 permalink: /blog/:title/
 
 plugins:
-  - jekyll-seo-tag
   - jekyll-sitemap
 
 # Add the token from Google Search Console here after verification is created.
