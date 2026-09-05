@@ -175,6 +175,10 @@
   border-top: 1px solid var(--border);
 }
 
+.blog-home-list .blog-post-row {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .blog-post-row:last-child {
   border-bottom: 1px solid var(--border);
 }
@@ -230,12 +234,9 @@
   text-underline-offset: 3px;
 }
 
-/* Article primitives used by _layouts/post.html. */
+/* Article primitives for future posts. */
 .blog-article {
-  width: 100%;
   max-width: 44rem;
-  margin: 0 auto;
-  padding: 1.1rem 0.25rem 0.5rem;
 }
 
 .blog-article-header {
@@ -251,13 +252,11 @@
 }
 
 .blog-article-meta {
-  margin-top: 0.7rem;
   color: var(--text-muted);
   font-size: 0.7rem;
 }
 
 .blog-article-body {
-  padding: 0.4rem 0 1.25rem;
   font-family: var(--font-publication);
   font-size: 0.96rem;
   line-height: 1.72;
@@ -270,24 +269,6 @@
 .blog-article-body h2,
 .blog-article-body h3 {
   margin-top: 1.8rem;
-  line-height: 1.25;
-}
-
-.blog-article-body h2 {
-  font-size: 1.25rem;
-}
-
-.blog-article-body h3 {
-  font-size: 1.05rem;
-}
-
-.blog-article-body ul,
-.blog-article-body ol {
-  padding-left: 1.4rem;
-}
-
-.blog-article-body li + li {
-  margin-top: 0.35rem;
 }
 
 .blog-article-body blockquote {
@@ -301,53 +282,6 @@
   font-size: 0.86em;
 }
 
-.blog-article-body pre {
-  overflow-x: auto;
-  padding: 0.85rem;
-  border: 1px solid var(--border);
-  background: #eee5c7;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  line-height: 1.55;
-}
-
-.blog-article-body pre code {
-  font-size: inherit;
-}
-
-.blog-article-body img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid var(--border);
-}
-
-.blog-article-body hr {
-  border: 0;
-  border-top: 1px solid var(--border);
-}
-
-.blog-article-body table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-
-.blog-article-body th,
-.blog-article-body td {
-  border: 1px solid var(--border);
-  padding: 0.45rem 0.55rem;
-  text-align: left;
-}
-
-.blog-article-footer {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-}
-
 @media (max-width: 620px) {
   .blog-home {
     grid-template-columns: 1fr;
@@ -358,7 +292,6 @@
     justify-self: start;
   }
 
-  .blog-home-latest li,
   .blog-post-row,
   .blog-empty {
     grid-template-columns: 1fr;
