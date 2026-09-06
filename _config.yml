@@ -25,6 +25,7 @@ plugins:
 
 google_site_verification: "jMQRwBsvY4lkIa5YbhezOHBtTYJzyp80N3LYEFMx7qs"
 google_site_verification_secondary: "ggBxhjWuoB-73IVtEPkhYKb1xYkLVzATElbH_vTA8Ig"
+google_analytics_measurement_id: "G-FK8EEJX5JC"
 
 # Posts inherit the blog article layout and visual treatment.
 defaults:
