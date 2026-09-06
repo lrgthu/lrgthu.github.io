@@ -1,158 +1,149 @@
 ---
 title: "A Brain-Predictive Model Is Not Yet an Explanation"
 date: 2026-09-05 15:44:00 -0500
-summary: "What known-truth recovery tests reveal about the gap between neural predictivity, model identification, and mechanism."
+summary: "Known-truth recovery and neural benchmarks separate predictive adequacy from model identification and mechanism."
 tags: [neuroai, neural-encoding, model-identification, methodology, neuroscience]
 writing_type: "Research Note"
 toc: true
 citation: true
+source_repo: "lrgthu/neuroai-salmon"
 ---
 
-*What known-truth recovery tests reveal about neural encoding benchmarks*
+<section class="research-note-abstract" markdown="1">
 
-A neural encoding result often ends with a number: a model predicts held-out brain responses with some correlation or explained variance. The natural next sentence is that the model has captured something about the brain's representation.
+## Abstract
 
-I think that sentence is sometimes justified. But it contains more than one claim.
+Neural encoding benchmarks are commonly used to compare artificial representations with brain responses, but a high held-out score does not by itself establish that the evaluated representation is uniquely identified or mechanistically correct. This note summarizes a set of known-truth simulations and visual-neural benchmarks designed to separate **predictive adequacy**, **candidate identification**, and **mechanistic interpretation**. In favorable synthetic conditions, the evaluator recovered the generating representation in 100/100 trials, but recovery varied strongly with signal level, sample size, feature dimension, and mapping family. Reusing a held-out set for candidate selection inflated a 32-candidate null by 0.0915 and produced 52% false positives; untouched confirmation reduced the mean gain to 0.00087 and the false-positive rate to 4%. On real V4/IT data, trained, untrained, fixed hierarchical, and pixel features all produced nonzero neural predictivity, and four bounded effects replicated on an independent dataset. The resulting claim is deliberately narrow: **held-out encoding establishes predictive adequacy of a declared representation–readout–data system under a declared evaluation contract. Identification and mechanism require additional evidence.**
 
-A model can predict. It can be more predictive than another model. Its features can contain information that a linear readout can use. The evaluation pipeline can distinguish it from plausible alternatives. And the model can instantiate something like the mechanism that generated the neural response.
+</section>
 
-Those statements are related. They are not equivalent.
+<section class="research-note-key-result" markdown="1">
 
-The question in this note is deliberately narrow:
+**Key result.** Valid and independently replicated neural prediction can remain insufficient for identifying the generating representation. The limiting factor is not only model quality; it is also what distinctions the evaluator is capable of resolving.
 
-> **When a model predicts held-out neural responses, what exactly has been established?**
+</section>
 
-I have been exploring this question with a set of known-truth simulations and visual neural benchmarks. The main lesson is not that neural predictivity is weak evidence. It is that **predictivity is evidence relative to an evaluator**, and the scientific meaning of a good score depends on what that evaluator could have distinguished in the first place.
+## 1. Research question
 
----
+The primary question was:
 
-## Prediction is a claim about a system, not a representation in isolation
+> **When a model predicts held-out neural responses, what scientific claim has actually been established?**
 
-An encoding benchmark is rarely just a comparison between a neural network and a brain. It is closer to:
+A neural encoding score is produced by more than a representation. The evaluated object is approximately
 
-`representation + mapping + regularization + layer search + split + metric + data`
+`representation + mapping + regularization + layer search + split + metric + data`.
 
-That whole system produces the score.
+Accordingly, a predictive result can support several distinct claims of increasing strength:
 
-This is obvious operationally but easy to forget interpretively. If I allow a flexible readout between a candidate representation and neural responses, then the score tells me that information useful for predicting those responses is accessible *through that readout*. It does not automatically tell me that the candidate representation is uniquely identified.
+1. **Predictive adequacy:** the declared representation–readout system predicts held-out neural responses.
+2. **Incremental specificity:** it explains information not captured by claim-aligned controls.
+3. **Candidate discrimination:** the evaluator can recover the correct candidate among plausible alternatives.
+4. **Generalization:** the result survives the biological or stimulus unit named in the claim.
+5. **Mechanistic evidence:** temporal, causal, or interventional tests support the proposed computation.
 
-This distinction is closely related to the system-identification question raised by Han, Poggio, and Cheung (2023), who replaced neural recordings with known ground-truth models and asked whether common brain-model comparison methods could recover the generating system. Recovery depended strongly on the evaluator and stimulus set. More recent proposals such as the NeuroAI Turing Test argue that behavior should be supplemented by representational correspondence, while perturbation-based work has shown that highly predictive encoding models can still diverge under interventions that ordinary prediction scores do not expose.
+The experiments below target the separation between the first three levels.
 
-My preferred way to organize the evidence is as a ladder:
+## 2. Known-truth recovery
 
-1. **Predictive adequacy** — does the declared representation-readout system predict held-out responses?
-2. **Incremental specificity** — does it explain something beyond claim-aligned controls?
-3. **Candidate discrimination** — can the evaluator recover the right model among plausible alternatives?
-4. **Generalization** — does the effect survive the scientific unit named in the claim?
-5. **Mechanistic evidence** — do temporal, causal, or interventional tests support the proposed mechanism?
+Real neural data do not reveal which computational representation generated the measured responses. Synthetic responses provide a known source and therefore permit a direct identification test.
 
-Passing one rung does not make the others unnecessary.
+Responses were generated from a declared candidate representation and evaluated with the same class of encoding procedures used on neural data. The diagnostic first had to pass a favorable anchor: under high signal and an identifiable reference problem, the generating representation was recovered in **100/100** trials.
 
----
+Recovery was then measured while changing the information available to the evaluator. Exact recovery ranged approximately:
 
-## The easiest way to test identification is to know the truth
+| Manipulation | Recovery range |
+| --- | ---: |
+| Signal level | 24%–100% |
+| Sample size | 52%–100% |
+| Feature dimension | 84%–100% |
 
-Real brain data cannot tell us which computational model generated the response, because we do not know the answer. Synthetic data can.
+Mapping family also changed recovery under a fixed synthetic reference problem:
 
-So I started with a simple question: if I generate responses from a known representation, then run the same kind of evaluation used on neural data, can the pipeline recover the source?
+| Mapping | Exact recovery |
+| --- | ---: |
+| Ridge | 100% |
+| PCA + ridge | 72% |
+| PLS | 38% |
 
-In a favorable high-signal regime, it could: the evaluator recovered the generating candidate in **100/100** trials. That is important because a recovery benchmark that cannot succeed when the truth is easy to identify is not useful.
+The generating representation was unchanged across these comparisons. The change was in the evaluator.
 
-But recovery was not a constant property of the candidate representation. It varied sharply with the information available to the evaluator. Across controlled sweeps, exact recovery ranged from roughly **24% to 100% with signal level**, **52% to 100% with sample size**, and **84% to 100% with feature dimension**.
+This result establishes that **predictivity and identification are evaluator-relative**: a representation can generate predictable responses while the evaluation procedure remains unable to distinguish it reliably from plausible alternatives.
 
-Changing the mapping family while holding the synthetic reference problem fixed also changed recovery: ridge recovered the generating candidate in all trials in one favorable setting, PCA-plus-ridge in 72%, and PLS in 38%.
+## 3. Selection inflation under a null
 
-Nothing about the ground truth changed.
+A separate experiment tested candidate search when no true predictive advantage was present.
 
-The evaluator did.
+Thirty-two null candidates were compared under two procedures:
 
-That is the first result I want to keep in view:
+- **non-nested selection:** the same held-out data were used to choose and report the winning candidate;
+- **untouched confirmation:** the selected candidate was evaluated on data excluded from the search.
 
-> **A neural predictivity score is partly a property of the representation and partly a property of the question the evaluator is capable of asking.**
+The non-nested procedure produced:
 
----
+- mean score inflation: **0.0915**;
+- false-positive rate: **52%**.
 
-## Selection can manufacture a winner
+Untouched confirmation reduced these values to:
 
-There is a second failure mode that is conceptually simpler.
+- mean apparent gain: **0.00087**;
+- false-positive rate: **4%**.
 
-Suppose there is no real signal, but I search over enough candidate models and use the same held-out data both to choose the winner and to report its performance. A winner will eventually appear.
+The result is a controlled example of selection bias rather than a property of any neural representation. Its relevance is methodological: a final held-out score does not reveal whether that held-out set was part of the model-selection path.
 
-In a controlled null experiment with **32 candidates**, reusing the outer test set for selection inflated the reported score by about **0.0915** and produced false positives in **52%** of runs. When the selected candidate was evaluated on a genuinely untouched confirmation set, the mean apparent gain collapsed to about **0.00087**, and the false-positive rate returned to **4%**.
+## 4. Real-data case study
 
-This is not a subtle representational issue. It is ordinary selection bias.
+The synthetic experiments establish what the evaluator can and cannot identify. The real-data analysis asks whether those distinctions matter on visual neural benchmarks.
 
-But it matters for interpretation because the final object presented to a reader is still a perfectly respectable-looking held-out prediction score. Without reconstructing the selection path, the score alone does not reveal whether it was a test or part of the search procedure.
+Under a frozen, capacity-matched V4/IT evaluation, the candidate panel included:
 
-This is one reason I increasingly think that **the evaluation protocol belongs inside the scientific object**.
+- trained ResNet-50 features;
+- untrained ResNet-50 features;
+- a fixed task-unoptimized hierarchical model (DeadNet);
+- pixel features;
+- Gaussian features.
 
----
+Trained ResNet-50 was predictive, but nonzero predictivity was not specific to trained representations. DeadNet and pixel features also predicted held-out responses, whereas Gaussian features remained near zero. Under the frozen 128-dimensional comparison, the trained/untrained separation was small in V4 and substantially larger in IT.
 
-## Real neural data make the distinction less comfortable
+A prospectively frozen analysis on an independent visual-neural dataset then replicated four bounded effects in both recorded animals, including an IT training advantage and DeadNet-over-pixels contrasts.
 
-The known-truth experiments tell us what the evaluator can and cannot establish. The real-data question is whether those limitations matter in practice.
+Independent replication strengthened the predictive evidence. It did **not** change the logical type of the result: the replicated effects remained statements about prediction under the declared evaluator, not demonstrations of representational identity or neural mechanism.
 
-On visual V4/IT benchmarks, they do.
+## 5. Interpretation
 
-Under a strict, capacity-matched evaluation, trained ResNet-50 features were predictive, as expected. But so were several deliberately weaker controls: an untrained hierarchical network, a fixed hierarchical network we called *DeadNet*, and even pixel-based features. A Gaussian control remained essentially at zero.
+The combined experiments support three conclusions.
 
-The point is not that training does not matter. It does. The training advantage was much clearer in IT than V4. Under one frozen 128-dimensional comparison, trained and untrained ResNet-50 were nearly tied in V4 but separated substantially in IT.
+First, **successful prediction is informative but not self-interpreting**. It establishes that information relevant to the measured responses is accessible through the declared readout.
 
-The point is narrower:
+Second, **identification requires an evaluator that can discriminate the alternatives named in the claim**. Known-truth recovery provides one direct calibration of that capacity.
 
-> **Nonzero held-out neural prediction does not uniquely identify task learning, a representational geometry, or a mechanism.**
+Third, **replication and identification answer different questions**. An effect can become more reproducible without becoming more uniquely attributable to one representation or mechanism.
 
-That conclusion became more interesting after independent replication. On a separate visual neural dataset, four predeclared bounded effects replicated in both recorded animals, including an IT training advantage and DeadNet-over-pixels contrasts. The prediction results became more credible.
+A useful next experiment is therefore one that forces currently equivalent candidates to disagree—for example through known-truth recovery, targeted perturbation, metamers, behavioral constraints, or closed-loop intervention.
 
-But replication did not change their logical type.
+## 6. Claim boundary
 
-They were still prediction results.
-
-A result can therefore become **more reproducibly predictive without becoming more mechanistically identified**.
-
-I think this is an important distinction because “replicated” often feels like the end of an epistemic argument. Sometimes it is only the end of one layer of it.
-
----
-
-## What would make the claim stronger?
-
-If two candidates are nearly tied under ordinary neural predictivity, there are several ways to ask for more evidence.
-
-Known-truth recovery asks whether the evaluator could identify them if one were actually correct. Perturbation tests ask whether the models respond differently under targeted changes. Model metamers probe invariances that ordinary neural benchmarks can miss. Behavioral comparisons constrain what internal similarity is functionally useful. Closed-loop experiments ask whether matched states occupy similar causal roles in action and adaptation.
-
-These tests are not substitutes for prediction. They are ways of **making alternative explanations disagree**.
-
-That is the standard I now find most useful:
-
-> **A stronger experiment is one that forces models which currently look equivalent to make different predictions.**
-
-This is also why I do not want to turn “predictivity is not identification” into another slogan against encoding models. Encoding is often exactly the right first question. Prediction can rule out weak models, localize information, compare feature spaces, and discover robust regularities.
-
-The mistake is only in asking the score to establish more than the experiment identified.
-
----
-
-## The claim I am comfortable making
-
-After working through these controls, the statement I would defend is deliberately modest:
+The evidence supports the following statement:
 
 > **Successful held-out neural encoding establishes predictive adequacy of a declared representation–readout–data system under a declared evaluation contract.**
 
-What it establishes beyond that depends on the alternatives and interventions built into the experiment.
+The experiments do **not** establish that:
 
-If a model defeats a Gaussian null, we learn something different than if it defeats pixels. If it defeats an untrained architecture, we learn something different than if it defeats a matched non-neural target. If the evaluator can recover known ground truth, we can trust its discriminative claim more than if many candidates are observationally equivalent under its readout. If a result transfers across animals, tasks, or perturbations, the scope changes again.
+- neural predictivity is uninformative;
+- trained models lack brain-relevant representations;
+- any one task-unoptimized control is equivalent to a trained model;
+- a predictive representation is uniquely identified;
+- the evaluated model implements the biological mechanism;
+- the bounded V4/IT results generalize beyond the declared datasets, animals, stimuli, mappings, and feature contracts.
 
-The score is not meaningless.
+## 7. Reproducibility
 
-It is simply not self-interpreting.
+The research record is maintained in [`lrgthu/neuroai-salmon`](https://github.com/lrgthu/neuroai-salmon). The repository separates frozen experimental contracts, known-truth recovery, evaluator-sensitivity analyses, independent real-data replication, and claim audits. Raw neural arrays and large feature caches remain external; compact configurations, aggregate results, provenance records, figures, and integrity manifests are versioned.
 
-That is the result I wanted from this project: not a reason to stop measuring brain predictivity, but a more explicit answer to what I think a predictive result earns us—and what still has to be tested afterward.
-
----
+This note summarizes the bounded inference released by those records rather than replacing the full methods manuscript.
 
 ## References
 
-- Han, Y., Poggio, T. A., & Cheung, B. (2023). [System Identification of Neural Systems: If We Got It Right, Would We Know?](https://proceedings.mlr.press/v202/han23d.html) *ICML*.
+- Han, Y., Poggio, T. A., & Cheung, B. (2023). [System Identification of Neural Systems: If We Got It Right, Would We Know?](https://proceedings.mlr.press/v202/han23d.html). *ICML*.
 - Feather, J., Khosla, M., Murty, N. A. R., & Nayebi, A. (2025). [Brain-Model Evaluations Need the NeuroAI Turing Test](https://arxiv.org/abs/2502.16238).
 - McNeal, N., Deb, M., & Murty, N. A. R. (2024). [Small-scale adversarial perturbations expose differences between predictive encoding models of human fMRI responses](https://proceedings.mlr.press/v285/mcneal24a.html). *UniReps*.
 - Feather, J., Leclerc, G., Mądry, A., & McDermott, J. H. (2023). [Model metamers reveal divergent invariances between biological and artificial neural networks](https://www.nature.com/articles/s41593-023-01442-0). *Nature Neuroscience*.
