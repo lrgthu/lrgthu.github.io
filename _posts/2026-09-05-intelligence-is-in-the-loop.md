@@ -3,6 +3,8 @@ title: "Intelligence Is in the Loop"
 date: 2026-09-05 15:58:00 -0500
 summary: "A research perspective on NeuroAI through Norbert Wiener: from representation to feedback, learning, agency, and the question of who chooses the goal."
 tags: [neuroai, cybernetics, control, neuroscience, ai, norbert-wiener]
+series: adaptive-intelligence
+series_order: 2
 ---
 
 *A research perspective on Norbert Wiener, NeuroAI, and why the unit of intelligence may be larger than the model*
@@ -48,6 +50,8 @@ and eventually
 That progression has changed how I think about NeuroAI. Wiener offers less a particular model of intelligence than a different way of deciding what the scientific object should be.
 
 > **For a Wienerian NeuroAI, a natural unit of analysis is the adaptive organism–environment loop.**
+
+In [*The System Is the Model*](/blog/the-system-is-the-model/), I frame the same issue as a boundary question: *at what scale does the explanatory loop close?* Here I want to make that question operational. If the relevant unit is a loop, then brain–model comparison should eventually compare what happens **around** the loop, not only what is represented at one point inside it.
 
 Once I take that seriously, representation, prediction, action, embodiment, learning, robustness, and even parts of alignment start to look like different views of the same dynamical problem.
 
@@ -353,6 +357,20 @@ This is not an argument that every neuroscience experiment needs a robot attache
 
 A neural state becomes more mechanistically informative when we know not only what predicts it, but what it predicts, what perturbs it, what action depends on it, and how feedback changes it.
 
+### What would make this a research program?
+
+If this perspective is more than a change of vocabulary, it should generate comparisons that static representational matching can fail.
+
+Three classes of experiment seem especially diagnostic:
+
+1. **Perturbation and recovery.** Put biological and artificial systems into matched disturbances—sensory noise, delays, altered dynamics, missing channels—and compare not only endpoint performance but the trajectory of correction.
+2. **Active information acquisition.** Give both systems uncertainty they can reduce through action. Compare what they choose to sense, where they look, which action they use to disambiguate the state, and how those choices reshape later representations.
+3. **Learning trajectories.** Match interaction histories rather than only adult endpoints. Ask whether comparable experience produces comparable changes in policy, representation, error correction, and exploration over time.
+
+A model could match neural geometry impressively while diverging on all three. That would make it brain-like in one narrow and useful sense, but cybernetically unlike the organism. Conversely, a model with imperfect representational alignment might still reveal a shared control principle if its perturbation, sensing, and adaptation dynamics line up.
+
+That is the kind of disagreement between metrics I would want a closed-loop NeuroAI program to expose rather than average away.
+
 ### LLMs make the boundary visible
 
 Large language models make this distinction easy to see.
@@ -413,7 +431,7 @@ but also:
 
 `human becomes a component inside a machine-like objective`
 
-A recommender can improve engagement while changing the preferences it later claims only to predict. A workplace optimizer can increase throughput while narrowing human judgment. An autonomous agent can satisfy a proxy while violating the intention that made the proxy useful.
+A recommender can improve engagement while changing the preferences it later claims only to predict. I follow that case from the human side in [*The User Is Not a Vector*](/blog/the-user-is-not-a-vector/). A workplace optimizer can increase throughput while narrowing human judgment. An autonomous agent can satisfy a proxy while violating the intention that made the proxy useful.
 
 The cybernetic success condition and the human success condition are not automatically the same.
 
@@ -453,13 +471,13 @@ It is that **representation is only one slice through an intelligent process**.
 
 A brain state matters because of where it came from, what it makes possible, how it changes under perturbation, what action uses it, what consequence follows, and how that consequence changes the system next time.
 
-That is why I increasingly want brain-likeness to mean more than similarity of internal geometry:
+That is why I want brain-likeness to mean more than similarity of internal geometry:
 
 `behavior + representation + dynamics + control + adaptation`
 
 For biological intelligence, `brain + body + environment` is not merely context around computation. It is part of the mechanism by which computation acquires meaning and consequence. For artificial intelligence, the same issue becomes harder to ignore as models gain tools, memory, persistent state, and the ability to intervene in the world.
 
-Seen this way, *the system is the model* takes on a specifically cybernetic meaning. Intelligence may not be attributable to one parameterized function at all. It may emerge from the organization of models, memory, bodies, tools, other agents, and environments inside a feedback process.
+This is the cybernetic version of the boundary claim in [*The System Is the Model*](/blog/the-system-is-the-model/). The relevant object may be larger than one parameterized function because models, memory, bodies, tools, other agents, and environments can occupy different causal positions inside the same feedback process.
 
 The question I would like NeuroAI to ask more often is:
 
