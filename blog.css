@@ -187,10 +187,27 @@
   opacity: 0.82;
 }
 
+.blog-post-date-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+}
+
 .blog-post-date {
   color: var(--text-muted);
   font-size: 0.7rem;
   line-height: 1.5;
+}
+
+.blog-post-kind,
+.blog-companion-type {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
 .blog-status {
@@ -264,9 +281,65 @@
   line-height: 1.05;
 }
 
-.blog-article-meta {
+.blog-article-meta,
+.blog-article-tags {
   color: var(--text-muted);
   font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.blog-article-tags {
+  margin-top: 0.28rem;
+  font-size: 0.62rem;
+}
+
+.blog-update-note {
+  margin-top: 0.78rem;
+  padding: 0.62rem 0.72rem;
+  border-left: 2px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-publication);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.blog-toc {
+  margin: 1.2rem 0 1.5rem;
+  padding: 0.72rem 0.82rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-toc summary,
+.blog-citation-bibtex summary {
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blog-toc-list {
+  margin: 0.65rem 0 0 1.1rem;
+  padding: 0;
+}
+
+.blog-toc-list li + li {
+  margin-top: 0.28rem;
+}
+
+.blog-toc-list a {
+  color: var(--text-secondary);
+  font-family: var(--font-publication);
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.blog-toc-list a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .blog-article-body {
@@ -293,6 +366,34 @@
 .blog-article-body code {
   font-family: var(--font-body);
   font-size: 0.86em;
+}
+
+.blog-citation {
+  margin: 2.2rem 0 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
+}
+
+.blog-citation-text {
+  color: var(--text-secondary);
+  font-family: var(--font-publication);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.blog-citation-bibtex {
+  margin-top: 0.65rem;
+}
+
+.blog-citation-bibtex pre {
+  margin-top: 0.55rem;
+  padding: 0.7rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: rgba(242, 232, 201, 0.25);
+  font-size: 0.72rem;
+  line-height: 1.45;
 }
 
 .blog-companions {
@@ -347,6 +448,11 @@
   font-size: 0.82rem;
   font-weight: 700;
   line-height: 1.3;
+}
+
+.blog-companion-type {
+  display: inline-block;
+  margin-left: 0.42rem;
 }
 
 .blog-companion-summary {
