@@ -18,6 +18,25 @@ layout: default
     {{ content }}
   </div>
 
+  {% if page.series %}
+    {% assign series_posts = site.posts | where: "series", page.series | sort: "series_order" %}
+    {% if series_posts.size > 1 %}
+      <aside class="blog-companions" aria-label="Companion perspectives">
+        <p class="blog-eyebrow">Companion perspectives</p>
+        <div class="blog-companion-list">
+          {% for post in series_posts %}
+            {% unless post.url == page.url %}
+              <a class="blog-companion-card" href="{{ post.url | relative_url }}">
+                <span class="blog-companion-title">{{ post.title }}</span>
+                {% if post.summary %}<span class="blog-companion-summary">{{ post.summary }}</span>{% endif %}
+              </a>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </aside>
+    {% endif %}
+  {% endif %}
+
   <footer class="blog-nav blog-article-footer">
     <a class="blog-back" href="{{ '/blog/' | relative_url }}">← All writing</a>
     <a class="blog-back" href="{{ '/' | relative_url }}">Home</a>
