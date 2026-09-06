@@ -236,4 +236,50 @@ document.addEventListener("DOMContentLoaded", function () {
   } else if (container) {
     container.innerHTML = '<p class="network-fallback">Co-author network unavailable because the visualization library did not load.</p>';
   }
+
+  const toc = document.querySelector("[data-blog-toc]");
+
+  if (toc) {
+    const list = toc.querySelector("[data-blog-toc-list]");
+    const headings = Array.from(document.querySelectorAll(".blog-article-body h2"));
+
+    if (!list || headings.length < 2) {
+      toc.hidden = true;
+    } else {
+      const usedIds = new Set();
+
+      headings.forEach(function (heading, index) {
+        let id = heading.id;
+
+        if (!id) {
+          id = heading.textContent
+            .toLowerCase()
+            .normalize("NFKD")
+            .replace(/[^a-z0-9\s-]/g, "")
+            .trim()
+            .replace(/\s+/g, "-");
+        }
+
+        if (!id) {
+          id = "section-" + (index + 1);
+        }
+
+        let uniqueId = id;
+        let suffix = 2;
+        while (usedIds.has(uniqueId) || (document.getElementById(uniqueId) && document.getElementById(uniqueId) !== heading)) {
+          uniqueId = id + "-" + suffix;
+          suffix += 1;
+        }
+        usedIds.add(uniqueId);
+        heading.id = uniqueId;
+
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#" + uniqueId;
+        link.textContent = heading.textContent;
+        item.appendChild(link);
+        list.appendChild(item);
+      });
+    }
+  }
 });
