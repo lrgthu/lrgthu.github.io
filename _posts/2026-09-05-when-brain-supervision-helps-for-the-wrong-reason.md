@@ -1,98 +1,65 @@
 ---
 title: "When Brain Supervision Helps for the Wrong Reason"
 date: 2026-09-05 15:43:00 -0500
-summary: "A positive gain from neural supervision is not yet evidence that the gain came from the correctly paired brain signal."
+summary: "A positive gain from neural supervision failed the pairing-specificity test against matched non-neural and shuffled-neural controls."
 tags: [neuroai, neural-supervision, fmri, representation-learning, falsification]
 writing_type: "Research Note"
 toc: true
 citation: true
+source_repo: "lrgthu/neuroresidual-ood"
 ---
 
-*What a failed pairing-specificity test taught me about brain-aligned learning*
+<section class="research-note-abstract" markdown="1">
 
-There is an appealing idea in NeuroAI: if we train an artificial representation using neural data, and the resulting model predicts brain responses better, perhaps the brain has taught the model something that ordinary supervision missed.
+## Abstract
 
-I still think this is a promising direction. Recent work has shown that optimizing visual models with human EEG or fMRI can improve measured model–brain alignment, and neural supervision is increasingly being used to reshape learned feature spaces.
+This note tests whether a gain from fMRI-supervised representation learning is **specific to correctly paired neural information**. A residual adapter was evaluated in eight leave-one-participant-out folds against three preregistered comparators: the strongest matched non-neural target, a within-category shuffled neural target, and a direct nonlinear readout. The paired neural adapter outperformed the nonlinear readout in all eight participants (mean difference **+0.0683**), but it was worse than the best matched non-neural target in all eight participants (mean **−0.0221**) and was effectively indistinguishable from the pairing-broken neural control (mean **−0.00073**, 1/8 positive participants). The frozen decision was therefore `stop_adapter_claim`; the reserved OOD neural evaluation remained sealed. The result does not show that neural supervision is ineffective. It shows that **a neural-supervised gain is not sufficient evidence for a neural-specific gain unless correct neural pairing defeats matched alternatives.**
 
-But a positive gain leaves a harder question unanswered:
+</section>
 
-> **Did the gain come from the correctly paired brain signal, or would another target have taught the model something equally useful?**
+<section class="research-note-key-result" markdown="1">
 
-I recently ran a falsification-first experiment built around that question. The result was negative in exactly the way I hoped the experiment could detect.
+**Key result.** The model passed a generic gain test and failed the claim-specific controls. The positive result survived only at the level of “the adapter learned something useful,” not “correctly paired brain residuals supplied the useful information.”
 
-The brain-supervised model improved over a conventional nonlinear baseline.
+</section>
 
-It still failed the neural-specific claim.
+## 1. Research question
 
----
+The tested claim was:
 
-## A positive result can support more than one explanation
+> **Does correctly paired fMRI residual supervision teach a shared visual adapter information that is not reproduced by matched non-neural targets, pairing-broken neural targets, or a more flexible readout?**
 
-Suppose we start with a strong frozen vision model, fit an ordinary encoding model to fMRI, and examine the residual neural structure that remains predictable across repetitions and people.
+This is stronger than asking whether neural supervision improves prediction. A positive gain can arise from target structure, regularization, category information, added trainable capacity, or participant-specific fitting without requiring stimulus-specific neural pairing.
 
-A natural next step is to train a small adapter on that residual signal.
+The identifying contrast is therefore between **correct pairing** and controls that preserve as much nuisance structure as possible while removing the information named in the claim.
 
-If the adapter then improves neural prediction, one tempting interpretation is:
+## 2. Experimental design
 
-`paired brain supervision -> brain-specific representational improvement`
+The analysis used eight leave-one-participant-out folds. The held-out participant's neural responses were not used to train the shared adapter.
 
-But the same observation could also arise from less interesting mechanisms:
+For each fold, the correctly paired residual-neural target was compared against:
 
-- the adapter simply receives a useful regularization target;
-- the target preserves category or stimulus structure that is available without the brain;
-- a shuffled neural target still contains enough coarse structure to help;
-- the adapter has more useful capacity than the baseline readout;
-- the improvement is specific to the training participants and does not transfer.
+1. **best matched non-neural target** — same image and capacity budget without neural supervision;
+2. **within-category shuffled neural target** — preserves broad neural/category structure while breaking stimulus-specific pairing;
+3. **direct nonlinear readout** — a flexible baseline for whether the adapter learns signal beyond a conventional decoder.
 
-So the real experiment is not:
+The candidate grid contained 36 adapter configurations per fold, for **288 completed candidates**. The decisive controls and stopping rule were frozen before the held-out outcomes were released.
 
-> Does brain supervision help?
+The reserved NSD-synthetic evaluation was designated as a downstream OOD test and could be opened only if the pairing-specificity gate passed.
 
-It is:
+## 3. Primary results
 
-> **What does brain supervision beat when everything except the information content of the target is matched?**
+The three central contrasts gave different answers:
 
-That changes the control group from an afterthought into the center of the claim.
+| Contrast | Mean difference | Positive participants | Decision |
+| --- | ---: | ---: | --- |
+| Paired neural − direct nonlinear readout | **+0.0683** | **8/8** | pass |
+| Paired neural − best matched non-neural | **−0.0221** | **0/8** | fail |
+| Paired neural − within-category shuffled neural | **−0.00073** | **1/8** | fail |
 
----
+The median recovered fraction of the independently defined recoverable residual gap was approximately **0.0124%**, below the frozen **10%** practical requirement.
 
-## The test I wanted the model to survive
-
-The experiment used eight leave-one-participant-out folds. The adapter never trained on the held-out participant's neural responses.
-
-For each fold, the central comparison was between a correctly paired residual-brain target and several matched alternatives, including:
-
-- the strongest non-neural target available under the same image and capacity budget;
-- a within-category shuffled neural target;
-- a direct nonlinear readout with comparable flexibility.
-
-The goal was not merely to show that the adapter could fit something useful. It was to isolate whether **correct pairing to brain residuals** supplied the useful information.
-
-That is an important distinction. If a paired neural target and a shuffled neural target perform similarly, then whatever the model learned cannot be confidently attributed to stimulus-specific brain pairing. If a non-neural target performs better, then a neural-specific story becomes even harder to sustain.
-
-The experiment was preregistered around that logic. The decisive controls were specified before the held-out results were opened.
-
----
-
-## The result looked positive until the right comparison was made
-
-One comparison passed cleanly.
-
-The paired brain-residual adapter outperformed the direct nonlinear readout in **all 8 participants**, with a mean advantage of about **0.0683** under the frozen metric.
-
-If that had been the only control, I could have written a very satisfying result:
-
-> neural supervision improves the model beyond a flexible nonlinear baseline.
-
-But two more specific comparisons failed.
-
-Against the best matched non-neural target, the paired brain-residual model was worse in **all 8 participants**, with a mean difference of about **−0.0221**.
-
-Against the within-category shuffled neural target, it was effectively tied: only **1 of 8** participant contrasts was positive, and the mean difference was about **−0.00073**.
-
-The independently defined recovered fraction of the available residual gap was also essentially zero relative to the preregistered practical threshold.
-
-So the pattern was:
+The pattern can be summarized as:
 
 `paired brain target > nonlinear readout`
 
@@ -102,114 +69,63 @@ but
 
 and
 
-`paired brain target ≈ shuffled brain target`
+`paired brain target ≈ pairing-broken neural target`.
 
-This is not evidence that neural supervision did nothing.
+The terminal decision was therefore:
 
-It is evidence that the improvement was **not specific enough to support the claim I wanted to make**.
+`stop_adapter_claim`
 
----
+No rescue adapter, OOD neural evaluation, or post-result threshold change was authorized.
 
-## Why the shuffled target matters
+## 4. Why the shuffled control is diagnostic
 
-Shuffling controls are often treated as generic sanity checks. Here the exact form matters.
+A fully random target would remove nearly all useful structure and would provide a weak specificity test. The within-category shuffle preserves broad distributional and category-related structure while destroying the exact stimulus–brain correspondence required by the neural-specific hypothesis.
 
-A completely random target would destroy almost every useful regularity and would be too easy to beat. The more diagnostic question is whether a target can preserve broad category or distributional structure while breaking the stimulus-specific neural pairing that the scientific claim depends on.
+If correctly paired residual fMRI supplied a transferable stimulus-specific teaching signal, breaking those pairings should have produced a measurable loss relative to the paired target.
 
-That is why the within-category shuffled target was important.
+That separation was not observed.
 
-If correctly paired neural residuals contain a transferable stimulus-specific teaching signal, then preserving coarse structure while breaking the exact pairings should hurt.
+The result therefore does not imply that the shuffled neural target is meaningless. It implies that the experiment did not identify **which component of the neural target produced the gain**.
 
-It did not hurt enough.
+## 5. Interpretation
 
-The control therefore does not say that the neural target is meaningless. It says that the experiment did not isolate **what about the neural target mattered**.
+Two findings remain supported.
 
-That is the level at which I now want neural-supervision claims to be evaluated.
+First, the paired adapter learned signal beyond the direct nonlinear baseline. The positive +0.0683 contrast is real under the frozen evaluation.
 
----
+Second, that gain was **not pairing-specific** under the decisive controls. The best non-neural target was better in every participant, and the pairing-broken neural target produced essentially the same outcome.
 
-## This is not an argument against brain alignment
+These observations rule out the stronger interpretation:
 
-There is now a growing literature showing that neural data can be used to reshape artificial representations. ReAlnet, for example, has used human EEG to train visual models toward more brain-like representational structure; related work has extended neural alignment to fMRI, and newer approaches explicitly optimize model representations toward human conceptual structure.
+`prediction gain -> neural-specific representational improvement`.
 
-Those results ask important questions about whether neural supervision can change an artificial representation in useful directions.
+They do not rule out the weaker statement:
 
-The question here is complementary:
+`the tested adapter/objective can exploit residual structure not captured by the direct nonlinear readout`.
 
-> **When a neural target improves performance, how much of the gain requires the target to be the correctly paired neural signal?**
+The next admissible scientific question is therefore not how to rescue the adapter, but how to characterize the repeat-reliable residual itself: which components reproduce across models and participants, and whether they reflect missing representation or missing content-dependent routing.
 
-That is a specificity question, not a contradiction of the broader alignment program.
+## 6. Claim boundary
 
-In fact, as neural supervision becomes more effective, I think the specificity question becomes more important. A sufficiently powerful training objective can extract useful structure from many correlated targets. Higher performance makes controls more necessary, not less.
+The experiment supports:
 
----
+- a positive paired-neural gain over the direct nonlinear readout;
+- failure of the preregistered pairing-specificity claim;
+- stopping the adapter-to-OOD branch under the frozen decision rule.
 
-## The part of the experiment I am happiest about is what did not happen next
+It does **not** support:
 
-The project had a reserved out-of-distribution neural evaluation that could have been opened after the in-distribution gate.
+- the claim that neural supervision is generally ineffective;
+- the claim that the residual contains no repeat-reliable or cross-participant structure;
+- a causal assignment of any residual feature;
+- an OOD neural-transfer conclusion, because the reserved OOD responses remained sealed;
+- a conclusion about other adapters, target constructions, or neural modalities not tested here.
 
-I did not open it.
+## 7. Reproducibility
 
-The preregistered logic was that OOD evaluation would test the transfer of a **pairing-specific neural signal**. Once the pairing-specificity gate failed, the OOD branch no longer answered the original question.
+The research record is maintained in [`lrgthu/neuroresidual-ood`](https://github.com/lrgthu/neuroresidual-ood). The frozen R1 production used exact source commit `82b8450b54a4914c05e17f276d6204e7d83a4a7e`. All eight leave-one-participant-out folds and 288 candidates completed; held-out evaluations were opened once per participant; lineage and completion audits passed; NSD-synthetic responses remained sealed.
 
-It would have been easy to continue anyway:
-
-- try another rank;
-- alter the adapter;
-- change the target construction;
-- add more controls after looking at the result;
-- open the OOD data and search for a subgroup that worked.
-
-Any of those could be a legitimate new experiment.
-
-None would rescue the failed one.
-
-So the branch stopped.
-
-I increasingly think this is an underappreciated part of experimental design: a good gate should be capable not only of authorizing the next analysis, but of making the next analysis scientifically unnecessary.
-
----
-
-## What the negative result does establish
-
-The result leaves at least two useful facts standing.
-
-First, there is repeat-reliable, cross-participant residual neural structure beyond the frozen baseline model. The failure of this adapter does not make that residual disappear.
-
-Second, the tested adapter and objective can learn something that a direct nonlinear readout misses. What they did **not** demonstrate is that the extra information was supplied specifically by the correct neural pairing.
-
-That points to a different next question:
-
-> **What is the reliable residual, before we decide how to learn from it?**
-
-Instead of immediately fitting a more powerful rescue adapter, the next useful move is to characterize which residual components reproduce across models and participants, ask whether they reflect missing representation or missing routing of existing representations, and only then design interventions that force those explanations apart.
-
-That is slower than saying “brain supervision helped.”
-
-It is also more informative.
-
----
-
-## The standard I want to use going forward
-
-When I see a model improve after neural supervision, I now want to ask four questions in order:
-
-1. **Gain:** does the neural-supervised model improve over a strong baseline?
-2. **Specificity:** does correct neural pairing beat matched non-neural and shuffled-neural controls?
-3. **Transfer:** does the effect survive held-out people, stimuli, or tasks without retuning?
-4. **Mechanism:** can an intervention distinguish the proposed brain-derived feature from plausible alternatives?
-
-The first question is valuable.
-
-But it is only the first question.
-
-The result of this experiment is therefore not “brain supervision does not work.” It is more precise:
-
-> **A neural-supervised gain is not yet a neural-specific gain.**
-
-That difference is exactly what the controls were designed to reveal.
-
----
+The public aggregate and stop decision are documented in `docs/R1_RESULTS.md`. Participant-level neural data, protected residuals, and owner-only artifacts remain outside the public repository.
 
 ## References
 
