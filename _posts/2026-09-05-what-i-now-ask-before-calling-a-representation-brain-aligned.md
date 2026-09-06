@@ -166,11 +166,11 @@ The broader conclusion is therefore procedural:
 
 “Brain alignment” as a training objective, a metric improvement, and an explanatory claim are not interchangeable.
 
-## 8. Archival and reproducibility sources
+## 8. Archival and reproducibility boundary
 
-The historical pilot is preserved in [`lrgthu/Contrastive-Representation-Learning-in-the-Brain-NeurIPs-21-`](https://github.com/lrgthu/Contrastive-Representation-Learning-in-the-Brain-NeurIPs-21-), including the original manuscript source and figures.
+The historical pilot manuscript, figures, and later falsification program are retained in private research repositories with versioned source and result records. The later eight-participant pairing-specificity experiment includes frozen controls, exact source identity, aggregate decision records, and protected participant-level artifacts.
 
-The later pairing-specificity falsification is maintained in [`lrgthu/neuroresidual-ood`](https://github.com/lrgthu/neuroresidual-ood), with the frozen eight-participant result documented in `docs/R1_RESULTS.md`.
+This public retrospective reports publication-safe methodological lessons and aggregate results. It does not expose private neural data, owner-only artifacts, or internal repository contents.
 
 Related methodological results are summarized in [*A Brain-Predictive Model Is Not Yet an Explanation*](/blog/a-brain-predictive-model-is-not-yet-an-explanation/) and [*When Brain Supervision Helps for the Wrong Reason*](/blog/when-brain-supervision-helps-for-the-wrong-reason/).
 
