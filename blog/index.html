@@ -21,8 +21,12 @@ permalink: /blog/
   {% if site.posts.size > 0 %}
     <ul class="blog-post-list">
       {% for post in site.posts %}
-        <li class="blog-post-row">
-          <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+        <li class="blog-post-row{% if post.placeholder %} is-placeholder{% endif %}">
+          {% if post.placeholder %}
+            <span class="blog-post-date blog-status">Coming next</span>
+          {% else %}
+            <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+          {% endif %}
           <div>
             <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
             {% if post.summary %}
