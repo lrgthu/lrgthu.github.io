@@ -9,6 +9,7 @@
   <title>{% if page.url == '/' %}{{ site.title }}{% else %}{{ seo_title }} — {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ seo_description | escape }}">
   <meta name="author" content="{{ site.author | escape }}">
+  {% if page.placeholder %}<meta name="robots" content="noindex, follow">{% endif %}
   <link rel="canonical" href="{{ canonical_url }}">
 
   <meta property="og:locale" content="{{ site.lang | default: 'en_US' }}">
@@ -52,7 +53,7 @@
   {% if site.google_site_verification_secondary %}<meta name="google-site-verification" content="{{ site.google_site_verification_secondary }}">{% endif %}
   {% if page.use_vis %}<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>{% endif %}
   <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v=retro-11">
-  <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-4">
+  <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-5">
 </head>
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
   <div class="layout">
