@@ -8,6 +8,7 @@
   {% assign canonical_url = page.url | absolute_url %}
   {% assign post_meta = site.data.post_meta[page.slug] %}
   {% assign updated_at = page.updated | default: post_meta.updated %}
+  {% assign writing_type = page.writing_type | default: "Perspective" %}
   <title>{% if page.url == '/' %}{{ site.title }}{% else %}{{ seo_title }} — {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ seo_description | escape }}">
   <meta name="author" content="{{ site.author | escape }}">
@@ -39,7 +40,7 @@
         "sameAs": [{% for link in site.social.links %}{{ link | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]
       },
       {
-        "@type": "{% if page.layout == 'post' %}BlogPosting{% elsif page.url == '/blog/' %}CollectionPage{% else %}WebSite{% endif %}",
+        "@type": "{% if page.layout == 'post' and writing_type == 'Research Note' %}ScholarlyArticle{% elsif page.layout == 'post' %}BlogPosting{% elsif page.url == '/blog/' %}CollectionPage{% else %}WebSite{% endif %}",
         "headline": {{ seo_title | jsonify }},
         "name": {{ seo_title | jsonify }},
         "description": {{ seo_description | jsonify }},
@@ -57,7 +58,7 @@
   {% if site.google_site_verification_secondary %}<meta name="google-site-verification" content="{{ site.google_site_verification_secondary }}">{% endif %}
   {% if page.use_vis %}<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>{% endif %}
   <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v=retro-11">
-  <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-6">
+  <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-7">
 </head>
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
   <div class="layout">
