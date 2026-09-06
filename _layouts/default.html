@@ -56,6 +56,15 @@
 
   {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
   {% if site.google_site_verification_secondary %}<meta name="google-site-verification" content="{{ site.google_site_verification_secondary }}">{% endif %}
+  {% if site.google_analytics_measurement_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_measurement_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics_measurement_id }}');
+  </script>
+  {% endif %}
   {% if page.use_vis %}<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>{% endif %}
   <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v=retro-11">
   <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-8">
