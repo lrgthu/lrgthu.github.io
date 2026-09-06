@@ -12,7 +12,7 @@ layout: default
 {% assign reading_time = word_count | plus: 219 | divided_by: 220 %}
 {% assign citation_year = page.date | date: "%Y" %}
 {% assign citation_slug = page.title | slugify | remove: "-" %}
-<article class="blog-article">
+<article class="blog-article{% if writing_type == 'Research Note' %} research-note{% endif %}">
   <header class="blog-article-header">
     <p class="blog-eyebrow">Writing / {{ writing_type }}</p>
     <h1 class="blog-article-title">{{ page.title }}</h1>
