@@ -6,6 +6,8 @@ layout: default
 {% assign updated_at = page.updated | default: post_meta.updated %}
 {% assign update_note = page.update_note | default: post_meta.update_note %}
 {% assign toc_enabled = page.toc | default: post_meta.toc %}
+{% assign toc_open = true %}
+{% if page.toc_open == false or post_meta.toc_open == false %}{% assign toc_open = false %}{% endif %}
 {% assign word_count = content | strip_html | number_of_words %}
 {% assign reading_time = word_count | plus: 219 | divided_by: 220 %}
 {% assign citation_year = page.date | date: "%Y" %}
@@ -36,7 +38,7 @@ layout: default
   </header>
 
   {% if toc_enabled and page.placeholder != true %}
-    <details class="blog-toc" data-blog-toc open>
+    <details class="blog-toc" data-blog-toc{% if toc_open %} open{% endif %}>
       <summary>On this page</summary>
       <ol class="blog-toc-list" data-blog-toc-list></ol>
     </details>
