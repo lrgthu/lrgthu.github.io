@@ -6,7 +6,11 @@ layout: default
     <p class="blog-eyebrow">Writing / {{ page.date | date: "%Y" }}</p>
     <h1 class="blog-article-title">{{ page.title }}</h1>
     <div class="blog-article-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time>
+      {% if page.placeholder %}
+        <span class="blog-status">Coming next</span>
+      {% else %}
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time>
+      {% endif %}
       {% if page.tags and page.tags.size > 0 %}
         <span aria-hidden="true"> · </span>
         <span>{{ page.tags | join: " / " }}</span>
@@ -26,7 +30,8 @@ layout: default
         <div class="blog-companion-list">
           {% for post in series_posts %}
             {% unless post.url == page.url %}
-              <a class="blog-companion-card" href="{{ post.url | relative_url }}">
+              <a class="blog-companion-card{% if post.placeholder %} is-placeholder{% endif %}" href="{{ post.url | relative_url }}">
+                {% if post.placeholder %}<span class="blog-companion-status">Coming next</span>{% endif %}
                 <span class="blog-companion-title">{{ post.title }}</span>
                 {% if post.summary %}<span class="blog-companion-summary">{{ post.summary }}</span>{% endif %}
               </a>
