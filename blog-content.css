@@ -1,0 +1,61 @@
+/* Article-body typography overrides.
+   Global reset removes native list indentation, so restore it only inside posts. */
+
+.blog-article-body ul,
+.blog-article-body ol {
+  margin: 0.75rem 0 1rem;
+  padding-left: 1.55rem;
+  list-style-position: outside;
+}
+
+.blog-article-body ol {
+  padding-left: 1.7rem;
+}
+
+.blog-article-body li {
+  padding-left: 0.18rem;
+}
+
+.blog-article-body li + li {
+  margin-top: 0.38rem;
+}
+
+.blog-article-body li > ul,
+.blog-article-body li > ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0.4rem;
+}
+
+.blog-article-body li > p + p {
+  margin-top: 0.45rem;
+}
+
+.blog-article-body ul ul,
+.blog-article-body ol ul {
+  list-style-type: circle;
+}
+
+.blog-article-body ul ul ul,
+.blog-article-body ol ul ul {
+  list-style-type: square;
+}
+
+.research-note .blog-article-body ul,
+.research-note .blog-article-body ol {
+  margin-top: 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.research-note .blog-article-body li + li {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 620px) {
+  .blog-article-body ul {
+    padding-left: 1.4rem;
+  }
+
+  .blog-article-body ol {
+    padding-left: 1.55rem;
+  }
+}
