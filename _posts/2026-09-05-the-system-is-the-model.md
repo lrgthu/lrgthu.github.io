@@ -3,6 +3,8 @@ title: "The System Is the Model"
 date: 2026-09-05 15:50:00 -0500
 summary: "A research perspective on language, brains, and large language models organized around one question: at what scale does the explanatory loop close?"
 tags: [language, neuroscience, cognitive-science, llm, neuroai]
+series: adaptive-intelligence
+series_order: 1
 ---
 
 *Language, representation, and cognition from Saussure and Chomsky to large language models*
@@ -14,6 +16,8 @@ There is a question I keep coming back to when I think about language, brains, a
 For a word recognized in a fraction of a second, the answer may lie largely inside a neural population or network. For language acquisition, it almost certainly requires a developing brain and a structured environment. For the structure of a language, it may require generations of learners. For an AI agent, the relevant system may include not only a checkpoint but also context, memory, tools, users, and the feedback loop that eventually retrains it.
 
 The boundary is not arbitrary. But neither is it fixed.
+
+The point is not to make the system boundary as large as possible. It is to make it large enough that the causal story no longer depends on what we have left outside.
 
 This question changes how I read an old divide in linguistics.
 
@@ -208,6 +212,8 @@ The boundary is not arbitrary.
 But neither is it fixed.
 
 **The system is the model—provided we are careful about which system, and at what timescale.**
+
+The other two essays in this series take that boundary question in different directions. [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/) asks what organization inside the boundary counts as intelligent; [*The User Is Not a Vector*](/blog/the-user-is-not-a-vector/) asks what happens when the adaptive loop contains a recommender and a person.
 
 ---
 
