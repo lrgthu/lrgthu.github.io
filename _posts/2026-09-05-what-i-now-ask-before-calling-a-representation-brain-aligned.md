@@ -1,301 +1,178 @@
 ---
 title: "What I Now Ask Before Calling a Representation Brain-Aligned"
 date: 2026-09-05 15:39:00 -0500
-summary: "A personal research retrospective on how my standard for brain alignment changed from better prediction to specificity, transfer, identification, and intervention."
+summary: "A research retrospective on how the evidential standard for brain alignment changed from improved prediction to specificity, transfer, identification, and intervention."
 tags: [neuroai, representation-learning, brain-alignment, methodology, retrospective]
 writing_type: "Research Note"
 toc: true
 citation: true
 ---
 
-*A research retrospective on how my evidential standard changed*
+<section class="research-note-abstract" markdown="1">
 
-Several years ago, I worked on a simple idea: use brain responses to reshape an artificial feature space.
+## Abstract
 
-Take a pretrained visual representation. Present the same images to a person in an fMRI experiment. Use similarities between neural response patterns to define which image pairs should move closer together or farther apart in the artificial space. Train a Siamese mapping with a contrastive objective. Then ask whether the transformed representation becomes more similar to the neural geometry and predicts held-out brain activity better.
+This note revisits an early brain-supervised representation-learning project and contrasts its original evidential standard with the one used in later NeuroAI work. The earlier study used fMRI response similarity to train a contrastive transformation of visual features, then evaluated whether the transformed representation better matched neural geometry and predicted held-out fMRI responses. Those measurements supported a bounded claim about improved representation–brain correspondence under the tested pipeline, but they did not identify why the gain occurred or whether correct neural pairing was necessary. A later eight-participant residual-supervision experiment made that limitation explicit: paired neural supervision beat a nonlinear readout in all participants, yet lost to the best matched non-neural target in all participants and was effectively tied with a pairing-broken neural control. The resulting methodological revision is to treat “brain alignment” as a graded evidential claim rather than a binary label. Predictive alignment, representational similarity, specificity, generalization, identification, and causal correspondence require different tests.
 
-The project was called *Contrastive Representation Learning in the Brain*.
+</section>
 
-At the time, the logic felt natural:
+<section class="research-note-key-result" markdown="1">
 
-`brain-supervised transformation`
+**Key result.** The evidential standard changed from “the neural metric improved” to “which alternative explanations did the experiment rule out?” This is a retrospective about claim calibration, not a retraction of the earlier measurements.
 
-`-> better neural geometry`
+</section>
 
-`-> better encoding prediction`
+## 1. Historical study
 
-`-> more brain-aligned representation`
+The original project, *Contrastive Representation Learning in the Brain*, asked whether neural response geometry could be used to reshape an artificial visual representation.
 
-I still think the first three arrows can describe a useful experiment.
+For pairs of images, similarity between fMRI response patterns in a region of interest defined positive and negative relationships. A shared nonlinear mapping `f(x)` was trained with a contrastive objective so that transformed visual features more closely reproduced those neural pairwise relationships.
 
-It is the last arrow that I would write much more carefully now.
+The transformed representation was evaluated with two main criteria:
 
-The question I have learned to ask is not only:
+1. **representational geometry:** pairwise similarities in the transformed space should more closely resemble fMRI-response similarities;
+2. **held-out encoding:** an encoding model built from transformed features should predict held-out fMRI responses better than one built from the original features.
 
-> **Did neural supervision improve alignment?**
+Both quantities improved in the pilot analysis. The draft therefore described the transformed latent space as a “more accurate model of the brain.”
 
-It is:
+The empirical measurements remain meaningful. The stronger wording is what now requires qualification.
 
-> **What alternative explanation did the experiment make impossible?**
+## 2. What the original result established
 
-That change—from improvement to identification—has probably been the biggest shift in how I think about NeuroAI evidence.
+The original design supported the following bounded statement:
 
----
+> Under the tested participant, ROI, stimulus split, feature space, nonlinear transformation, and encoding readout, neural-supervised transformation improved measured correspondence with the observed fMRI responses.
 
-## What I thought “brain-aligned” meant
+That is a real result about a representation–mapping–data system.
 
-The original project began from a real limitation of standard encoding models.
+However, several causal explanations remain observationally compatible with the same improvement:
 
-Artificial visual features are usually learned for objectives such as classification. There is no reason their geometry must match the dimensions emphasized by a particular brain region. If a feature space can be warped using neural similarity, perhaps the resulting representation will better reflect the neural organization of the stimuli.
+- exact stimulus–brain pairing supplied unique information;
+- broad category or semantic structure in the neural target was sufficient;
+- the neural target acted primarily as a regularizer;
+- a matched non-neural target would have produced a similar transformation;
+- the nonlinear mapping created a basis that was simply easier for the encoding readout to use;
+- the effect was specific to one participant, ROI, or stimulus distribution.
 
-The method was straightforward.
+Neither improved encoding nor improved representational similarity distinguishes these alternatives by itself.
 
-For each pair of images, I computed similarity between their fMRI response patterns in a region of interest. Pairs with high neural similarity became positive pairs; dissimilar pairs became negative pairs. A shared nonlinear mapping `f(x)` was trained with a contrastive loss so that the transformed visual features reproduced those pairwise relationships more closely.
+## 3. Later falsification test
 
-Then I evaluated the transformed space in two ways:
+A later project tested one of these unresolved alternatives directly.
 
-1. did pairwise geometry become more similar to the fMRI geometry?
-2. did an encoding model built on the transformed features predict held-out fMRI responses better than the original features?
+A small residual adapter was trained using correctly paired fMRI-derived targets and evaluated in eight leave-one-participant-out folds. Under a conventional positive comparison, the result looked strong: the paired neural adapter outperformed a direct nonlinear readout in **8/8 participants**, with a mean difference of approximately **+0.0683**.
 
-Both moved in the intended direction in the pilot analysis.
+The experiment also included claim-specific controls:
 
-The draft therefore used language like:
+| Contrast | Mean difference | Positive participants |
+| --- | ---: | ---: |
+| Paired neural − direct nonlinear readout | **+0.0683** | **8/8** |
+| Paired neural − best matched non-neural | **−0.0221** | **0/8** |
+| Paired neural − within-category shuffled neural | **−0.00073** | **1/8** |
 
-> the induced latent space is a more accurate model of the brain.
+The correct neural pairing therefore did not provide the specificity required by the stronger neural-supervision claim. The adapter learned useful structure, but the experiment did not identify that structure as uniquely supplied by stimulus-specific brain residuals.
 
-I understand why I wrote that sentence.
+This result changed the interpretation standard more than the training objective itself.
 
-I would not write it that way today.
+## 4. Revised evidence ladder for “brain alignment”
 
----
+“Brain-aligned” is more useful when decomposed into explicit evidential levels.
 
-## The result was real; the interpretation was underspecified
+### 4.1 Predictive alignment
 
-This is an important distinction.
+Does the representation predict held-out neural responses under a declared readout and evaluation contract?
 
-I do not now think the earlier project was meaningless because it did not satisfy standards I developed later. If a neural-supervised mapping improves held-out brain prediction and representational similarity, that is a real empirical fact about the representation–mapping–dataset system.
+This establishes predictive accessibility, not unique representation or mechanism.
 
-The problem is what follows from it.
+### 4.2 Representational alignment
 
-Several explanations remain possible:
+Do internal geometries or decodable variables resemble measured neural structure beyond what a scalar predictive score captures?
 
-- the neural target provided stimulus-specific information unavailable elsewhere;
-- the target mainly acted as a regularizer;
-- broad semantic/category structure in the brain responses was enough, even if the exact image–brain pairing did not matter;
-- another non-neural target with similar structure would have produced the same gain;
-- the nonlinear mapping simply created a more convenient basis for the downstream encoding readout;
-- the effect was specific to one participant, ROI, split, or stimulus distribution.
+This strengthens the description of what is similar but still permits multiple causal explanations.
 
-Better prediction does not distinguish these explanations.
+### 4.3 Specificity
 
-Neither does a prettier representational geometry.
+Does the effect defeat controls that preserve nuisance structure while removing the information named in the claim?
 
-That does not invalidate the measurements. It limits the claim they identify.
+For neural supervision, useful controls include matched non-neural objectives and pairing-broken neural targets.
 
----
+### 4.4 Generalization
 
-## NeuroAI has made the original idea more relevant, not less
-
-The broader research direction has grown substantially since that pilot.
-
-Recent studies explicitly optimize artificial vision models toward human EEG or fMRI representations and report improved model–brain alignment. ReAlnet used non-invasive EEG to train visual representations toward human neural structure; related work extended the approach to fMRI. Other recent frameworks align semantic or conceptual model spaces with human neural representations and evaluate transfer across datasets or modalities.
-
-I find this work exciting because it turns brain-model comparison into something more intervention-like: neural data does not merely score the model after training; it changes the representation.
-
-But stronger optimization makes the evidential problem more important.
-
-If I deliberately train a model to pass a neural similarity metric, then improvement on that metric is no longer surprising by itself.
-
-The harder questions become:
-
-- does the effect generalize to neural data not used to define the objective?
-- does it survive held-out participants or stimulus distributions?
-- does correct neural pairing matter?
-- is the gain specific to neural information rather than a matched non-neural target?
-- does the transformed model reproduce brain-relevant invariances, behavior, or causal responses that were not directly optimized?
-
-The more capable the alignment method becomes, the more important these out-of-objective tests become.
-
----
-
-## The control that changed my mind most: break the pairing
-
-A recent project gave me a concrete version of this lesson.
-
-I trained a small residual adapter using correctly paired fMRI-derived targets. Under one comparison, the result looked exactly like the kind of positive neural-supervision effect I would once have found persuasive: the paired neural adapter outperformed a direct nonlinear readout in **all eight participants**.
-
-But the experiment had stronger controls.
-
-The paired neural target lost to the best matched non-neural target in **all eight participants**.
-
-And when the neural targets were shuffled *within category*—preserving broad structure while breaking the exact stimulus-specific neural pairing—the result was essentially unchanged.
-
-So this pattern held:
-
-`brain supervision > nonlinear baseline`
-
-while
-
-`brain supervision < matched non-neural target`
-
-and
-
-`brain supervision ≈ pairing-broken neural target`
-
-Under my older standard, I might have emphasized the first line.
-
-Under my current standard, the second and third lines determine the claim.
-
-The adapter learned something useful.
-
-The experiment did not establish that the useful information was specific to the correctly paired neural signal.
-
-That is a much more precise conclusion.
-
----
-
-## The evidence ladder I now use
-
-I no longer think “brain-aligned” should be one binary label.
-
-I find it more useful to ask what level of evidence a result has reached.
-
-### 1. Predictive alignment
-
-Can the model or representation predict held-out neural responses?
-
-This is already meaningful. It establishes neural accessibility under the declared readout and evaluation contract.
-
-### 2. Representational alignment
-
-Do the internal geometries or decodable variables resemble those measured in the brain beyond what predictive performance alone captures?
-
-This strengthens the description of *what* is similar, but it still need not identify mechanism.
-
-### 3. Specificity
-
-Does the aligned representation beat controls that preserve nuisance structure while removing the information named in the claim?
-
-For neural supervision, this includes matched non-neural targets and broken neural pairings.
-
-### 4. Generalization
-
-Does the result transfer across people, stimuli, tasks, datasets, or modalities without choosing the representation using those outcomes?
+Does the result transfer to held-out participants, stimuli, tasks, datasets, or modalities without selecting the representation using those outcomes?
 
 This determines the scope of the claim.
 
-### 5. Identification
+### 4.5 Identification
 
-Could the evaluator distinguish the proposed representation from plausible alternatives if one were actually the ground truth?
+Can the evaluator distinguish the proposed representation from plausible alternatives when the ground truth is known?
 
-Known-truth recovery tests are useful here because real neural data cannot tell us the answer directly.
+Known-truth recovery is one way to calibrate this property.
 
-### 6. Causal or mechanistic alignment
+### 4.6 Causal or mechanistic alignment
 
-Do interventions produce the predicted changes in internal states, neural responses, behavior, or closed-loop dynamics?
+Do interventions produce the predicted changes in model states, neural responses, behavior, or closed-loop dynamics?
 
-This is the point at which “shares a useful representation” can begin to approach “implements a related mechanism.”
+This is the strongest level and is not required for every useful NeuroAI study.
 
-Not every project needs to reach level six.
+## 5. Why stronger optimization increases the need for external tests
 
-The important thing is to name the level it actually reaches.
+Modern brain-alignment methods increasingly optimize models directly against EEG, fMRI, or human representational objectives. This makes the original research direction more relevant, not less.
 
----
+It also changes what should count as a convincing evaluation.
 
-## A higher benchmark score can still miss the thing we care about
+If a model is trained explicitly to improve a neural similarity metric, improvement on that same or closely related metric is partly built into the objective. Stronger evidence therefore comes from tests the training procedure could not trivially satisfy:
 
-Several results in the broader literature have reinforced this change in perspective for me.
+- held-out participants;
+- frozen external neural datasets;
+- matched non-neural supervision;
+- broken-pairing controls;
+- behavioral transfer;
+- metamers or adversarial perturbations;
+- known-truth recovery;
+- targeted causal interventions.
 
-Model metamers can reveal dramatic differences between artificial and human invariances even when standard neural prediction benchmarks are similar. Adversarial perturbations can separate encoding models that look nearly tied under ordinary fMRI predictivity. Known-truth system-identification tests can fail to recover architecture even when similarity scores look good.
+The stronger the optimization procedure, the more important these out-of-objective tests become.
 
-These results all make the same methodological point from different directions:
+## 6. What would change in the original design
 
-> **Similarity under one observation operator does not imply equivalence of the underlying systems.**
+A contemporary version of the early contrastive study would retain the basic neural-supervised transformation but add an explicit identification structure.
 
-This is also the bridge to my broader view in [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/). If internal states matter because of the causal roles they play in action, learning, and feedback, then representational alignment is one slice of the comparison—not the endpoint.
+At minimum, the design would include:
 
----
+- held-out stimuli for the primary representation and encoding gains;
+- held-out participants for claims about shared human structure;
+- matched non-neural targets with the same architecture, data, capacity, and optimization budget;
+- pairing-broken neural controls preserving broad neural structure;
+- external neural or behavioral tests excluded from model selection;
+- known-truth recovery for the evaluator;
+- targeted perturbations or metamers that force aligned and control models to disagree.
 
-## What I would do differently with the old experiment
+The main methodological addition is not a larger network. It is a better set of alternatives.
 
-If I were rebuilding the original contrastive brain-alignment study today, I would keep the central idea but redesign the evidence around it.
+## 7. Claim boundary
 
-I would want at least:
+This retrospective does **not** argue that the original neural-supervised measurements were invalid. It revises the claim attached to them.
 
-- **held-out stimuli** for the basic representation and encoding gain;
-- **held-out participants** if the claim is about shared human structure;
-- **matched non-neural supervision** with the same architecture, data, capacity, and optimization budget;
-- **pairing-broken neural controls** that preserve broad neural structure while destroying stimulus-specific correspondence;
-- **frozen external neural or behavioral tests** not used to choose the objective;
-- **known-truth recovery** to calibrate what the evaluation pipeline can identify;
-- eventually, **targeted interventions or metamers** that force aligned and control models to disagree.
+The earlier evidence supports improved measured correspondence under the tested pipeline. It does not, by itself, support:
 
-The most important addition would not be a bigger model.
+- unique neural information as the cause of the gain;
+- participant-general representation learning;
+- representational identity;
+- a shared biological mechanism.
 
-It would be a better set of alternatives.
+The broader conclusion is therefore procedural:
 
----
+> **A brain-alignment claim should name the level of evidence reached and the alternatives the experiment actually excludes.**
 
-## Brain alignment as a scientific claim, not a training objective
+“Brain alignment” as a training objective, a metric improvement, and an explanatory claim are not interchangeable.
 
-There is a subtle language problem here.
+## 8. Archival and reproducibility sources
 
-“Brain alignment” can mean:
+The historical pilot is preserved in [`lrgthu/Contrastive-Representation-Learning-in-the-Brain-NeurIPs-21-`](https://github.com/lrgthu/Contrastive-Representation-Learning-in-the-Brain-NeurIPs-21-), including the original manuscript source and figures.
 
-1. an **optimization objective**—we explicitly train a model to reduce some distance to neural data;
-2. an **evaluation result**—the optimized model scores better on a neural metric;
-3. a **scientific claim**—the model has captured a brain-relevant representation or mechanism.
+The later pairing-specificity falsification is maintained in [`lrgthu/neuroresidual-ood`](https://github.com/lrgthu/neuroresidual-ood), with the frozen eight-participant result documented in `docs/R1_RESULTS.md`.
 
-The first does not guarantee the second on independent data.
-
-The second does not guarantee the third.
-
-Keeping those meanings separate has helped me think more clearly about this whole research area.
-
-A model can be *brain-aligned by training* without yet being *brain-aligned in the stronger explanatory sense*.
-
-That stronger claim has to be earned by tests the training objective could not trivially satisfy.
-
----
-
-## The question I now ask
-
-When I see a representation described as more brain-like, I no longer begin with:
-
-> How much did the neural score improve?
-
-I begin with:
-
-> **What alternative model of the result would have produced the same improvement, and what experiment rules it out?**
-
-Sometimes the answer is a shuffled target.
-
-Sometimes it is a matched non-neural objective.
-
-Sometimes it is a held-out participant or new stimulus distribution.
-
-Sometimes it is a perturbation that forces two predictive models to diverge.
-
-And sometimes the honest answer is that the current experiment does not distinguish the alternatives yet.
-
-That is not a reason to abandon alignment work.
-
-It is a reason to make the word *alignment* more precise.
-
-The change in my thinking is therefore less dramatic than it may sound.
-
-I still want to use artificial models and brain data to meet in a common representational space.
-
-I just no longer think that meeting in the same space is enough to tell us why they are there.
-
----
-
-## Related notes
-
-- [*A Brain-Predictive Model Is Not Yet an Explanation*](/blog/a-brain-predictive-model-is-not-yet-an-explanation/) — predictivity versus identification.
-- [*When Brain Supervision Helps for the Wrong Reason*](/blog/when-brain-supervision-helps-for-the-wrong-reason/) — a pairing-specificity falsification.
-
----
+Related methodological results are summarized in [*A Brain-Predictive Model Is Not Yet an Explanation*](/blog/a-brain-predictive-model-is-not-yet-an-explanation/) and [*When Brain Supervision Helps for the Wrong Reason*](/blog/when-brain-supervision-helps-for-the-wrong-reason/).
 
 ## References
 
