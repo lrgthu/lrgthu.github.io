@@ -16,3 +16,33 @@ the-user-is-not-a-vector:
 
 when-prediction-changes-what-it-predicts:
   toc: false
+
+a-brain-predictive-model-is-not-yet-an-explanation:
+  updated: 2026-09-05
+  update_note: "Recast as a short-form research communication with explicit design, results, claim boundary, and reproducibility sections."
+  toc: true
+
+when-brain-supervision-helps-for-the-wrong-reason:
+  updated: 2026-09-05
+  update_note: "Recast as a falsification-focused research communication centered on preregistered pairing-specificity contrasts."
+  toc: true
+
+stable-predictions-unstable-explanations:
+  updated: 2026-09-05
+  update_note: "Recast as an uncertainty-audit research communication separating predictive robustness from inferential coherence."
+  toc: true
+
+when-the-measurement-fails-before-the-model-does:
+  updated: 2026-09-05
+  update_note: "Recast as a measurement-validation research communication with model-level gate results and an explicit construct-validity boundary."
+  toc: true
+
+sometimes-the-right-attribution-is-unresolved:
+  updated: 2026-09-05
+  update_note: "Recast as a methods research communication emphasizing four-state causal decisions and calibrated abstention."
+  toc: true
+
+what-i-now-ask-before-calling-a-representation-brain-aligned:
+  updated: 2026-09-05
+  update_note: "Recast as a structured research retrospective distinguishing historical measurements from the later evidential standard."
+  toc: true
