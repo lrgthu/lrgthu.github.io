@@ -1,5 +1,5 @@
 ---
-title: "What Representations Are For"
+title: "What Visual Representations Are For"
 date: 2026-09-06 13:00:00 -0500
 updated: 2026-09-06
 permalink: /blog/what-representations-are-for/
@@ -12,7 +12,7 @@ toc_open: false
 update_note: "Rewritten around the questions my doctoral work raises about visual computation and the organization of representations."
 ---
 
-*Rethinking visual computation through my doctoral work*
+*Rethinking my doctoral work through Marr*
 
 Some of the most satisfying figures in my dissertation are maps of visual cortex colored by neural-network layer. A progression of colors connects two things that initially seem difficult to compare: a network transforming an image and a brain responding to it.
 
