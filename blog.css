@@ -277,8 +277,8 @@
 .blog-article-title {
   margin-top: 0.4rem;
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  line-height: 1.05;
+  font-size: clamp(1.55rem, 3.2vw, 2.3rem);
+  line-height: 1.1;
 }
 
 .blog-article-meta,
