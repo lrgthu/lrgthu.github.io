@@ -34,6 +34,8 @@ defaults:
     values:
       layout: post
       body_class: blog-page
+      writing_type: Perspective
+      citation: true
 
 exclude:
   - README.md
