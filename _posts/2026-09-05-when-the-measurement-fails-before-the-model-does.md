@@ -139,9 +139,11 @@ It does **not** establish:
 - that no alternative readout can recover a calibrated numerical quantity;
 - anything about posterior geometry, uncertainty compression, or KL-like behavior, because those hypotheses were not reached.
 
-## 8. Reproducibility
+## 8. Reproducibility boundary
 
-The full experiment is maintained in [`lrgthu/distributions-to-decisions`](https://github.com/lrgthu/distributions-to-decisions), with the terminal record in `EXPERIMENT2F_RESULTS.md`. The repository retains exact model revisions, frozen manifests, raw selection outputs, corrected measurements, per-candidate decisions, and nuisance diagnostics. No confirmation directory or selected model exists because no candidate passed the registered gate.
+The full experiment is retained in a private research repository. The versioned record includes exact model revisions, frozen selection and confirmation manifests, raw selection outputs, corrected measurements, per-candidate gate decisions, nuisance diagnostics, and the terminal `NO-ELIGIBLE-MODEL` record. No confirmation raw directory or selected-model artifact exists because no candidate passed the registered gate.
+
+This public note reports only the aggregate measurement-validation result and claim boundary.
 
 ## References
 
