@@ -21,6 +21,14 @@ That abstraction works extraordinarily well. But the more I put these two tradit
 
 That mismatch is where this essay began.
 
+To be precise, the title is rhetorical. A user state can of course be a vector and still change over time; sequential recommendation has modeled temporal behavior for years, with systems such as SASRec explicitly learning from ordered action histories (Kang & McAuley, 2018). My objection is not to vectors, or even to dynamic user representations. It is to a stronger picture in which the user's latent state is effectively **policy-independent**—something the recommender estimates but does not itself help change.
+
+The distinction I care about is closer to:
+
+`z_(t+1) = f(z_t, a_t, c_t, ε_t)`
+
+where `z_t` is a latent user state, `c_t` is context, and `a_t` includes the system's own intervention: what it chose to show, suppress, repeat, or make newly available. The interesting question is not whether a vector can move. It is whether the model treats its own actions as part of why the user moves.
+
 Recommender systems start from an apparently simple question:
 
 **What does this person want?**
@@ -177,7 +185,11 @@ There is no need to imagine sinister manipulation. This follows naturally from f
 
 The idea of **performativity**, familiar from social science, becomes useful here. A classification does not always remain outside the world it describes. Sometimes it changes how the subject is treated, and that treatment helps make the classification more true.
 
-User models can have this property. Someone categorized as interested in a topic is shown more of it; more exposure produces familiarity; familiarity changes future interaction; future interaction strengthens the category.
+Machine learning now has a formal language for part of this problem. Perdomo and colleagues (2020) call prediction *performative* when deploying a predictor changes the distribution it will later face. In recommender systems, Chaney, Stewart, and Engelhardt (2018) show how data generated under earlier recommendations can become algorithmically confounded, while Carroll and colleagues (2022) study recommendation-induced preference shifts directly and ask how such shifts might be estimated and constrained.
+
+These precedents matter because the claim here is not that recommendation affecting users is a newly discovered phenomenon. The question I want to push further is what a useful model of that effect must distinguish: memory from exposure, durable valuation from temporary salience, long-term goals from immediate action, and user-directed change from change induced by the policy itself.
+
+User models can have this performative property. Someone categorized as interested in a topic is shown more of it; more exposure produces familiarity; familiarity changes future interaction; future interaction strengthens the category.
 
 So an error is not always merely an inaccurate prediction. Repeated errors can alter the environment around the user. Successful predictions can do the same.
 
@@ -186,6 +198,14 @@ The boundary between describing a person and constructing the conditions under w
 > **Recommendation is productive as well as predictive.**
 
 That is not necessarily a criticism. It is a statement about what kind of system recommendation has become.
+
+But dynamics alone do not solve the problem.
+
+Suppose jazz recommendations are followed by more jazz listening. That observation is consistent with several mechanisms: the person already liked jazz but had not been exposed to it; exposure simply made jazz easier to choose; familiarity changed what they could hear in it; a habit formed without deeper endorsement; or their evaluation of jazz genuinely changed. A dynamic model may predict the trajectory while being wrong about the mechanism.
+
+> **Dynamics are not identification. A model can predict how a user changes while being wrong about why they changed.**
+
+Distinguishing these mechanisms requires interventions, not just longer histories. Randomized exposure, evaluation on a common content set, delayed re-evaluation, and carefully used self-report would not reveal a metaphysically “true preference,” but they could begin to separate opportunity and familiarity effects from more persistent changes in valuation.
 
 ---
 
@@ -207,15 +227,17 @@ A preference model asks where the user is now. A dynamical view asks where they 
 
 > **What kinds of future remain possible from here?**
 
-A healthy relationship with recommendation may not be one in which the system perfectly converges on a narrow model of who the user already appears to be. Perhaps it should preserve some openness, uncertainty, and room for surprise—some possibility that the person tomorrow will not simply be an increasingly predictable version of the person today.
+A healthy relationship with recommendation may not be one in which the system perfectly converges on a narrow model of who the user already appears to be. But openness should not be confused with diversity for its own sake. If someone deliberately decides to spend six months learning Bach, a system that respects that goal may become narrower and deeper, not broader and more surprising.
+
+So the value I care about is not that every future remain equally open. It is that the **user retain meaningful agency over the trajectory**: the ability to express a long-term goal, correct the system's interpretation, mark an interest as temporary, escape a learned pattern, or deliberately enter one.
 
 This is why I have started to think about exploration differently. In machine learning, exploration is often framed as something the system does because *the model* is uncertain about the user. But humans are uncertain about themselves too. We cannot know whether we love something we have never encountered, or choose from possibilities we do not know exist.
 
 Sometimes recommendation does not merely satisfy preference. It makes preference possible.
 
-> **A system can become very good at knowing the current user while becoming worse at allowing the future user to appear.**
+> **A system can become very good at knowing the current user while becoming worse at letting the user participate in who the future user becomes.**
 
-I suspect this tension—between knowing someone well and leaving room for them to become otherwise—is one of the deepest problems in personalization.
+I suspect this tension—between knowing someone well and preserving their agency over change—is one of the deepest problems in personalization.
 
 ---
 
@@ -263,7 +285,7 @@ The point is not to import every cognitive concept into recommendation, or to la
 
 The point is more modest and, I think, more consequential:
 
-> **Treat the user as something that has state, history, memory, agency, and dynamics—not simply as a target distribution to be estimated.**
+> **Treat the user as something that has state, history, memory, agency, and dynamics—and treat the recommender's own actions as one cause of those dynamics.**
 
 That change in viewpoint is enough to generate a different set of research questions.
 
@@ -275,7 +297,7 @@ Once recommendation is part of the dynamics, optimization begins to look incompl
 
 Optimization asks for an objective: clicks, watch time, purchases, retention, perhaps some richer notion of satisfaction. But if the system helps shape the state from which future behavior emerges, the question is not only whether the next recommendation succeeds. It is what kind of relationship the repeated interaction creates.
 
-A good system might help users articulate and pursue their own intentions, preserve room for discovery, recognize when desire is temporary, and allow users to escape patterns the system has learned too well. Perhaps the ultimate test of personalization is not whether the system eventually predicts us perfectly, but whether it remains useful even as we change.
+A good system might help users articulate and pursue their own intentions, recognize when desire is temporary, correct what the system thinks it knows, and leave or enter feedback patterns deliberately. Perhaps the ultimate test of personalization is not whether the system eventually predicts us perfectly, but whether it remains useful while giving us meaningful influence over how it adapts to us.
 
 This is where the companion cybernetic argument about purpose becomes concrete. In [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/), I reduce the question to two words: **Whose J?** Recommendation puts a person on the other side of that objective.
 
@@ -293,7 +315,7 @@ This is why I no longer see recommendation as only a problem of better predictio
 
 I started with a familiar abstraction: the user as a representation built from past behavior.
 
-I still think that abstraction is useful. It is powerful precisely because it compresses. But every abstraction teaches us to ignore something, and what the user vector most tempts us to ignore is time—and with it, change.
+I still think that abstraction is useful. It is powerful precisely because it compresses. But every abstraction teaches us to ignore something, and what the user vector most tempts us to ignore is not motion itself. It is **where that motion comes from**.
 
 A person remembers, forgets, learns, predicts, desires, regrets, forms habits, breaks them, discovers, becomes bored, changes context, changes interpretation, changes themselves. Increasingly, some of those changes occur inside environments selected by algorithms that are themselves learning from the changes they helped produce.
 
@@ -305,14 +327,23 @@ Seen this way, recommendation is not simply about finding the right item for a s
 
 That changes the questions I find most interesting—not only what the user likes or what they will do next, but:
 
-> **Who is this person becoming? What experiences make different futures possible? And what role does the recommender play in keeping some of those futures open while making others more likely?**
+> **Who is this person becoming? What experiences make different futures possible? And how much control does the person have over which futures the recommender makes easier or harder to reach?**
 
 The user is not a vector.
 
 The user is not even a state.
 
-**The user is a trajectory.**
+**The user is a trajectory—and the recommender is increasingly one of the forces acting on it.**
 
-And once a recommender becomes part of the environment through which that trajectory unfolds, prediction is no longer the whole problem.
+Once that is true, prediction is no longer the whole problem.
 
-The deeper question is what kinds of futures our predictions help make possible.
+The deeper question is how to model change without confusing prediction with explanation, and how to build systems that remain useful without taking ownership of the user's trajectory away from the user.
+
+---
+
+## References and further reading
+
+- Carroll, M. D., Dragan, A., Russell, S., & Hadfield-Menell, D. (2022). [Estimating and Penalizing Induced Preference Shifts in Recommender Systems](https://proceedings.mlr.press/v162/carroll22a.html). *Proceedings of the 39th International Conference on Machine Learning*, PMLR 162, 2686–2708.
+- Chaney, A. J. B., Stewart, B. M., & Engelhardt, B. E. (2018). [How Algorithmic Confounding in Recommendation Systems Increases Homogeneity and Decreases Utility](https://doi.org/10.1145/3240323.3240370). *Proceedings of the 12th ACM Conference on Recommender Systems*.
+- Kang, W.-C., & McAuley, J. (2018). [Self-Attentive Sequential Recommendation](https://doi.org/10.1109/ICDM.2018.00035). *2018 IEEE International Conference on Data Mining (ICDM)*, 197–206.
+- Perdomo, J., Zrnic, T., Mendler-Dünner, C., & Hardt, M. (2020). [Performative Prediction](https://proceedings.mlr.press/v119/perdomo20a.html). *Proceedings of the 37th International Conference on Machine Learning*, PMLR 119, 7599–7609.
