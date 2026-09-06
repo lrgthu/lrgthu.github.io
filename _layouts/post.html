@@ -1,26 +1,67 @@
 ---
 layout: default
 ---
+{% assign post_meta = site.data.post_meta[page.slug] %}
+{% assign writing_type = page.writing_type | default: "Perspective" %}
+{% assign updated_at = page.updated | default: post_meta.updated %}
+{% assign update_note = page.update_note | default: post_meta.update_note %}
+{% assign toc_enabled = page.toc | default: post_meta.toc %}
+{% assign word_count = content | strip_html | number_of_words %}
+{% assign reading_time = word_count | plus: 219 | divided_by: 220 %}
+{% assign citation_year = page.date | date: "%Y" %}
+{% assign citation_slug = page.title | slugify | remove: "-" %}
 <article class="blog-article">
   <header class="blog-article-header">
-    <p class="blog-eyebrow">Writing / {{ page.date | date: "%Y" }}</p>
+    <p class="blog-eyebrow">Writing / {{ writing_type }}</p>
     <h1 class="blog-article-title">{{ page.title }}</h1>
     <div class="blog-article-meta">
       {% if page.placeholder %}
         <span class="blog-status">Coming next</span>
       {% else %}
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time>
-      {% endif %}
-      {% if page.tags and page.tags.size > 0 %}
         <span aria-hidden="true"> · </span>
-        <span>{{ page.tags | join: " / " }}</span>
+        <span>{{ reading_time }} min read</span>
+        {% if updated_at %}
+          <span aria-hidden="true"> · </span>
+          <span>Updated {{ updated_at | date: "%b %d, %Y" }}</span>
+        {% endif %}
       {% endif %}
     </div>
+    {% if page.tags and page.tags.size > 0 %}
+      <div class="blog-article-tags">{{ page.tags | join: " / " }}</div>
+    {% endif %}
+    {% if update_note and page.placeholder != true %}
+      <p class="blog-update-note"><strong>Revision note.</strong> {{ update_note }}</p>
+    {% endif %}
   </header>
+
+  {% if toc_enabled and page.placeholder != true %}
+    <details class="blog-toc" data-blog-toc open>
+      <summary>On this page</summary>
+      <ol class="blog-toc-list" data-blog-toc-list></ol>
+    </details>
+  {% endif %}
 
   <div class="blog-article-body">
     {{ content }}
   </div>
+
+  {% if page.citation and page.placeholder != true %}
+    <section class="blog-citation" aria-labelledby="cite-this-essay">
+      <p class="blog-eyebrow" id="cite-this-essay">Cite this essay</p>
+      <p class="blog-citation-text">Ruogu Lin. “{{ page.title }}.” {{ citation_year }}. <em>lrgthu.github.io</em>. <a href="{{ page.url | absolute_url }}">{{ page.url | absolute_url }}</a></p>
+      <details class="blog-citation-bibtex">
+        <summary>BibTeX</summary>
+        <pre><code>@misc{lin{{ citation_year }}{{ citation_slug }},
+  author = {Lin, Ruogu},
+  title = {{{ page.title }}},
+  year = {{{ citation_year }}},
+  howpublished = {lrgthu.github.io},
+  url = {{{ page.url | absolute_url }}}
+}</code></pre>
+      </details>
+    </section>
+  {% endif %}
 
   {% if page.series %}
     {% assign series_posts = site.posts | where: "series", page.series | sort: "series_order" %}
@@ -33,6 +74,7 @@ layout: default
               <a class="blog-companion-card{% if post.placeholder %} is-placeholder{% endif %}" href="{{ post.url | relative_url }}">
                 {% if post.placeholder %}<span class="blog-companion-status">Coming next</span>{% endif %}
                 <span class="blog-companion-title">{{ post.title }}</span>
+                <span class="blog-companion-type">{{ post.writing_type | default: "Perspective" }}</span>
                 {% if post.summary %}<span class="blog-companion-summary">{{ post.summary }}</span>{% endif %}
               </a>
             {% endunless %}
