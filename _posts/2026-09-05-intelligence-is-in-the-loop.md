@@ -323,11 +323,11 @@ A Wienerian perspective suggests another step.
 
 Suppose two systems behave similarly and exhibit similar hidden-state geometry. I still want to know whether those states occupy comparable **causal positions inside the loop**. Do they guide similar actions? Do comparable perturbations produce comparable corrections? Do they fail similarly under delay and noise? Does experience modify the controller in comparable ways?
 
-The target becomes something closer to **closed-loop functional equivalence**.
+The additional standard I have in mind is **causal-role equivalence under closed-loop intervention**: not merely whether two systems behave similarly or contain similar representations, but whether corresponding internal states are used in similar ways when the world pushes back.
 
-This direction is increasingly concrete. Zador and colleagues (2023) proposed an embodied Turing test in which artificial animal models interact with the sensorimotor world at the level of biological counterparts. D'Angelo and colleagues (2026) evaluate controller, body, and dynamic environment together in embodied neuromorphic benchmarking. Krakauer and colleagues (2017), from another direction, argue that behavior is indispensable for understanding neural mechanism.
+This is deliberately narrower than claiming that closed-loop evaluation itself is new. Zador and colleagues (2023) proposed an embodied Turing test in which artificial animal models interact with the sensorimotor world at the level of biological counterparts. D'Angelo and colleagues (2026) evaluate controller, body, and dynamic environment together in embodied neuromorphic benchmarking. Krakauer and colleagues (2017), from another direction, argue that behavior is indispensable for understanding neural mechanism.
 
-I read these efforts as signs of the same shift: the model is being placed back into the world that gives its internal states causal meaning.
+What I want to add to that agenda is a stronger requirement on internal mechanism. A model could satisfy a behavioral or embodied benchmark—and even match neural geometry—while the matched states occupy different causal roles in correction, sensing, or adaptation. That is exactly the kind of model I would want this framework to reject.
 
 ### A Wienerian benchmark
 
@@ -367,9 +367,13 @@ Three classes of experiment seem especially diagnostic:
 2. **Active information acquisition.** Give both systems uncertainty they can reduce through action. Compare what they choose to sense, where they look, which action they use to disambiguate the state, and how those choices reshape later representations.
 3. **Learning trajectories.** Match interaction histories rather than only adult endpoints. Ask whether comparable experience produces comparable changes in policy, representation, error correction, and exploration over time.
 
+"Matched" cannot simply mean numerically identical. A 100 ms delay is not the same intervention for systems with different bodies, control bandwidths, or behavioral timescales. The more defensible comparison is functional: delay relative to the system's normal control-loop timescale, noise relative to baseline sensory uncertainty, or perturbation magnitude relative to the range over which the system normally corrects. Cross-system experiments need **matched operating regimes**, not merely matched physical units.
+
 A model could match neural geometry impressively while diverging on all three. That would make it brain-like in one narrow and useful sense, but cybernetically unlike the organism. Conversely, a model with imperfect representational alignment might still reveal a shared control principle if its perturbation, sensing, and adaptation dynamics line up.
 
 That is the kind of disagreement between metrics I would want a closed-loop NeuroAI program to expose rather than average away.
+
+This is also where I want to keep the scope precise. Feedback, regulation, and adaptation are not a sufficient definition of intelligence; many narrow controllers have all three. I am making a methodological claim instead: **for many NeuroAI questions, closed-loop causal organization is a more discriminating object of mechanistic comparison than representation alone.** Transfer, strategy reorganization, abstraction, and goal change may require additional principles.
 
 ### LLMs make the boundary visible
 
@@ -483,7 +487,7 @@ The question I would like NeuroAI to ask more often is:
 
 > **What computational organization allows an embodied agent to estimate, predict, act, learn, and remain adaptive in a changing world?**
 
-And following that question outward leaves one constraint that computation alone cannot settle:
+I mean the answer below as a research perspective, not as a necessary-and-sufficient definition of intelligence:
 
 > **Intelligence is not merely a property of a model. It is a property of an organized system that uses information to predict, act, learn, and regulate itself through feedback.**
 
