@@ -145,11 +145,11 @@ It does **not** establish:
 
 A human neural application would require response-free validation of selective image edits, randomized presentation, participant-level neural contrasts, and a separately frozen confirmation analysis.
 
-## 8. Reproducibility
+## 8. Reproducibility boundary
 
-The method is maintained in [`lrgthu/Stacking_GPU`](https://github.com/lrgthu/Stacking_GPU), branch `method/causal-feature-assignment`. The frozen calibration is documented in `CAUSAL_FEATURE_ASSIGNMENT_RESULT.md`, with the machine-readable output under `results/causal_feature_assignment/calibration.json`.
+The method and calibration are maintained in a private research repository. The versioned record includes the frozen simulation specification, decision thresholds, 5,000-replication calibration outputs, machine-readable decision summaries, and the response-free stimulus-specificity logic. No human neural outcomes were accessed during this calibration stage.
 
-No NSD responses or model features were accessed during the response-free known-truth calibration.
+This public note reports the publication-safe aggregate calibration and explicitly does not claim a cortical causal result.
 
 ## Related note
 
