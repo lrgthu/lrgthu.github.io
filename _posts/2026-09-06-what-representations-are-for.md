@@ -9,7 +9,6 @@ tags: [vision, neuroscience, representation-learning, neuroai]
 writing_type: Perspective
 toc: true
 toc_open: false
-update_note: "Rewritten around the questions my doctoral work raises about visual computation and the organization of representations."
 ---
 
 *Rethinking my doctoral work through Marr*
@@ -26,21 +25,21 @@ This is the question I now bring back to my work:
 
 > **What has to become explicit, and in what form, for a visual system to make sense of what it sees?**
 
-Marr helps me ask it. The results that give the question substance come from the work itself: comparing related feature spaces, examining their changing correspondence with cortex, and following their predictive contributions through time. Together, they have made me rethink what I am looking for when I study a visual representation.
+Marr helps me ask it. I have come to think of visual representations less as rungs on a single ladder than as ways of making different properties of a scene available for computation. What interests me is how those descriptions relate: what they share, what each makes easier, and how their contributions unfold during seeing.
 
 ## What is the visual problem?
 
 Take two photographs of the same chair from different angles. Recognizing that they show the same object and describing how its appearance has changed are both visual achievements. They require us to treat the difference between the images differently.
 
-For the identity judgment, some of that difference should not affect the answer. For the orientation judgment, it is precisely what we need to recover. There is no contradiction. The same scene gives rise to different computational questions.
+For the identity judgment, some of that difference should not affect the answer. For the orientation judgment, it is precisely what we need to recover. The same scene gives rise to different computational questions.
 
 This is where Marr's perspective matters to me. His computational level asks what problem is being solved and why the proposed computation is appropriate. His account of representation asks which information a description makes explicit; the format matters because it affects the operations that can be performed on it ([Marr, 1982](#ref-marr)).
 
-Applied to my work, this changes the meaning of a familiar phrase: *a more abstract visual representation*.
+What, then, makes a visual representation “more abstract”? A representation might become less sensitive to viewpoint while making object identity easier to distinguish. Another might organize surface orientation more explicitly. Both involve substantial computation.
 
-More abstract with respect to what? A representation might become less sensitive to viewpoint while making object identity easier to distinguish. Another might organize surface orientation more explicitly. Both involve substantial computation. One is not simply further along a universal scale of understanding.
+The issue is not whether vision is hierarchical, but what a particular hierarchy orders—and which relationships among visual descriptions that ordering leaves unspecified.
 
-I do not take this to mean that object recognition is the wrong problem. It is a powerful way to constrain a model. But when I use that model to study human vision, I also inherit a particular emphasis: the distinctions its training rewards, and the variations it can afford to treat as equivalent.
+Object recognition is a powerful way to constrain a model. But when I use that model to study human vision, I also inherit a particular emphasis: the distinctions its training rewards, and the variations it can afford to treat as equivalent.
 
 That emphasis became tangible in my comparisons of networks trained for different visual tasks. Changing from object to scene classification altered some layer-to-cortex correspondences in AlexNet, while the analogous ResNet50 comparison did not show the same pattern. The edge-detection models provided another arrangement of correspondences ([dissertation, chapter 4](#ref-thesis)). These were exploratory analyses of one participant, and the classification comparisons changed training data along with task. They do not isolate a single cause. They do make the choice of visual model part of the question rather than a neutral measuring device.
 
@@ -48,33 +47,35 @@ I now want to know what a model's features help us ask about vision. A classifie
 
 ## What a representation makes easy
 
-My encoding models learned mappings from image features to measured brain responses. Different layers supplied different descriptions of the same images. A detail of this setup now seems more important to me than it did in the language of “matching layers”: the mapping has to be able to use the description.
+My encoding models learned mappings from image features to measured brain responses. Each feature space offered a different description of the same images, and its predictive value depended on what the fitted mapping could recover.
 
 Consider an array of pixel intensities and a description of contour junctions derived from it. Both concern the same image, but they do not make the same comparisons straightforward. The second has already done work that a system starting from pixels would still have to do.
 
-Something similar matters when a later network layer improves a linear encoding model. In a deterministic feedforward network, that layer is computed from the earlier ones. It cannot introduce new evidence about the image that was absent from its input. It can reorganize what is available, making some relationships easier for a linear mapping to recover.
+Something similar matters when a later network layer improves a linear encoding model. In a fixed deterministic feedforward network, that layer is computed from the earlier ones. It cannot introduce new evidence about the image that was absent from its input. It can reorganize what is available, making some relationships easier for a linear mapping to recover.
 
-For visual neuroscience, I find this distinction productive. It directs attention toward the transformation: which distinctions become easier to express, which become less accessible, and what visual computation benefits from that change?
+The encoding result establishes usefulness to our fitted readout, within the models and data tested. It gives me a candidate organization of visual information whose role in the brain remains to be explained.
 
-This is also why Marr put representation and algorithm together. A description has a format, and a process constructs or transforms it. His proposed descriptions of image structure, visible surfaces, and three-dimensional shape made that connection concrete, although my network-layer comparisons do not test those particular proposals ([Marr, 1982](#ref-marr)).
+The question shifts from how much information a layer contains to which visual distinctions its transformations make accessible.
 
-A learned feature space may mix several kinds of visual variation, without admitting a tidy verbal label. Calling it a representation of “shape,” or “semantics,” should begin an investigation into what it makes accessible, rather than conclude one.
+Marr’s pairing of representation and algorithm captures this distinction. A description has a format, and a process constructs or transforms it. His proposed descriptions of image structure, visible surfaces, and three-dimensional shape made that connection concrete, although my network-layer comparisons do not test those particular proposals ([Marr, 1982](#ref-marr)).
 
-This has changed how I read my own maps. A correspondence is interesting partly because it tells me that a particular organization of image information is useful for accounting for a neural response. To understand that organization, I need to look beyond its address in the network.
+A learned feature space may mix several kinds of visual variation, without admitting a tidy verbal label. Calling it a representation of “shape” or “semantics” should begin an investigation into what it makes accessible, rather than conclude one.
 
-## Understanding a description through other descriptions
+To interpret a layer-to-cortex correspondence, I therefore need to look beyond the layer’s address in the network and ask what its organization of image information makes accessible.
+
+## What descriptions share—and what they add
 
 A representation considered alone can seem more self-contained than it is.
 
 Suppose a feature space predicts responses to photographs of rooms. It might capture differences in spatial layout, texture, object content, or combinations of these. Natural images do not conveniently vary each property in isolation. The success of the feature space becomes more informative when I ask what another description can already account for.
 
-This was the motivation behind our work on [stacked regressions and structured variance partitioning](#ref-stacking). We combined predictions made from different feature spaces and used their relationships to organize comparisons. The methodological details matter for the results; what has stayed with me is the shift in question. Instead of assigning each region a winner, I could ask how its response was accounted for by related descriptions together.
+This was the motivation behind our work on [stacked regressions and structured variance partitioning](#ref-stacking). We combined predictions made from different feature spaces and used their relationships to organize comparisons. Instead of assigning each region a winner, I could ask how its response was accounted for by related descriptions together.
 
-In the cortical analyses, some scene-selective regions were associated with broader ranges of network features than some face- and body-selective regions. A single preferred depth could obscure that difference. These ranges describe the behavior of the tested encoding models, not a collection of separate neural compartments, or proof that each layer in a range is individually necessary.
+In the cortical analyses, some scene-selective regions were associated with broader ranges of network features than some face- and body-selective regions. A single preferred depth could obscure that difference. These ranges summarize the tested encoding comparisons, not uniquely identified boundaries of cortical computation. I take them as a reason to investigate how visual descriptions relate, rather than as a settled map of their biological division of labor.
 
-Still, they changed what I wanted to understand about a visual region. Where does it sit in a hierarchy? What mixture of visual distinctions helps characterize its responses? How does that mixture differ from the one useful elsewhere? Those questions are related, but the first cannot substitute for the others.
+A region’s place in a hierarchy leaves another question open: which visual distinctions help characterize its responses, and how does that pattern differ elsewhere?
 
-I find the relational aspect especially important. Two descriptions can be partly redundant without being interchangeable. One may expose distinctions that are awkward to recover from the other. Their overlap is not merely an inconvenience for statistical analysis; it is part of what an account of visual computation needs to explain.
+Two descriptions can be partly redundant without being interchangeable. One may expose distinctions that are awkward to recover from the other. Their overlap is not merely an inconvenience for statistical analysis; it is part of what an account of visual computation needs to explain.
 
 This does not imply that the brain implements our stacking procedure. Combining predictions is something we did as researchers. The biological question it helps bring into view is how several descriptions of a scene might share work, and where their contributions diverge.
 
@@ -82,21 +83,21 @@ I would find “this region represents scenes” more satisfying if I could say 
 
 ## Depth, location, and time
 
-Once I think in terms of organization, three kinds of order become worth keeping separate: depth in a network, position in visual cortex, and time during a response.
+Three kinds of order need to be kept separate: depth in a network, position in visual cortex, and time during a response.
 
 My work related all three. It did not make them interchangeable.
 
-The network comparisons are one reason. A layer's depth specifies how it is reached within a particular architecture. It does not assign it a fixed amount of biological processing. When the preferred layer changes between trained models, the brain has not moved to a different rung. We have changed the descriptions against which we are measuring it.
+The network comparisons are one reason. A layer's depth specifies how it is reached within a particular architecture. It does not assign it a fixed amount of biological processing. A change in the preferred layer between trained models reflects a change in our candidate descriptions, not in the measured brain.
 
-The temporal analyses exposed another distinction. The early responses showed a progression through network features, but the later pattern was not adequately summarized by advancing to the final layer. In one MEG comparison, an intermediate feature space, Conv-5, added predictive value beyond a later one, FC-7, more persistently than the reverse addition ([dissertation, chapter 5](#ref-thesis)).
+The temporal analyses exposed another distinction. The early responses showed a progression through network features, but the later pattern was not adequately summarized by advancing to the final layer. In one MEG comparison, adding the intermediate Conv-5 feature space to a model using late-layer FC-7 features produced a more sustained gain than the reverse addition ([dissertation, chapter 5](#ref-thesis)).
 
 That finding concerns particular model features under particular viewing conditions. It does not show when participants recognized an object, or establish feedback or active maintenance. The image was still present during much of the MEG interval. What it does give me is a reason to distinguish when a description first becomes relevant from how long it remains useful for predicting the response.
 
-The larger question is not whether the middle or the top of a network is more important. It is how the different descriptions participate in an unfolding visual computation.
+The question is how these descriptions participate in an unfolding visual computation.
 
-A static cortical map and a time course answer different parts of that question. The map characterizes variation across locations. The time course characterizes how relationships with image features change during viewing. Reading them together should sharpen the account of visual processing, without pretending that separate datasets reconstruct a single observed flow through the brain.
+A static cortical map and a time course answer different parts of that question. The map characterizes variation across locations. The time course characterizes how relationships with image features change during viewing. The two constrain an account of visual processing, but separate datasets do not reconstruct a single observed flow through the brain.
 
-I now see hierarchy as something an explanation must specify, rather than a word that supplies the explanation. What is ordered: receptive-field scale, the transformations required to recover a property, tolerance to a change in appearance, or the time at which a distinction becomes available? A useful model may relate these properties. Their relationship is a result to establish, not an equivalence to assume.
+What, then, does the proposed hierarchy order: receptive-field scale, the transformations required to recover a property, tolerance to a change in appearance, or the time at which a distinction becomes available? A useful model may relate these properties. Their relationship is a result to establish, not an equivalence to assume.
 
 ## The organization I want to understand
 
@@ -104,11 +105,7 @@ I now see hierarchy as something an explanation must specify, rather than a word
 
 That need not mean a separate store for every property, or a separate pathway for every judgment. A population code could preserve orientation while allowing an identity readout to ignore it. Conversely, making identity accessible does not guarantee that the same readout can recover orientation. The relevant organization includes both what is available and how it can be used.
 
-This is a more specific ambition than saying that vision is complex or that several levels matter. I want an account that explains why a particular description is useful for a particular visual distinction, how it relates to the descriptions around it, and how those relationships change during viewing.
-
-The question also gives my methods a clearer purpose. Comparing feature spaces can help determine which candidate descriptions substitute for one another. Changing the visual task can reveal which distinctions our model has been organized to preserve. Examining time can constrain when a proposed contribution belongs in the computation. None of these investigations has to provide the whole account; they can make different parts of it less arbitrary.
-
-Return to the chair. Recognizing it, recovering its visible shape, distinguishing a shadow from a surface boundary, and locating it within a room are not simply four positions on a single ladder. They involve different relationships between the image and the scene. A theory of vision should explain how these problems are connected, where they share computations, and where they require different descriptions.
+Return to the chair. Recognizing it, recovering its visible shape, distinguishing a shadow from a surface boundary, and locating it within a room pose different questions about the relationship between the image and the scene. A theory of vision should explain where these problems share computations and where they require different descriptions.
 
 Marr's value for me is in keeping that connection between a visual problem and a representational choice in view. My thesis gave me ways to investigate those choices in measured brain responses. Rethinking the work now, I want to use the correspondences to understand the organization they hint at.
 
