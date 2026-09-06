@@ -17,7 +17,9 @@ For a word recognized in a fraction of a second, the answer may lie largely insi
 
 The boundary is not arbitrary. But neither is it fixed.
 
-The point is not to make the system boundary as large as possible. It is to make it large enough that the causal story no longer depends on what we have left outside.
+The criterion I find most useful is counterfactual rather than spatial. First specify the phenomenon, the timescale, and the class of interventions we care about. Then ask whether variables left outside a proposed boundary still add systematic predictive or counterfactual leverage once the states inside the boundary are specified. If they do, the boundary is too small. If they do not, expanding it further may add context without improving the explanation.
+
+That also means a larger system is not automatically a better one. For some questions—a word recognized under controlled stimulation, a short-horizon sensorimotor mapping, a fixed transformation under a stable input distribution—a local or effectively open-loop model may be exactly the right object. The aim is not to include everything. It is to find the **smallest boundary that remains adequate under the interventions relevant to the question**.
 
 This question changes how I read an old divide in linguistics.
 
@@ -205,13 +207,13 @@ For a word recognized in 200 milliseconds, the answer may lie largely inside a n
 
 This suggests a broader NeuroAI research perspective:
 
-> **Some intelligent capacities may be better explained by identifying the smallest closed causal loop that reproduces the phenomenon than by locating intelligence in any single component.**
+> **Some intelligent capacities may be better explained by identifying the smallest causal boundary that remains predictively and counterfactually adequate under the relevant interventions than by locating intelligence in any single component. In adaptive settings, that boundary will often be a closed loop.**
 
 The boundary is not arbitrary.
 
 But neither is it fixed.
 
-**The system is the model—provided we are careful about which system, and at what timescale.**
+**The system is the model—provided we are careful about which system, for which phenomenon, and at what timescale.**
 
 The other two essays in this series take that boundary question in different directions. [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/) asks what organization inside the boundary counts as intelligent; [*The User Is Not a Vector*](/blog/the-user-is-not-a-vector/) asks what happens when the adaptive loop contains a recommender and a person.
 
