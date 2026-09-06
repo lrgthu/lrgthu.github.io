@@ -121,11 +121,11 @@ It does **not** support:
 - an OOD neural-transfer conclusion, because the reserved OOD responses remained sealed;
 - a conclusion about other adapters, target constructions, or neural modalities not tested here.
 
-## 7. Reproducibility
+## 7. Reproducibility boundary
 
-The research record is maintained in [`lrgthu/neuroresidual-ood`](https://github.com/lrgthu/neuroresidual-ood). The frozen R1 production used exact source commit `82b8450b54a4914c05e17f276d6204e7d83a4a7e`. All eight leave-one-participant-out folds and 288 candidates completed; held-out evaluations were opened once per participant; lineage and completion audits passed; NSD-synthetic responses remained sealed.
+The frozen project record is maintained in a private research repository. The R1 production used exact source commit `82b8450b54a4914c05e17f276d6204e7d83a4a7e`; all eight leave-one-participant-out folds and all 288 candidates completed; each held-out evaluation was opened once; lineage and completion audits passed; and NSD-synthetic responses remained sealed.
 
-The public aggregate and stop decision are documented in `docs/R1_RESULTS.md`. Participant-level neural data, protected residuals, and owner-only artifacts remain outside the public repository.
+This public note reports aggregate, publication-safe results only. Participant-level neural data, protected residuals, fold-level records, and owner-only artifacts remain outside the public website.
 
 ## References
 
