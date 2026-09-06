@@ -40,6 +40,22 @@
   list-style-type: square;
 }
 
+/* TOC entries already inherit any explicit section numbering from headings.
+   Do not add a second list marker/ordinal around that text. */
+.blog-toc .blog-toc-list {
+  margin: 0.65rem 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.blog-toc .blog-toc-list li {
+  padding-left: 0;
+}
+
+.blog-toc .blog-toc-list li + li {
+  margin-top: 0.28rem;
+}
+
 .research-note .blog-article-body ul,
 .research-note .blog-article-body ol {
   margin-top: 0.65rem;
