@@ -132,9 +132,9 @@ It does **not** establish:
 
 The next evidential step requires interventions designed to separate correlated candidate features, with an inference rule that can explicitly abstain when feature-specific effects are not identified.
 
-## 8. Reproducibility
+## 8. Reproducibility boundary
 
-The analysis is maintained in [`lrgthu/Stacking_GPU`](https://github.com/lrgthu/Stacking_GPU), branch `method/causal-feature-assignment`. The relevant records include `ADAPTIVE_SVP_NSD_RESULT.md` and `ADAPTIVE_SVP_RELIABILITY_ROI_RESULT.md`, with checksum-bound public summaries and protected target-level arrays retained outside the public repository.
+The underlying analysis is maintained in a private research repository on the `method/causal-feature-assignment` branch. The public-safe record includes the aggregate continuous boundary-support results, reliability/ROI stratification, frozen thresholds, calibration identities, and checksum-bound summaries. Protected target-level attribution arrays and participant-level neural data remain outside the public website.
 
 Participants, rather than voxels or folds, are treated as biological replication units. Threshold-support policies and confirmatory masks were frozen before the corresponding NSD outcome summaries were inspected.
 
