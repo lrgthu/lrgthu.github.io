@@ -1,255 +1,142 @@
 ---
 title: "Stable Predictions, Unstable Explanations"
 date: 2026-09-05 15:42:00 -0500
-summary: "Why nearly identical neural predictions can coexist with much weaker confidence about which feature family deserves the explanation."
+summary: "Nearly identical neural predictions coexist with weakly identified layer intervals once attribution uncertainty is modeled explicitly."
 tags: [neural-encoding, attribution, variance-partitioning, uncertainty, neuroscience]
 writing_type: "Research Note"
 toc: true
 citation: true
+source_repo: "lrgthu/Stacking_GPU"
 ---
 
-*The instability here is inferential, not numerical*
+<section class="research-note-abstract" markdown="1">
 
-One of the most reassuring results in an encoding analysis is numerical stability.
+## Abstract
 
-Change the implementation, compress the features, rerun the estimator, and the held-out predictions barely move. That is exactly what we want from a robust analysis.
+This note examines whether numerical robustness of neural encoding predictions implies equally robust feature attribution. In an eight-participant NSD audit, native visual features and leakage-controlled nested PCA produced nearly identical held-out predictions: nested PCA was **3.8× faster on average** while changing mean held-out score by only **+0.000113**, and fixed-95 structured intervals agreed for **93.8%** of eligible targets. A continuous boundary-support analysis, however, produced a different inferential picture. Mean lower-boundary modal support was approximately **0.834**, upper-boundary support **0.690–0.695**, and only **21.3%** of eligible targets assigned at least 80% probability mass to logically ordered intervals. Independent reliability and visual masks did not rescue coherence; the corresponding fraction fell to approximately **0.2–1.8%**, and no predeclared mask passed the interval-release gate. The instability is therefore not primarily numerical or preprocessing-driven. It arises because correlated representations can support robust prediction while leaving the explanatory interval weakly identified.
 
-But I have become increasingly cautious about the next step:
+</section>
 
-> **If the predictions are stable, is the explanation attached to them equally stable?**
+<section class="research-note-key-result" markdown="1">
 
-In a recent audit of structured visual encoding models, the answer was no.
+**Key result.** Predictive robustness and inferential coherence separated sharply: two feature implementations gave almost identical neural predictions, yet most targets did not support a single logically ordered layer interval with high probability.
 
-The surprising part was not that one preprocessing choice produced a different map. In fact, two substantially different feature implementations produced almost identical predictions and strongly overlapping attribution distributions.
+</section>
 
-The problem appeared later, when a continuous uncertainty analysis asked whether those directional attributions really supported one clean interval of network layers.
+## 1. Research question
 
-Most did not.
+Structured variance partitioning summarizes how ordered feature families contribute to a predictive neural model. The historical analysis used a fixed retained-performance threshold, such as 95%, to define forward and backward endpoints.
 
-This distinction matters because an explanation can look precise for a reason that has nothing to do with the underlying evidence being precise: **the analysis may have forced a hard answer from a soft, redundant problem.**
+The question here was:
 
----
+> **Does a stable predictive solution imply that the layer interval inferred from cumulative feature paths is itself well identified?**
 
-## The original problem: correlated features
+This distinction matters because adjacent deep-network layers are correlated. Redundancy can make predictions insensitive to the chosen basis while simultaneously making attribution ambiguous.
 
-Naturalistic stimuli do not come with orthogonal explanatory variables.
+## 2. Predictive robustness audit
 
-Features from adjacent layers of a deep network are correlated. Low-, mid-, and high-level visual properties coexist in the same image. An encoding model can therefore predict a neural response well even when multiple feature families contain overlapping predictive information.
+The first analysis compared native visual features with leakage-controlled nested PCA features under matched folds and estimators.
 
-This is the problem that motivated our earlier work on stacked regressions and structured variance partitioning: estimate predictive models robustly, then compare cumulative feature families so correlated predictors do not get interpreted as if each lived in isolation.
+For the initial participant, fold-averaged whole-cortex predictive scores correlated at approximately **0.999864** between the two feature implementations.
 
-The method asks directional questions such as:
+Across eight participants:
 
-- how far through an ordered feature hierarchy must I go before a forward prefix reaches most of the full model's predictive performance?
-- how far backward can I move from the other end while retaining most of that performance?
+| Quantity | Result |
+| --- | ---: |
+| Mean speedup from nested PCA | **3.803×** |
+| Mean held-out score difference (PCA − native) | **+0.000113** |
+| Fixed-95 interval agreement | **93.811%** |
 
-Historically, we summarized these paths with a fixed retained-performance threshold such as 95%.
+These results show that the estimator and high-level predictive conclusions were numerically stable to a substantial change in feature dimensionality and computation.
 
-That produces a pair of endpoints.
+## 3. Continuous boundary support
 
-And endpoints are psychologically powerful. Once a voxel receives a lower and upper layer boundary, it is difficult not to see an interval.
+A fixed 95% threshold answers a decision-rule question: where does each cumulative path first cross one chosen retained-performance level?
 
----
+To evaluate uncertainty in the boundary itself, the follow-up analysis integrated first-crossing support over a frozen retained-performance domain from **80% to 99%**. The output was a distribution over possible lower and upper boundaries rather than one hard endpoint pair.
 
-## First, the good news: the predictions were extraordinarily stable
+Across eight participants:
 
-Before worrying about attribution, I wanted to make sure the estimator itself was not fragile.
+| Quantity | Native | Nested PCA |
+| --- | ---: | ---: |
+| Lower-boundary modal support | 0.8344 | 0.8338 |
+| Upper-boundary modal support | 0.6947 | 0.6897 |
+| Lower 80% support width (layers) | 1.678 | 1.682 |
+| Upper 80% support width (layers) | 2.216 | 2.235 |
+| Lower support overlap across arms | \- | **0.943** |
+| Upper support overlap across arms | \- | **0.907** |
 
-One comparison replaced native visual features with a leakage-controlled nested PCA representation. The dimensionality reduction changed computation substantially, but the fold-averaged whole-cortex predictive scores were almost unchanged: the native-versus-PCA score correlation for an initial participant was about **0.999864**.
+The marginal boundary distributions were therefore informative and highly reproducible across feature implementations. The uncertainty was not a PCA artifact.
 
-Across the full eight-participant audit, nested PCA was about **3.8× faster on average**, while its mean held-out score differed from the native representation by only about **0.000113**.
+## 4. Joint interval coherence
 
-At the historical 95% threshold, native and PCA structured intervals also agreed for roughly **93.8%** of eligible targets.
+An interval interpretation requires the lower boundary to be no later than the upper boundary. The continuous analysis therefore measured the joint probability mass assigned to logically ordered endpoint pairs.
 
-If I had stopped there, the conclusion would have been comforting:
+| Quantity | Native | Nested PCA |
+| --- | ---: | ---: |
+| Mean logical interval mass | 0.4146 | 0.4143 |
+| Targets with logical mass ≥ 0.80 | **21.28%** | **21.25%** |
+| Fixed-95 interval = support-mode interval | 44.91% | 44.36% |
 
-> the prediction is stable, the interval mostly reproduces, and the analysis appears robust to a major implementation change.
+Thus, lower and upper directional summaries could each be informative while their conjunction failed to support one coherent layer interval for most targets.
 
-That statement is true.
+The fixed threshold did not produce a numerically incorrect result. It produced a **hard decision from a soft support surface**.
 
-It is also incomplete.
+## 5. Reliability and ROI stratification
 
----
+A natural explanation for low interval coherence is measurement noise. This hypothesis was tested prospectively with masks defined independently of model outcomes using official NSD noise ceilings, pRF labels, and ROI families.
 
-## A hard threshold hides the question we actually care about
+The result was opposite to the rescue hypothesis.
 
-The 95% endpoint answers:
+| Confirmatory mask | Native: logical mass ≥ 0.80 | Nested PCA |
+| --- | ---: | ---: |
+| All cortex | 21.3% | 21.3% |
+| Noise ceiling ≥ 10 | 1.8% | 1.7% |
+| Noise ceiling ≥ 20 | 0.4% | 0.3% |
+| Noise ceiling ≥ 20 + pRF | 0.3% | 0.2% |
+| pRF visual union | 1.3% | 1.2% |
 
-> Where is the first crossing at this one chosen threshold?
+No predeclared independent mask passed the interval-release gate in both feature arms.
 
-But the scientific question is closer to:
+The low coherence therefore cannot be attributed mainly to near-zero-reliability targets. The more consistent interpretation is structural redundancy: an early forward prefix and a late backward suffix can each remain predictively sufficient without defining a unique interval between them.
 
-> How much support is there for each possible boundary, and how sensitive is the answer to the retained-performance criterion?
+## 6. Interpretation
 
-Those are not the same thing.
+The analysis separates three properties that are often conflated:
 
-So instead of selecting another “better” threshold, I treated the retained-performance level itself as a source of uncertainty. The analysis integrated boundary support across a frozen domain from 80% to 99% and returned distributions over possible lower and upper boundaries.
+1. **Predictive robustness:** held-out predictions survive reasonable implementation changes.
+2. **Attribution robustness:** directional feature-support distributions survive those changes.
+3. **Inferential coherence:** the combined evidence supports the explanatory object being reported.
 
-This changed the object from:
+The first two properties were strong. The third was weak for interval-level claims.
 
-`one threshold -> one lower boundary + one upper boundary`
+This is not paradoxical. Correlated feature families can stabilize prediction because several representations carry similar useful information. The same redundancy can make causal or hierarchical attribution underdetermined.
 
-into:
+The appropriate output is therefore not necessarily a single interval. Marginal support over lower and upper boundaries can remain reportable even when a joint interval is not.
 
-`range of defensible thresholds -> support over boundaries`
+## 7. Claim boundary
 
-The marginal distributions were not useless. Lower boundaries were often fairly concentrated. Across the eight participants, mean modal support for the lower boundary was about **0.834** in both native and nested-PCA arms.
+The evidence supports:
 
-Upper boundaries were broader: modal support was about **0.69–0.70**, and the average 80% support set spanned more than two layers.
+- high predictive agreement between native and nested-PCA feature implementations;
+- reproducible marginal boundary-support distributions;
+- substantial uncertainty in upper boundaries;
+- rejection of unconditional interval-level claims under the frozen coherence rule.
 
-Native and PCA still agreed strongly. Their mean support overlap was about **0.943** for lower boundaries and **0.907** for upper boundaries.
+It does **not** establish:
 
-So preprocessing was not the main problem.
+- that the historical fixed-95 computation was numerically incorrect;
+- that any named deep-network layer is implemented by a neural population;
+- causal responsibility of a feature family;
+- that predictive redundancy alone explains every attribution ambiguity.
 
-The uncertainty survived the robustness check.
+The next evidential step requires interventions designed to separate correlated candidate features, with an inference rule that can explicitly abstain when feature-specific effects are not identified.
 
----
+## 8. Reproducibility
 
-## The interval itself was often the unsupported object
+The analysis is maintained in [`lrgthu/Stacking_GPU`](https://github.com/lrgthu/Stacking_GPU), branch `method/causal-feature-assignment`. The relevant records include `ADAPTIVE_SVP_NSD_RESULT.md` and `ADAPTIVE_SVP_RELIABILITY_ROI_RESULT.md`, with checksum-bound public summaries and protected target-level arrays retained outside the public repository.
 
-The more consequential result appeared when I asked whether the lower and upper boundary distributions jointly supported a logically ordered interval.
-
-For an interval interpretation, the lower boundary should not lie after the upper boundary.
-
-Across all cortex, the mean probability mass assigned to logically ordered intervals was only about **0.414–0.415**.
-
-Only about **21.3%** of eligible targets placed at least 80% of their support on logically ordered intervals.
-
-That means a large fraction of targets could support each directional summary marginally without supporting their combination as one coherent “this neural response lies between layers X and Y” statement.
-
-The hard 95% interval made this easy to miss because it always returns an endpoint pair when the crossings exist.
-
-A continuous support analysis is allowed to say something less satisfying:
-
-> the two directional questions are informative, but their conjunction is not identified sharply enough to justify one interval.
-
-That answer is scientifically weaker-looking and inferentially stronger.
-
----
-
-## Reliability did not rescue the interval
-
-A natural objection is that the incoherence may come from noisy voxels.
-
-So I repeated the analysis in predeclared masks defined independently from the model outcomes: official NSD noise ceilings, pRF visual masks, and ROI families.
-
-The result went in the opposite direction.
-
-The high-reliability subsets were almost universally eligible for the adaptive analysis, but interval coherence became worse. In the all-cortex reference, about 21.3% of targets had logical interval mass at least 0.80. In the primary independent reliability and visual masks, that fraction fell to roughly **0.2–1.8%**, depending on the mask and feature arm.
-
-No predeclared mask passed the frozen interval-release gate.
-
-This matters because it rules out an easy story:
-
-`low reliability -> unstable attribution`
-
-The more plausible explanation is structural. Correlated feature families can each be predictively sufficient in different cumulative directions. A late suffix and an early prefix can both preserve much of the prediction even when there is no uniquely supported interval connecting them.
-
-Prediction is stable because redundant features contain similar useful information.
-
-Attribution is uncertain for the same reason.
-
----
-
-## This is not a contradiction
-
-At first, “stable predictions, unstable explanations” sounds paradoxical.
-
-It is not.
-
-Suppose two feature families, A and B, are highly correlated and both carry the information needed to predict a response. A flexible estimator can produce nearly identical held-out predictions whether it uses A, B, or a compressed basis spanning both.
-
-That is excellent predictive robustness.
-
-But if I then ask:
-
-> Which family caused the predictive success?
-
-or
-
-> Where exactly in an ordered hierarchy does the represented information begin and end?
-
-I have changed the question.
-
-The same redundancy that stabilizes prediction can underdetermine attribution.
-
-This is why I now distinguish three kinds of robustness:
-
-1. **Predictive robustness** — do held-out predictions survive reasonable implementation changes?
-2. **Attribution robustness** — do feature assignments survive those changes?
-3. **Inferential coherence** — does the evidence support the explanatory object we want to report at all?
-
-Passing the first does not guarantee the third.
-
----
-
-## A fixed threshold is a decision rule, not a discovered fact
-
-The historical 95% threshold is useful as a convention. It gives a reproducible endpoint and makes large maps easy to summarize.
-
-What it should not do is acquire ontological status.
-
-In the continuous analysis, the fixed-95 interval matched the modal support interval for only about **44–45%** of eligible targets. That does not mean the 95% result was numerically wrong. It means the endpoint chosen by that convention was often not the dominant summary once threshold uncertainty was made explicit.
-
-This changed how I think about thresholds in interpretability work.
-
-A threshold can be perfectly legitimate when it implements a decision we actually need to make. But if the scientific claim is that a boundary exists at a particular location, then sensitivity to the threshold belongs in the evidence, not in a footnote.
-
----
-
-## The more honest output may be a distribution
-
-I do not think the answer is to abandon structured attribution.
-
-The marginal boundary distributions were informative. They were reproducible across native and nested-PCA features. Lower and upper directions showed different uncertainty profiles, which is itself useful information.
-
-What I no longer want to do is collapse those distributions into a single interval unless a prespecified coherence criterion says the interval is supported.
-
-The better output can therefore be:
-
-`support over lower boundary`
-
-and
-
-`support over upper boundary`
-
-without necessarily asserting:
-
-`one identified interval`
-
-This is a small methodological change, but it has a broader lesson:
-
-> **Interpretability should be allowed to inherit the uncertainty of the predictive problem.**
-
-A clean map is not automatically a better explanation than an uncertain one.
-
-Sometimes the uncertainty is the result.
-
----
-
-## Where this leads
-
-The next step is not another threshold.
-
-If correlated representations are predictively interchangeable, then observational encoding alone may not decide which feature family deserves causal credit. That requires a different kind of experiment: matched stimulus interventions that selectively manipulate candidate features and an inference procedure that is allowed to return **unresolved** when the manipulation does not identify the effect.
-
-That is the direction I take in [*Sometimes the Right Attribution Is “Unresolved”*](/blog/sometimes-the-right-attribution-is-unresolved/).
-
-The conceptual progression is simple:
-
-`stable prediction`
-
-`-> uncertain attribution`
-
-`-> intervention`
-
-`-> causal assignment or abstention`
-
-The key is not to demand that every stage produce a sharper map than the last.
-
-The key is to ask only for the resolution the evidence actually supports.
-
----
+Participants, rather than voxels or folds, are treated as biological replication units. Threshold-support policies and confirmatory masks were frozen before the corresponding NSD outcome summaries were inspected.
 
 ## Reference
 
