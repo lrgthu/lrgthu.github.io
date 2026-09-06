@@ -15,31 +15,29 @@ permalink: /blog/
   <div class="blog-rule" aria-hidden="true"></div>
 </header>
 
-<section class="blog-archive" aria-labelledby="archive-title">
-  <h2 class="blog-section-label" id="archive-title">Archive</h2>
+<section class="blog-archive" aria-labelledby="published-title">
+  <h2 class="blog-section-label" id="published-title">Published</h2>
 
   {% if site.posts.size > 0 %}
     <ul class="blog-post-list">
       {% for post in site.posts %}
-        {% assign writing_type = post.writing_type | default: "Perspective" %}
-        <li class="blog-post-row{% if post.placeholder %} is-placeholder{% endif %}">
-          <div class="blog-post-date-stack">
-            {% if post.placeholder %}
-              <span class="blog-post-date blog-status">Coming next</span>
-            {% else %}
+        {% unless post.placeholder %}
+          {% assign writing_type = post.writing_type | default: "Perspective" %}
+          <li class="blog-post-row">
+            <div class="blog-post-date-stack">
               <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-            {% endif %}
-            <span class="blog-post-kind">{{ writing_type }}</span>
-          </div>
-          <div>
-            <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            {% if post.summary %}
-              <p class="blog-post-summary">{{ post.summary }}</p>
-            {% else %}
-              <p class="blog-post-summary">{{ post.excerpt | strip_html | strip_newlines | truncatewords: 28 }}</p>
-            {% endif %}
-          </div>
-        </li>
+              <span class="blog-post-kind">{{ writing_type }}</span>
+            </div>
+            <div>
+              <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if post.summary %}
+                <p class="blog-post-summary">{{ post.summary }}</p>
+              {% else %}
+                <p class="blog-post-summary">{{ post.excerpt | strip_html | strip_newlines | truncatewords: 28 }}</p>
+              {% endif %}
+            </div>
+          </li>
+        {% endunless %}
       {% endfor %}
     </ul>
   {% else %}
@@ -51,6 +49,28 @@ permalink: /blog/
     </div>
   {% endif %}
 </section>
+
+{% assign forthcoming_posts = site.posts | where: "placeholder", true %}
+{% if forthcoming_posts.size > 0 %}
+<section class="blog-archive blog-forthcoming" aria-labelledby="forthcoming-title">
+  <h2 class="blog-section-label" id="forthcoming-title">Coming next</h2>
+  <ul class="blog-post-list">
+    {% for post in forthcoming_posts %}
+      {% assign writing_type = post.writing_type | default: "Research Note" %}
+      <li class="blog-post-row is-placeholder">
+        <div class="blog-post-date-stack">
+          <span class="blog-post-date blog-status">Coming next</span>
+          <span class="blog-post-kind">{{ writing_type }}</span>
+        </div>
+        <div>
+          <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% if post.summary %}<p class="blog-post-summary">{{ post.summary }}</p>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
 
 <footer class="blog-nav">
   <a class="blog-back" href="{{ '/' | relative_url }}">← Home</a>
