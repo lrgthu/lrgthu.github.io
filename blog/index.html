@@ -21,12 +21,16 @@ permalink: /blog/
   {% if site.posts.size > 0 %}
     <ul class="blog-post-list">
       {% for post in site.posts %}
+        {% assign writing_type = post.writing_type | default: "Perspective" %}
         <li class="blog-post-row{% if post.placeholder %} is-placeholder{% endif %}">
-          {% if post.placeholder %}
-            <span class="blog-post-date blog-status">Coming next</span>
-          {% else %}
-            <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-          {% endif %}
+          <div class="blog-post-date-stack">
+            {% if post.placeholder %}
+              <span class="blog-post-date blog-status">Coming next</span>
+            {% else %}
+              <time class="blog-post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+            {% endif %}
+            <span class="blog-post-kind">{{ writing_type }}</span>
+          </div>
           <div>
             <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
             {% if post.summary %}
