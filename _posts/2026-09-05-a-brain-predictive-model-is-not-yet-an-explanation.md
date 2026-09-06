@@ -135,11 +135,11 @@ The experiments do **not** establish that:
 - the evaluated model implements the biological mechanism;
 - the bounded V4/IT results generalize beyond the declared datasets, animals, stimuli, mappings, and feature contracts.
 
-## 7. Reproducibility
+## 7. Reproducibility boundary
 
-The research record is maintained in [`lrgthu/neuroai-salmon`](https://github.com/lrgthu/neuroai-salmon). The repository separates frozen experimental contracts, known-truth recovery, evaluator-sensitivity analyses, independent real-data replication, and claim audits. Raw neural arrays and large feature caches remain external; compact configurations, aggregate results, provenance records, figures, and integrity manifests are versioned.
+The underlying research record is maintained in a private project repository with frozen experimental contracts, known-truth recovery outputs, evaluator-sensitivity analyses, independent real-data replication, claim audits, source identities, and integrity manifests. Raw neural arrays and large feature caches remain external to version control.
 
-This note summarizes the bounded inference released by those records rather than replacing the full methods manuscript.
+This public note reports only aggregate, publication-safe results and the released claim boundary. It is not a substitute for the full methods manuscript or the private execution record.
 
 ## References
 
