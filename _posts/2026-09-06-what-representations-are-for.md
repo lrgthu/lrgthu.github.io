@@ -38,7 +38,7 @@ Consider two photographs of the same chair taken from different angles. For a ju
 
 Nothing about a change in viewpoint makes it intrinsically irrelevant. Its relevance depends on the visual problem. Nor does a successful classifier have to discard viewpoint information internally. The narrower point is that its training criterion does not require every useful property of an image to be equally accessible.
 
-Marr's computational level asks for more than the name of a task: it asks what relationship should be computed and why that relationship is appropriate to the problem. His analysis connects the computation to assumptions about the world that produces the images ([Marr, 1982](#ref-marr)).
+Marr's computational level asks for more than the name of a task: it asks what relationship should be computed and why that relationship is appropriate to the problem ([Marr, 1982](#ref-marr)).
 
 That distinction helps me reread my comparisons of networks trained under different conditions. In one exploratory fMRI analysis, moving between object- and scene-classification models changed the preferred layer patterns for AlexNet, but did not produce the same change for ResNet50. These were comparisons in one participant, and task changed together with training data; they did not isolate a universal effect of the objective ([Lin, 2024, chapter 4](#ref-thesis)).
 
@@ -80,7 +80,9 @@ There is an asymmetry in using a trained network to interpret neural data. The n
 
 My cortical maps make that temptation visible. Coloring a region by its best-predicting layer can make the region look like a biological instance of that layer. Yet the color was selected from the descriptions I supplied. It is not the brain's own label for its function.
 
-The broader comparisons in our fMRI work were useful precisely because they allowed a less tidy picture. Some regions were better summarized by a range of candidate feature spaces than by a single preferred depth ([Lin et al., 2024](#ref-stacking)). I would not infer a collection of independent neural stores from those ranges. I would instead ask whether my original one-region, one-description question was too restrictive.
+The broader comparisons in our fMRI work were useful precisely because they allowed a less tidy picture. Some regions were better summarized by a range of candidate feature spaces than by a single preferred depth. In the reported maps, parts of the extrastriate body area were captured by a relatively narrow range of late AlexNet features. Parts of the parahippocampal place area drew on a broader range extending from intermediate convolutional features to later features ([Lin et al., 2024](#ref-stacking)).
+
+Both belong to what we conventionally call higher visual cortex, but “high-level” was not a sufficient description of their differences. These ranges summarize comparisons among encoding models; they do not show that every enclosed layer is individually necessary or identify independent neural stores. What they give me is a reason to ask whether my original one-region, one-description question was too restrictive.
 
 That is a substantive question about vision. A photograph can simultaneously vary in shape, texture, layout, and identity. An account of a visual region should help explain which of those distinctions are relevant to its responses and how they are organized. Assigning it a degree of abstraction is, at best, a beginning.
 
@@ -100,7 +102,9 @@ A map of visual cortex and a sequence of network layers can both suggest an orde
 
 The temporal part of my thesis gave this issue a specific form. In our MEG analyses, an intermediate AlexNet feature space continued to add predictive value after a later feature space was included; the reverse contribution was more limited in time. The early progression through layers did not settle their later predictive relevance ([Lin, 2024, chapter 5](#ref-thesis)).
 
-I take this as one reason to question how readily I translate architectural depth into processing time, not as a complete account of temporal vision. The result did not establish feedback or active maintenance. Nor did it measure the moment of recognition or show that semantic processing had ended. Static network features fitted at successive time points constrain a process without specifying the process that generated it.
+High-level information posed a complementary question. In a supplementary analysis, features derived from behavioral similarity judgments added predictive value beyond the AlexNet features. The network therefore did not exhaust the structure in the measured responses. A limited contribution from its last hidden layer could not be equated with a limited role for meaning ([Lin, 2024, chapter 5](#ref-thesis)).
+
+I take these observations as reasons to question how readily I translate architectural depth into processing time, not as a complete account of temporal vision. Sustained predictability did not establish feedback or active maintenance, and the image remained on screen for much of the relevant MEG interval. Nor did the analysis measure the moment of recognition. Static network features fitted at successive time points constrain a process without specifying the process that generated it.
 
 The broader issue is how to turn a set of useful descriptions into an account of seeing. Recognizing the chair, estimating its orientation, and distinguishing its visible parts need not correspond to three self-contained stages with a fixed completion order. They might use overlapping descriptions, produced and revised on different timescales. That is a possibility to investigate, not an architecture established by these data.
 
@@ -117,6 +121,8 @@ What I want to recover now is the connection between them.
 A visual problem specifies distinctions that matter. A representation makes some of those distinctions accessible in a particular form. An algorithm constructs and uses that form. Neural organization constrains how such operations could occur in a biological system. The interesting explanation lies in the relationships among these claims, rather than in completing any one description in isolation.
 
 This does not require me to abandon learned representations for a hand-designed account of vision. Learned models let me explore visual descriptions I would not know how to specify in advance. But their usefulness as scientific tools increases when I can say more clearly what problems those descriptions help solve.
+
+For example, I would now be interested in comparing images that preserve recognizable objects while changing their arrangement, alongside images that preserve the arrangement while changing surface appearance. Which descriptions capture each difference, where do they help predict neural responses, and how does that relationship unfold in time? Asking for an identity judgment rather than a spatial judgment would add a test of how the visual problem matters. These are comparisons I would prioritize, not experiments my thesis already performed. They would connect the model, the cortical map, and the time course around a visual distinction rather than a layer number.
 
 Marr gives an example of that specificity in his own visual proposals: image structure, visible surfaces, and three-dimensional shape are descriptions with different contents and reference frames, not just successive amounts of abstraction ([Marr, 1982](#ref-marr)). My thesis did not test those particular proposals. What I take from them is an obligation to explain what I mean when I call a learned feature space a visual representation.
 
