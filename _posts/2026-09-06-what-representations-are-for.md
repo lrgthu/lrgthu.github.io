@@ -1,153 +1,141 @@
 ---
 title: "What Representations Are For"
 date: 2026-09-06 13:00:00 -0500
+updated: 2026-09-06
 permalink: /blog/what-representations-are-for/
-summary: "Revisiting my PhD through Marr: from matching neural-network layers to brain activity toward understanding what representations make possible."
-description: "A research perspective on David Marr, visual representations, and my doctoral work on brain encoding models, structured variance partitioning, and the persistence of intermediate visual representations."
-tags: [neuroscience, representation-learning, cognitive-science, neuroai]
+summary: "What my doctoral work taught me about visual hierarchy: intermediate image descriptions matter not only on the way to recognition, but in the spatial and temporal organization of perception."
+description: "A retrospective on visual representations in my PhD: cortical encoding maps, task-dependent layer correspondences, and the time course of intermediate features in MEG and EEG, revisited through Marr."
+tags: [vision, neuroscience, representation-learning, neuroai]
 writing_type: Perspective
 toc: true
 toc_open: false
+update_note: "Refocused on the visual findings of my dissertation: spatial hierarchy, model-dependent correspondences, and the temporal contribution of intermediate features."
 ---
 
-*Revisiting my PhD through Marr*
+*Visual hierarchy and the middle of perception — revisiting my PhD through Marr*
 
-My dissertation contains maps of cortex colored by the layers of a neural network. Different colors indicate which features help predict the measured responses to images. Viewed from a distance, such a map can look like a translation between two visual systems: an artificial network on one side, a human brain on the other.
+The word *intermediate* carries an expectation. An intermediate result is something we produce on the way to the answer. Once the answer is available, we can move on.
 
-The appeal is easy to understand. A network transforms an image through successive representations. The brain also transforms visual input. Perhaps comparing the two will reveal something about how seeing works.
+In vision, that expectation gives us an appealing story: edges become shapes, shapes become objects, and recognition completes the journey. But the order in which descriptions become available does not tell us when they stop being useful.
 
-My PhD, *Bridging visual representations in deep neural networks and the human brain*, investigated what these correspondences could tell us. It developed methods for combining and comparing representations, examined how the correspondence depended on the artificial network, and followed its evolution through time ([Lin, 2024](#ref-thesis)).
+My doctoral work gave me a concrete reason to separate those questions. We used neural-network features to predict brain responses to images, first across visual cortex and then through time. Intermediate features were not simply displaced by later ones. They contributed to predictions in parts of higher visual cortex, and their predictive contribution extended beyond the initial progression through network layers ([Lin, 2024](#ref-thesis)).
 
-Looking back, the question I find most important is slightly different from the one a colored brain map invites:
+Looking back, this is the question that most interests me:
 
-> **What does a representation make possible for the system that uses it?**
+> **What happens to intermediate visual information as perception unfolds?**
 
-A match can help us approach that question. It does not answer it by itself. To get further, we need to connect the information a representation makes available to the operations that use it.
+It connects the three empirical parts of my thesis more closely than a search for the single most brain-like network. The spatial analyses asked which descriptions helped account for different parts of visual cortex. Comparisons across networks tested how those descriptions depended on training and architecture. The temporal analyses asked how long they continued to matter.
 
-This is the thread I now see more clearly in my doctoral work. Marr gives me a way to follow it.
+Marr helps me interpret that progression. But the Marr I want to return to here is not only the author of three levels of analysis. It is also the researcher who asked what kinds of descriptions allow a visual system to recover the structure of a scene.
 
-## The part of Marr I return to
+## A hierarchy is not yet a timetable
 
-Marr's three levels distinguish the problem a system solves and why that computation is appropriate, the representations and algorithms that solve it, and their physical realization. The distinction I want to recover is inside the middle level: **representation and algorithm**, together ([Marr, 1982](#ref-marr)).
+There is good reason to study vision as a hierarchy. In the account developed by DiCarlo, Zoccolan, and Rust, successive transformations make object identity easier to read out despite changes in appearance. The central achievement is not simply more information, but a format in which recognition becomes easier ([DiCarlo et al., 2012](#ref-recognition)).
 
-A representation is not merely a container with some information inside. Its format matters because different formats make different operations straightforward.
+This perspective helps explain the attraction of deep networks as models of vision. They provide successive, computable descriptions of the same image. We can ask whether those descriptions capture differences in neural responses across images.
 
-Marr illustrates this with number systems. Decimal and binary notation can express the same number, yet make different properties immediately apparent: powers of ten are easy to recognize in decimal, powers of two in binary. The choice of notation changes what is explicit and what requires work to recover.
+But three kinds of order can easily slip into one another: depth in an artificial network, position in a cortical hierarchy, and time after an image appears.
 
-For me, the useful shift is from asking whether information is present to asking how it has been prepared for use.
+A later network layer has undergone more transformations. A higher cortical area occupies a particular place in an anatomical and functional organization. A later response occurs further into an episode of viewing. None of these facts, alone, makes the three axes interchangeable.
 
-Consider a photograph of a cup. One description might emphasize its category, another its contour, another the position of its handle. These are not simply more or less detailed answers to the same question. They could support different questions. Recognizing the cup and judging which way its handle points need not benefit from exactly the same description.
+In particular, a progression toward more recognizable objects does not specify that intermediate descriptions should disappear once recognition is possible. That would be an additional temporal hypothesis, not a consequence of hierarchical organization.
 
-That example also exposes a limitation of a common research habit. We can characterize a representation extensively—measure its geometry, identify predictable variables, compare it with another representation—while leaving its role in a computation uncertain.
+This is not an argument against the visual hierarchy. It is a question about what the hierarchy leaves unspecified. My work approached it first through space.
 
-This does not make characterization unimportant. It gives characterization a direction. I want to know not only what distinctions a representation preserves, but which subsequent operations can exploit them, under what constraints, and at what time.
+## What the cortical maps kept in the middle
 
-Three parts of my thesis bring that question into focus.
+In the fMRI work, our basic measurement was an encoding model: a learned mapping from image features to the response of a voxel, evaluated on held-out images. Each network layer offered a different candidate description of the images ([Lin et al., 2024](#ref-stacking)).
 
-## From the best match to the missing contribution
+Choosing the best-performing layer gives a simple map. But I wanted to know whether a single layer was an adequate summary. Several layers can predict overlapping aspects of a response, while contributing something different when used together.
 
-The first problem was statistical, but its implications were conceptual.
+With Thomas Naselaris, Kendrick Kay, and Leila Wehbe, I developed stacked regressions and structured variance partitioning to make those comparisons. Stacking combined predictions from separately fitted feature spaces. Structured comparisons then examined how much predictive performance remained as groups of layers were added or removed in their architectural order.
 
-An encoding model learns to predict measured brain responses from a description of the stimulus. In our case, those descriptions could be the activations of different neural-network layers. We fitted mappings from those features to brain measurements and evaluated their predictions on held-out data ([Lin et al., 2024](#ref-stacking)).
+For this essay, the important result is not the fitting procedure. It is what the procedure made visible.
 
-A natural next step is to ask which layer predicts a brain region best. But layers are not independent contestants. They process the same images, and later layers are computed from earlier ones. Several can predict overlapping aspects of a response. A winning layer does not tell us which alternatives are genuinely dispensable.
+The analyses recovered broad differences across visual cortex, but some regions were better characterized by a range of network descriptions than by one preferred depth. In the reported maps, predictions in parts of the parahippocampal place area, a scene-selective region, drew on a range extending from intermediate convolutional layers toward later fully connected layers. Other regions had narrower ranges ([Lin et al., 2024](#ref-stacking)).
 
-Our stacking approach combined the predictions of separate encoding models rather than requiring a single feature space to carry the whole explanation. Structured variance partitioning then used known relationships among the feature spaces to organize comparisons: what predictive contribution remained when other descriptions were already available?
+These ranges summarize comparisons among encoding models; they are not inventories of separate neural modules, and they do not establish that every enclosed layer is individually necessary. What matters here is the spatial observation: features from the middle of the network could remain useful for accounting for responses in cortex conventionally described as higher-level.
 
-That changed the question from *Which layer wins?* to *What do we lose by leaving this description out?*
+That result sits naturally beside work by Henderson, Tarr, and Wehbe showing sensitivity to texture statistics across the visual hierarchy, including higher-order statistics in higher visual areas ([Henderson et al., 2023](#ref-texture)). Their model specifies different features from ours, but it helps pose a shared question: what visual structure remains relevant in regions that also respond to categories?
 
-The second question is closer to the kind of explanation I care about. It asks whether a candidate representation supplies something the tested alternatives fail to supply. But the meaning of “supplies” still needs care.
+A scene is not exhausted by its name. Calling an image a kitchen does not specify its surfaces, textures, boundaries, or spatial arrangement. Different descriptions may help distinguish different kitchens, not merely kitchens from beaches.
 
-Suppose a later layer improves a linear encoding model beyond what an earlier layer provides. It is tempting to conclude that the later layer contains new information. Yet in a deterministic feedforward network, its activations are computed from the earlier ones. They cannot add new evidence about the image that was absent from their input. They can reorganize that evidence.
+The cortical maps therefore made the middle interesting in its own right. It was not only a bridge between an early visual area and a category-selective one. Its contribution could extend into the latter.
 
-A small mathematical example makes the distinction concrete. Two binary inputs completely determine whether they differ—the exclusive-or function. But a single linear decision boundary cannot separate the two possible answers in the original input space. A suitable nonlinear transformation makes the answer linearly accessible. Nothing new has been observed. What changed is the work the readout must do.
+## The model changes what “middle” means
 
-This is why I now read an incremental prediction result as a statement about **information, format, and the allowed mapping together**. It can reveal that one description makes a relationship accessible to our model that another does not. It does not, by itself, establish that the brain contains a distinct store of information corresponding to that network layer.
+There is an obvious complication: middle according to which network?
 
-Correlations among predictors, regularization, and the generalization tested all matter for interpreting an encoding model ([Kriegeskorte & Douglas, 2019](#ref-encoding)). Stacking and variance partitioning do not make those dependencies disappear. They make particular comparisons more explicit.
+Another part of the thesis compared representations learned under different tasks and architectures. In an exploratory analysis of one Natural Scenes Dataset participant, we examined AlexNet trained on object classification and on scene classification. The stacking-weight patterns in early visual regions shifted from Conv-3 toward Conv-4 between those training conditions. The analogous ResNet50 comparison did not show the same shift ([Lin, 2024, chapter 4](#ref-thesis)).
 
-Nor is our fitted mapping automatically the readout used by the brain. A linear encoding model is an analytical choice, not a discovered neural circuit. Still, the question of accessibility is valuable: it begins to connect a description of a representation with a description of what can be done with it.
+The edge-detection models provided a further contrast. They did not simply reproduce a map in which deeper layers better predicted higher visual areas. Earlier features could outperform later ones even for face- and place-selective regions.
 
-## A layer number is not a cognitive coordinate
+These are bounded comparisons. The object and scene models differed in training data as well as task, and the analysis does not establish a population-wide effect or isolate the objective as its cause. But it does show why I hesitate to treat network depth as a fixed ruler for biological vision.
 
-The next part of the thesis examined something easy to forget when looking at a brain map: its colors belong to a particular artificial model.
+A network trained to classify an image and one trained to recover its boundaries are being asked to make different distinctions explicit. Their layer numbers do not guarantee equivalent visual descriptions. Even with the same architecture, changing the training conditions can alter what a layer contributes to brain prediction.
 
-In an exploratory analysis of one participant from the Natural Scenes Dataset, we compared features from networks trained for object and scene classification. For AlexNet, the stacking-weight patterns in early visual regions shifted from Conv-3 toward Conv-4 between those training conditions. The corresponding ResNet50 comparison did not show the same shift. Networks trained for edge detection also did not simply reproduce a progression from deeper network layers to higher visual regions ([Lin, 2024, chapter 4](#ref-thesis)).
+For the rest of the thesis, this meant that “intermediate” needed an operational meaning. Conv-5 denotes a specific feature space in a specific AlexNet, not a discovered biological stage. It may mix contour, texture, configuration, and category-related variation. The label is useful for organizing comparisons; understanding which visual properties drive its contribution remains another task.
 
-These comparisons have important limits. They concern one participant, and the object-versus-scene comparison changed the training dataset along with the task. They do not isolate an effect of the objective alone, or establish a universal difference between architectures.
+With that qualification in place, the spatial findings suggested the next question. If intermediate features helped account for responses in higher visual cortex, were they relevant only briefly, while a more abstract description was being computed? Or did their contribution continue during viewing?
 
-What they do interrupt is a too-literal reading of a layer-to-brain correspondence.
+## Following the middle through time
 
-“Layer five” is a location in a model, not a unit of cognitive complexity. The useful question is what transformations precede it, what distinctions it preserves, and what subsequent processing it supports. Those properties need not remain fixed when the architecture or training conditions change.
+The temporal work used MEG and EEG recordings from people viewing natural images. Instead of assigning one feature space to a location, we could examine its predictive contribution at different delays after an image appeared ([Lin, 2024, chapter 5](#ref-thesis)).
 
-This makes the comparison more demanding, but also more interesting. We are not looking for a universal conversion from network depth to cortical position. We are testing whether particular ways of organizing visual information help explain particular neural responses.
+In the THINGS-MEG analysis, four participants viewed images for half a second. The early pattern contained a rapid progression: early network features were prominent around 100 milliseconds, followed by intermediate and later features during the next part of the response.
 
-The comparison can also run in the other direction. Independently established knowledge about biological vision can help us formulate hypotheses about what an artificial representation is doing. But this has to remain a comparison between independently constrained accounts. Two poorly understood systems do not explain each other merely because their responses correlate.
+The result that holds my attention comes after that initial progression. Intermediate features continued to account for responses during the later viewing period. The model did not simply arrive at its latest layer and stay there.
 
-For me, the lasting point is that a representation's identity cannot be exhausted by its address in a network. We need to understand its role.
+A targeted comparison makes this easier to see. We compared an encoding model using Conv-5 and FC-7 together with models using either feature space alone. Adding Conv-5 to FC-7 provided a more sustained predictive contribution than adding FC-7 to Conv-5. The intermediate feature space therefore captured something about the later response that this later-layer alternative did not substitute for.
 
-The temporal results made that need harder to ignore.
+I find that result more informative than a peak latency alone. A peak tells us when a particular model predicts especially well. The comparison asks whether another description accounts for what it predicts. Here, moving to the later layer did not make the intermediate one dispensable throughout the time course.
 
-## Why is the middle still there?
+The EEG analysis added a useful contrast. In THINGS-EEG1, images appeared in a rapid stream: 50 milliseconds on screen followed by a 50-millisecond interval. The thesis reported an early progression and a later contribution from intermediate features, with the latter extending to roughly 300 milliseconds rather than across the longer viewing period seen in MEG.
 
-The final empirical part of my thesis asked whether intermediate visual representations are merely transient steps toward a more abstract description, or remain relevant later in perception.
+The two datasets differ in participants, recording modality, presentation, and analysis, so this is not a controlled demonstration that presentation rate caused the difference. Nevertheless, the comparison keeps the temporal question concrete. A representation's observed time course belongs to a viewing condition, not just to its place in a network.
 
-There is an intuitive story in which vision proceeds like a relay. Early features hand off to intermediate features, which hand off to a high-level representation. Once the object is recognized, the important computational work is done.
+Two qualifications are essential to the interpretation. First, FC-7 is not a complete measure of semantics. Features derived from behavioral similarity judgments added predictive value beyond AlexNet in a supplementary analysis. A limited late contribution from FC-7 does not mean that meaning has disappeared from perception.
 
-That is a useful hypothesis to make explicit, not a fair summary of everything visual neuroscience already knows. It is also a stronger claim than the existence of a hierarchy. A hierarchy specifies relationships among stages; it does not, by itself, determine when earlier descriptions cease to be useful.
+Second, sustained predictability does not establish active maintenance, a stable neural code, or feedback. In MEG the image was still present for much of the interval, and separately fitted time-point models do not identify the mechanism generating successive responses. The analyses also did not measure when each participant recognized each object.
 
-We used network features to predict MEG and EEG responses over time. In the MEG analyses, intermediate AlexNet features remained predictive beyond the initial progression through layers. A targeted comparison was especially suggestive: adding Conv-5 to an encoding model using FC-7 provided a more sustained predictive contribution than the reverse addition of FC-7 to Conv-5 ([Lin, 2024, chapter 5](#ref-thesis)).
+The finding is narrower, and still interesting: **intermediate image features retained predictive value beyond their place in the initial progression through layers.** Their contribution was not confined to an early stepping stone toward the latest network representation.
 
-The finding does not mean that semantics disappeared. FC-7 is one learned feature space, not the full set of things a brain can represent about an object. Indeed, a supplementary analysis found additional predictive value from features derived from behavioral similarity judgments beyond the AlexNet features. A limited contribution from one network layer cannot establish the absence of a cognitive process.
+That is the result I want a theory of vision to explain.
 
-What interests me is the persistence of predictive value in a representation we call “intermediate.”
+## Seeing more than an identity
 
-> **Intermediate is a position in our model. It need not mean temporary in perception.**
+Returning to Marr after these experiments, I am drawn to his proposed visual descriptions: a primal sketch organizing image structure, a viewer-centered description of visible surfaces, and an object-centered description of three-dimensional shape. Each makes different properties explicit, rather than merely moving further from the pixels ([Marr, 1982](#ref-marr)).
 
-Return to the cup. Producing the category label might settle whether it is a cup rather than a bowl. It does not settle which way the handle points, how its contour differs from another cup, or where one would grasp it. A description useful for those operations need not become obsolete when the category is available.
+My network layers are not tests of those particular representations. I cannot identify Conv-5 with a 2½-D sketch. What I take from Marr is a way to ask a more concrete question about the middle: which aspects of visual structure does it make available?
 
-This is a possible functional interpretation, not something these experiments established. The recordings did not test those uses. But it changes the question I would bring to the result. Instead of asking why the brain has not finished moving to a higher representation, I would ask what further operations still benefit from the information made accessible at an intermediate level.
+Consider a chair. Recognizing it across changes in viewpoint is one achievement. Seeing the particular chair in front of us also involves distinctions about its outline, orientation, surfaces, and relation to surrounding objects. A description useful for identity need not be equally useful for every one of those judgments.
 
-There is a second distinction to preserve. Sustained predictability is not the same as demonstrating a stable neural state, active maintenance, or feedback. Fitting the same static feature space at multiple time points does not show that the same neural code persists, much less identify the process producing it. Continued sensory input, different temporal response properties, and recurrent processing can all be relevant candidates. These analyses did not distinguish them.
+Nor does tolerance to a change in appearance require deleting all information about that change. DiCarlo and colleagues explicitly discuss population representations that support identity readout while retaining information about variables such as position and size ([DiCarlo et al., 2012](#ref-recognition)). The alternative to a one-way relay is not necessarily a collection of isolated stores. Different visual properties can remain available in overlapping or differently organized codes.
 
-The network has an algorithm, and the neural measurements have a time course. Aligning the network's features to that time course does not automatically give us the brain's algorithm.
+This gives me a possible reading of the sustained intermediate contribution: perhaps some descriptions remain relevant because seeing continues to involve the structure of the particular image, not only the object's identity. That is a functional hypothesis prompted by the results, not an explanation they have already established.
 
-This is where the result becomes a starting point rather than an endpoint. A functional account would need to connect the later availability of a description to an operation that benefits from it. For example, does a later disruption selectively impair judgments of shape or orientation while sparing an already available category judgment? That would address a different question from whether a feature space remains predictive.
+It also makes the next empirical question more specific. Which properties account for the later Conv-5 contribution—texture statistics, contour relationships, spatial configuration, or something else? Does that contribution vary with a demand to judge orientation or shape rather than category? Such comparisons would help turn “intermediate” from an address in AlexNet into a clearer account of visual information.
 
-The distinction is not between a useful experiment and a useless one. It is between learning that a candidate description continues to capture something about the response and learning why the system continues to make that kind of information available.
+This is where the three parts of my work now meet. The cortical maps showed that one depth could be an incomplete description of a region. The network comparisons showed that depth itself was model-dependent. The temporal analyses showed that the order of appearance did not settle the duration of predictive relevance.
 
-## What I would now ask of a representation
+Together, they have made me less interested in finding the last representation of an image, and more interested in how different descriptions contribute to a continuing episode of seeing.
 
-I do not think the right retrospective is that my thesis mapped representations but therefore failed to explain anything. Nor do I think its three empirical chapters can be assigned neatly to Marr's three levels, as though they completed an explanatory checklist.
+> **A visual hierarchy is not a schedule for discarding visual information.**
 
-Most of the work connected candidate representations to neural measurements. It made some comparisons more discriminating, showed how their interpretation depended on the model, and characterized temporal patterns that a fuller account should explain.
+That is not a rejection of hierarchical recognition. It is the distinction I have learned to keep beside it: becoming able to recognize an object and finishing with its visual structure are different things.
 
-Those are contributions to explanation. They are not a substitute for specifying the transformations that generate the representations or the functions that make those transformations useful.
-
-Marr helps me keep these contributions and open questions in the same picture. His distinction between levels is not a demand that every study solve every problem. It is a reminder to identify which question an observation actually bears on.
-
-A computational account, as I would now pursue it, needs more than the name of a benchmark task. Saying that vision recognizes objects does not yet explain which distinctions must be preserved, which can be ignored, or why a particular format is useful. Even for a narrowly defined task, those decisions depend on the conditions under which the system has to succeed.
-
-Likewise, identifying a representation is only part of an algorithmic account. I also want to understand how the representation is constructed, how it changes, and what processes can use it. Its neural realization then constrains which of those accounts are plausible.
-
-That perspective leaves me with a more specific question than whether a representation is brain-like:
-
-**What information must remain available, in what form, and at what time, for the system to do what comes next?**
-
-The answer will not always require a larger model or a more elaborate experiment. Sometimes it may require a sharper comparison between two descriptions we already have. Sometimes it will require changing the task, or measuring what happens when access to a particular kind of information is disrupted.
-
-My doctoral work gave me tools for asking where and when candidate representations help predict the brain. Revisiting it through Marr helps me see what I want those tools to serve: an account of how information is organized for use.
-
-A brain map can show where a model finds a correspondence. The next question is what that correspondence helps us understand about seeing.
+My thesis did not determine exactly how the brain uses each description. It gave me a reason to study the middle as something more than the route to the top.
 
 ---
 
 ## Sources and further reading
 
-<p id="ref-marr"><strong>Marr, D. (1982).</strong> <em>Vision: A Computational Investigation into the Human Representation and Processing of Visual Information.</em> W. H. Freeman. Chapter 1, especially the discussion of representation, process, and the three levels. <a href="https://www.contrib.andrew.cmu.edu/~kk3n/80-300/marr2.pdf">Chapter excerpt</a>.</p>
+<p id="ref-thesis"><strong>Lin, R. (2024).</strong> <em>Bridging visual representations in deep neural networks and the human brain.</em> PhD dissertation, Carnegie Mellon University, chapters 3–5. The task/architecture comparisons and MEG/EEG results discussed here are drawn from the dissertation. <a href="https://www.cmu.edu/compbio/news/2024/ruogu-lin-thesis-defense.html">Defense announcement and abstract</a>.</p>
 
 <p id="ref-stacking"><strong>Lin, R., Naselaris, T., Kay, K., &amp; Wehbe, L. (2024).</strong> Stacked regressions and structured variance partitioning for interpretable brain maps. <em>NeuroImage, 298</em>, 120772. <a href="https://doi.org/10.1016/j.neuroimage.2024.120772">Paper</a>.</p>
 
-<p id="ref-thesis"><strong>Lin, R. (2024).</strong> <em>Bridging visual representations in deep neural networks and the human brain.</em> PhD dissertation, Carnegie Mellon University, chapters 3–5. The task/architecture comparisons and temporal results discussed here are drawn from the dissertation; the published methods paper above is a separate source. <a href="https://www.cmu.edu/compbio/news/2024/ruogu-lin-thesis-defense.html">Defense announcement and abstract</a>.</p>
+<p id="ref-marr"><strong>Marr, D. (1982).</strong> <em>Vision: A Computational Investigation into the Human Representation and Processing of Visual Information.</em> W. H. Freeman. Especially section 1.3, “A Representational Framework for Vision.” <a href="https://www.contrib.andrew.cmu.edu/~kk3n/80-300/marr2.pdf">Chapter excerpt</a>.</p>
 
-<p id="ref-encoding"><strong>Kriegeskorte, N., &amp; Douglas, P. K. (2019).</strong> Interpreting encoding and decoding models. <em>Current Opinion in Neurobiology, 55</em>, 167–179. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6705607/">Open-access manuscript</a>.</p>
+<p id="ref-recognition"><strong>DiCarlo, J. J., Zoccolan, D., &amp; Rust, N. C. (2012).</strong> How does the brain solve visual object recognition? <em>Neuron, 73</em>(3), 415–434. <a href="https://doi.org/10.1016/j.neuron.2012.01.010">Paper</a>.</p>
+
+<p id="ref-texture"><strong>Henderson, M. M., Tarr, M. J., &amp; Wehbe, L. (2023).</strong> A texture statistics encoding model reveals hierarchical feature selectivity across human visual cortex. <em>Journal of Neuroscience, 43</em>(22), 4144–4161. <a href="https://doi.org/10.1523/JNEUROSCI.1822-22.2023">Paper</a>.</p>
