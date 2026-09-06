@@ -3,25 +3,31 @@ title: "The User Is Not a Vector"
 date: 2026-09-05 16:37:00 -0500
 summary: "A recommender does not merely learn a user from their past; it becomes part of the environment through which the user's future is formed."
 tags: [recommender-systems, user-modeling, cognitive-science, neuroscience, cybernetics, philosophy, ai]
+series: adaptive-intelligence
+series_order: 3
 ---
 
 *A research perspective on recommendation, cognition, and the becoming of preference*
 
-I did not arrive at this view through a grand theory of recommendation. I arrived at it by noticing a mismatch.
+I spent years studying representations in neuroscience—asking what patterns of neural activity reveal about perception and cognition. Later, when I began thinking seriously about user modeling, I encountered another kind of representation: the **user vector**.
 
-In neuroscience and cognitive science, I had learned to treat behavior as evidence about hidden, changing states: attention, memory, intention, value, belief. An action is informative, but it is not the state itself. And the state is rarely fixed; it changes with context, experience, learning, fatigue, memory, and time.
+The same word was doing two very different jobs.
 
-Recommender systems rely on a very different but equally powerful abstraction: the **user representation**. Given enough traces of behavior—clicks, watches, purchases, skips, searches, pauses—we compress a person into something the system can use to predict what comes next.
+In neuroscience, behavior and neural activity are evidence about hidden, changing states: attention, memory, intention, value, belief. An action is informative, but it is not the state itself. And the state is rarely fixed; it changes with context, experience, learning, fatigue, memory, and time.
 
-This abstraction works extraordinarily well. But the more I put these two traditions beside each other, the less comfortable I am treating the user as something static that the model gradually discovers.
+In recommender systems, the representation is useful precisely because it compresses. Given enough traces of behavior—clicks, watches, purchases, skips, searches, pauses—we turn a long and messy history into something the system can use to predict what comes next.
 
-Recommender systems begin with an apparently simple question:
+That abstraction works extraordinarily well. But the more I put these two traditions beside each other, the less comfortable I became treating the user as something static that the model gradually discovers.
+
+That mismatch is where this essay began.
+
+Recommender systems start from an apparently simple question:
 
 **What does this person want?**
 
 Hidden inside that question is an assumption: that there is something relatively stable called *the user's preference*, already present, waiting to be inferred from behavior.
 
-I increasingly think that this is the wrong picture.
+That picture began to feel wrong to me.
 
 People do not merely reveal preferences. They form them. They forget, become familiar, become bored, acquire expertise, change goals, discover new categories, act against their own long-term intentions, and reinterpret the past in light of the present.
 
@@ -143,9 +149,7 @@ That is the moment when user modeling becomes, in my mind, a problem of dynamics
 
 ## The Observer Enters the System
 
-This is also where I keep coming back to cybernetics.
-
-Wiener's language of feedback becomes useful here not because recommender systems are simply controllers in some narrow engineering sense, but because feedback changes the object of analysis.
+This is where I keep coming back to cybernetics. I develop that argument more directly in [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/): once an output returns through the world as a future input, prediction is no longer causally neutral. Here the point is more intimate because one of the adapting systems is a person.
 
 A recommender observes behavior, forms an idea of the user, and selects what the user will see. What the user sees affects what they experience; experience changes future behavior; that behavior updates the model. Around the loop we go.
 
@@ -249,6 +253,8 @@ At this point, I need a name for the object I have been circling around. The phr
 
 I do not mean this as a proposal for a specific architecture. I mean it as an ontology.
 
+It is also a concrete answer to the boundary question in [*The System Is the Model*](/blog/the-system-is-the-model/). For recommendation, the explanatory loop often does not close at the user or at the recommender. It closes only when we include their evolving interaction.
+
 The user is a temporally extended, adaptive system. Some states persist; others disappear quickly. Memory makes parts of the past available and lets others fade. Current behavior reflects goals, habits, attention, context, knowledge, and momentary conditions. Experience changes future state. The environment is part of that experience. The recommender is part of that environment.
 
 This view is assembled from several traditions: state-space thinking in neuroscience, computational models of learning and decision-making, work on multiple memory systems, behavioral economics, causal inference, reinforcement learning, and cybernetics. None gives us a unified theory of the user, but together they make different pieces of the same object visible.
@@ -271,15 +277,9 @@ Optimization asks for an objective: clicks, watch time, purchases, retention, pe
 
 A good system might help users articulate and pursue their own intentions, preserve room for discovery, recognize when desire is temporary, and allow users to escape patterns the system has learned too well. Perhaps the ultimate test of personalization is not whether the system eventually predicts us perfectly, but whether it remains useful even as we change.
 
-This is where Wiener becomes more than historical decoration for me.
+This is where the companion cybernetic argument about purpose becomes concrete. In [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/), I reduce the question to two words: **Whose J?** Recommendation puts a person on the other side of that objective.
 
-His recurring concern was not simply that machines might become powerful. It was that humans might specify purposes poorly and then build systems extremely capable of pursuing them.
-
-The danger was not intelligence alone. It was purpose without sufficient reflection on purpose.
-
-Recommendation makes that old cybernetic concern unusually concrete. We now build systems capable of observing human behavior at enormous scale, learning what reliably produces responses, and adapting the environment accordingly.
-
-The technical achievement is remarkable. But the philosophical question arrives immediately afterward:
+So the philosophical question is also a very practical one:
 
 **What is the feedback loop for?**
 
