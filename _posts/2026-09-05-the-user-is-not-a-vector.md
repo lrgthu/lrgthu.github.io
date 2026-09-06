@@ -453,7 +453,7 @@ It is also a problem of human use.
 
 I started with a familiar abstraction: the user as a representation built from past behavior.
 
-I still think that abstraction is useful. It is computationally powerful precisely because it compresses.
+I still think that abstraction is useful. It is powerful precisely because it compresses.
 
 But every abstraction teaches us to ignore something.
 
@@ -471,15 +471,13 @@ It is the unfolding interaction between them.
 
 A person enters with a history. The system responds to that history. The response becomes an experience. The experience enters the person's history. The person changes. The model changes. And the loop continues.
 
-Seen this way, recommendation is not simply about finding the correct item for a stable user.
+Seen this way, recommendation is not simply about finding the right item for a stable user.
 
-It is about participating, however slightly, in the process through which a person's future preferences become possible.
+It is about participating, however slightly, in the process through which future preferences become possible.
 
-That is a much larger responsibility.
+That changes the questions I find most interesting.
 
-It is also a much more interesting intellectual problem.
-
-The questions I keep coming back to are no longer only:
+Not only:
 
 > **What does this user like?**
 
@@ -487,24 +485,20 @@ or:
 
 > **What will this user do next?**
 
-They are increasingly:
+but:
 
 > **Who is this person becoming?**
 
-> **How does experience participate in that becoming?**
+> **What experiences make different futures possible?**
 
-> **How does the system participate in the experience?**
-
-> **And how can an intelligent system understand a person without reducing them to the person they have already been?**
+> **And what role does the recommender play in keeping some of those futures open while making others more likely?**
 
 The user is not a vector.
 
 The user is not even a state.
 
-The user is a trajectory.
+**The user is a trajectory.**
 
-For now, that is the worldview I find most useful: not recommendation as the recovery of a fixed preference, but recommendation as one participant in an evolving human–machine system.
+And once a recommender becomes part of the environment through which that trajectory unfolds, prediction is no longer the whole problem.
 
-I expect the details of this view to change.
-
-I am less sure its central intuition will.
+The deeper question is what kinds of futures our predictions help make possible.
