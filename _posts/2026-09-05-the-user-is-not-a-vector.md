@@ -5,49 +5,45 @@ summary: "A recommender does not merely learn a user from their past; it becomes
 tags: [recommender-systems, user-modeling, cognitive-science, neuroscience, cybernetics, philosophy, ai]
 ---
 
-*On recommendation and the becoming of preference*
+*A research perspective on recommendation, cognition, and the becoming of preference*
+
+I did not arrive at this view by starting from a grand theory of recommendation. I arrived at it by noticing a mismatch.
+
+In neuroscience and cognitive science, I was used to thinking of behavior as evidence about hidden, changing states: attention, memory, intention, value, belief. An action is informative, but it is not the state itself. And the state is rarely fixed; it changes with context, experience, learning, fatigue, memory, and time.
+
+In recommender systems, there is a very different but equally powerful abstraction: the **user representation**. Given enough traces of behavior—clicks, watches, purchases, skips, searches, pauses—we compress a person into something the system can use to predict what comes next.
+
+This abstraction works extraordinarily well.
+
+The more I think about these two traditions together, though, the less comfortable I am treating the user as something static that the model gradually discovers.
 
 Recommender systems begin with an apparently simple question:
 
 **What does this person want?**
 
-It is a practical question. We ask it when choosing a song, a film, a restaurant, a product, a piece of news, or the next video to place in front of someone.
+But hidden inside that question is an assumption: that there is something relatively stable called *the user's preference*, already present, waiting to be inferred from behavior.
 
-Modern machine learning has become remarkably good at answering it. Given enough traces of behavior—clicks, watches, purchases, skips, searches, pauses—a system can construct a representation of a user and predict what they are likely to do next. The representation may be extraordinarily sophisticated, but conceptually it is often still something like a point in a space: a compressed summary of what this person appears to prefer.
+I increasingly think that this is the wrong picture.
 
-This abstraction has been immensely successful.
+People do not merely reveal preferences. They form them. They forget, become familiar, become bored, acquire expertise, change goals, discover new categories, act against their own long-term intentions, and reinterpret the past in light of the present.
 
-It also conceals a philosophical assumption.
-
-It assumes that behind behavior there is something relatively stable called **the user**: a set of preferences that already exists, waiting to be inferred. The system's task is then epistemic. Observe enough behavior, reduce uncertainty, and eventually discover what was there all along.
-
-But is that what a person is?
-
-Do we possess preferences in the way an object possesses properties? Or are preferences themselves things that emerge, disappear, strengthen, weaken, and transform through experience?
-
-The distinction matters because a recommender does not merely observe a person from the outside. It participates in that person's experience.
+And recommendation adds one more complication: the system doing the inference also participates in the experience from which future preferences will be formed.
 
 > **A recommender does not merely learn a user from their past; it becomes part of the environment through which the user's future is formed.**
 
-Once this is recognized, the problem of recommendation changes completely.
+That sentence is the center of this essay.
 
-The question is no longer simply:
-
-> What does this user like?
-
-It becomes:
-
-> **What kind of person is being formed through this interaction?**
+What follows is not a finished theory, and certainly not a new architecture. It is closer to a research perspective: a way I have been learning to see the problem.
 
 ---
 
 ## Preference Is Not a Hidden Object
 
-There is a seductive picture of preference in which every person carries around an invisible catalogue of likes and dislikes. The catalogue may be incomplete from the perspective of the recommender, but it is complete in the person. The system simply has to reveal it.
+There is a seductive picture of preference in which every person carries around an invisible catalogue of likes and dislikes. The system sees only fragments of it, but with enough data it can recover the underlying truth.
 
-If I repeatedly listen to jazz, perhaps the system concludes that I like jazz. If I repeatedly ignore baseball, perhaps it concludes that I do not care about baseball. The better the model becomes, the closer it comes to the true underlying preference.
+If I repeatedly listen to jazz, the system infers that I like jazz. If I repeatedly ignore baseball, it infers that I probably do not care about baseball. More data means a more accurate estimate of what was there all along.
 
-But ordinary experience suggests that preference does not work this way.
+I think this picture is useful, but incomplete.
 
 There are books we learned to love only after learning how to read them. Music that initially sounded strange and later became indispensable. Foods we disliked as children and sought out as adults. Subjects that meant nothing to us until a teacher, a friend, or an accidental encounter gave us a way into them.
 
@@ -55,45 +51,61 @@ There are also things we once loved and can no longer tolerate. Interests that b
 
 What, then, is the “true preference” underneath all of this?
 
-Perhaps there is no timeless answer. Perhaps preference is less like a hidden attribute and more like a **state of an evolving system**.
+Perhaps there is no timeless answer.
 
-We do not simply reveal what we want. We learn what to want. We acquire the categories through which wanting becomes possible. We encounter possibilities. We remember some and forget others. We become familiar. We become bored. We acquire expertise. We reinterpret earlier experiences in light of later ones.
+I find it more natural to think of preference as part of an **evolving state** rather than a hidden attribute. We do not simply reveal what we want. We learn what to want. We acquire the categories through which wanting becomes possible. We encounter possibilities, retain some, forget others, and reinterpret earlier experiences in light of later ones.
 
-Preference is therefore not only something expressed through behavior.
+Preference is therefore not only expressed through a history.
 
-It is something produced through a history.
+It is partly produced through a history.
+
+That small change in language—from *revealed preference* to *formed preference*—ends up changing almost everything else.
 
 ---
 
 ## A Person Exists in Time
 
-This may be the most important thing that a static user representation forgets.
+A static user representation also hides something obvious but easy to forget:
 
 A person exists in time.
 
-Not merely in the trivial sense that behavior occurs in sequence, but in the deeper sense that the person at one moment is not entirely the same person at another.
+Not merely in the trivial sense that behavior arrives as a sequence, but in the deeper sense that the person at one moment is not entirely the same person at another.
 
 Some parts of us are remarkably stable. Others change in minutes. A lifelong taste in music can coexist with a temporary desire for silence. A stable belief can coexist with momentary anger. A long-term goal can coexist with an impulse that contradicts it. Curiosity can appear and disappear within seconds. Fatigue can temporarily make something attractive that normally would not be.
 
-The person is therefore not one preference system operating at one timescale. We are an accumulation of processes unfolding at different speeds.
+This is one place where neuroscience changes how I instinctively look at user modeling.
 
-This is familiar to neuroscience. Attention moves quickly. Working memory persists briefly. Episodes are formed and forgotten. Habits accumulate slowly. Knowledge consolidates over years. Even the sense of who we are emerges from processes with different temporal depths.
+The brain does not operate on one timescale. Attention moves quickly. Working memory persists briefly. Episodes are formed and forgotten. Habits accumulate slowly. Knowledge consolidates over years. Even the sense of who we are emerges from processes with different temporal depths.
 
-This suggests that asking for “the user's preference” may already be the wrong level of description.
+So when a user clicks on a video late at night, what exactly is speaking through that action?
 
-A better question might be:
+A durable interest?
 
-> **Which part of this person is speaking through this action, and on what timescale?**
+A temporary curiosity?
 
-When someone clicks on a video late at night, is that an expression of a durable interest? A temporary curiosity? A habit? Boredom? Fatigue? The desire for stimulation? An accident of what happened to appear on the screen?
+A habit?
 
-The observable action alone cannot answer this. Yet systems are constantly required to infer enduring things about people from transient events.
+Boredom?
+
+Fatigue?
+
+The desire for stimulation?
+
+An accident of what happened to appear on the screen?
+
+The observable action alone cannot tell us.
+
+This makes me suspicious of the phrase “the user's preference” in the singular. Sometimes there may be no single preference, at a single timescale, waiting to be recovered.
+
+There are several processes, moving at different speeds, temporarily producing one action.
 
 ---
 
 ## History Is Not Memory
 
-Machine learning systems increasingly remember enormous amounts of behavioral history. There is a natural temptation to think that the more history a model can process, the better it understands the person.
+This distinction becomes especially clear when we talk about long user histories.
+
+Modern systems can ingest more and more behavioral history. It is tempting to think that a sufficiently long context is simply a better memory of the person.
 
 But a person's history and a person's memory are not the same thing.
 
@@ -105,21 +117,21 @@ We forget. We compress. We reconstruct. Some experiences become stories. Some be
 
 The past does not sit behind us as an immutable sequence. It is continually reorganized by the present.
 
-Two histories containing the same events therefore need not produce the same person. What matters is not only what happened, but what was retained, what was forgotten, what was interpreted as important, and how later events changed the meaning of earlier ones.
-
 A recommender system can have access to every song I played during the past decade. But that does not mean that all ten years of listening exist equally in my present experience.
 
-Some songs have become part of who I am. Some belong to periods of life that have ended. Some I no longer remember. Some I would immediately recognize without remembering when I first heard them. Some I have heard too many times.
+Some songs have become part of who I am. Some belong to periods of life that have ended. Some I no longer remember. Some I would immediately recognize without remembering when I first heard them. Some I have simply heard too many times.
 
 The system possesses my history.
 
 I possess something stranger: a memory.
 
-The difference is philosophically important. Once recommendation becomes sensitive not merely to what happened but to **what remains alive in the person**, personalization begins to look less like information retrieval and more like a theory of mind.
+That distinction keeps pulling me back toward cognitive science. Long-history modeling may not ultimately be only a problem of storing more events. It may also be a problem of asking what remains *alive* in the person now.
+
+The literature on episodic memory, semantic memory, consolidation, reconstruction, retrieval, and forgetting sits in the background of this intuition. I do not think recommender systems need to imitate biological memory literally. But I do think the cognitive distinction between **what happened** and **what remains behaviorally available** is too important to ignore.
 
 ---
 
-## Prediction, Understanding, and the Many Selves
+## Prediction Is Not Yet Understanding
 
 Suppose a system can predict with extraordinary accuracy what I will click next.
 
@@ -127,47 +139,41 @@ Does it understand me?
 
 Not necessarily.
 
-Prediction and explanation are different achievements. A model may learn that after a certain sequence of videos I am highly likely to watch another one of the same kind. But this tells us little about whether I am watching because I enjoy them, because I am bored, because they have become habitual, or because the system has gradually narrowed the alternatives visible to me.
+This is another place where my intuitions from cognitive science resist the usual machine-learning framing.
 
-The prediction can be correct while the implied theory of the person is wrong.
-
-For immediate recommendation, perhaps this distinction does not matter. But the moment we care about anything beyond the next action, it becomes unavoidable.
-
-Suppose two people both watch a video for forty minutes. One finishes satisfied. The other regrets having spent the time. From the perspective of observable behavior, they may be almost indistinguishable. From the perspective of their experience, they are not.
-
-A purchase is not necessarily satisfaction. A click is not necessarily interest. A long session is not necessarily well-being. A return is not necessarily endorsement.
+A model may learn that after a certain sequence of videos I am highly likely to watch another one of the same kind. The prediction can be correct. But it may still know very little about whether I am watching because I enjoy them, because I am bored, because they have become habitual, because I am procrastinating, or because the system has gradually narrowed the alternatives visible to me.
 
 Behavior is evidence.
 
 It is not the thing itself.
 
-And the difficulty is not only that behavior incompletely reveals preference. There may be no single preference, at a single timescale, waiting to be revealed.
+And human beings make this worse by disagreeing with themselves.
 
-Human beings have an inconvenient property: we disagree with ourselves. The person who chooses something now may later wish they had not chosen it. The person who makes a plan in the morning may be overruled by the person who reaches midnight.
+The person who chooses something now may later wish they had not chosen it. The person who makes a plan in the morning may be overruled by the person who reaches midnight.
 
 We want to exercise and want to stay in bed. We want to read and want to scroll. We want to save money and want to buy something. We want another episode and want to go to sleep.
 
-Which of these is the real preference?
+Which one is the real preference?
 
-There may be no single correct answer. The immediate self is real. The reflective self is also real. The future self who bears the consequences is real too.
+I do not think there is always a clean answer.
 
-This complicates the usual idea that recommendation means “giving users what they want.” Which user? The one acting now? The one who later evaluates the experience? The one who previously stated a goal? The one they hope to become?
+The immediate self is real. The reflective self is real. The future self who bears the consequences is real too.
 
-Once posed this way, recommendation becomes entangled with an old philosophical problem: the unity of the self across time.
+This is why “give users what they want” stops being a simple objective as soon as we take the human side seriously. Which user? The one acting now? The one who later evaluates the experience? The one who previously stated a goal? The one they hope to become?
 
-A platform can optimize for the choices people make. But choices alone do not settle questions of value. A system could become exceptionally good at predicting and satisfying momentary desire while systematically undermining intentions that exist at longer timescales.
+At the same time, the opposite move is no better. A system should not simply declare that it knows our “true” interests better than we do. That turns personalization into paternalism.
 
-The opposite solution is troubling too. A machine should not simply declare that it knows our “true” interests better than we do. That path turns personalization into paternalism.
+So the problem is not merely that preference is difficult to measure.
 
-The challenge, then, is not merely to discover preference. It is to respect the fact that human preference is plural, temporal, and sometimes internally conflicted.
+Preference itself is plural, temporal, and sometimes internally conflicted.
 
 ---
 
 ## Recommendation Changes the User
 
-So far the difficulty has been epistemic: the user is hard to know.
+Up to this point, the difficulty is mostly epistemic: the user is hard to know.
 
-But recommender systems create a deeper problem.
+But this is where I think recommender systems create a deeper problem.
 
 They change what they are trying to know.
 
@@ -183,11 +189,13 @@ After a year, the system observes that this person likes jazz.
 
 But what exactly happened?
 
-Did the system discover a preference that had always existed? Or did the interaction help create one?
+Did the system discover a preference that had always existed?
 
-The most plausible answer is often: both.
+Or did the interaction help create one?
 
-And this changes the conceptual status of recommendation.
+The answer is often both.
+
+This is the point where the metaphor of recommendation as measurement starts to break down for me.
 
 A recommender is not merely a telescope pointed at the user's preferences. It is part of the environment through which preferences develop.
 
@@ -197,33 +205,35 @@ The system does not stand outside the person and measure them.
 
 It enters the causal history of the person it will later measure.
 
-This is the point at which recommendation becomes a problem of dynamics.
+That is the moment when user modeling becomes, in my mind, a problem of dynamics.
 
 ---
 
 ## The Observer Enters the System
 
-There is an old lesson in cybernetics: once an observer acts on the system being observed, the boundary between observation and control begins to dissolve.
+This is also where I keep coming back to cybernetics.
+
+Norbert Wiener's language of feedback is useful here not because recommender systems are just controllers in some narrow engineering sense, but because feedback changes the object of analysis.
 
 A recommender observes behavior. From that behavior, it forms an idea of the user. On the basis of that idea, it selects what the user will see. What the user sees affects what they experience. Experience changes future behavior. That behavior is then used to update the model.
 
 Around the loop we go.
 
-But the loop is not one-sided. The machine learns the person, and the person learns the machine.
+But the loop is not one-sided.
 
-Anyone who has used a recommender system for long enough recognizes this second process. We learn what the system rewards. We learn how to search within it. We learn that watching one video may fill the feed with similar videos. We sometimes avoid clicking something because we do not want to “teach the algorithm.” We sometimes search for several examples because we do.
+The machine learns the person, and the person learns the machine.
+
+Anyone who has used a recommender system for long enough recognizes this second process. We learn that watching one video may fill the feed with similar videos. We sometimes avoid clicking something because we do not want to “teach the algorithm.” We sometimes search for several examples because we do.
 
 We learn what kind of world the system is likely to show us.
 
-In other words, the recommender maintains a model of the user while the user gradually develops a model of the recommender.
+So the recommender maintains a model of the user while the user gradually develops a model of the recommender.
 
 Two adaptive systems are observing and modifying one another.
 
-This is not ordinary personalization.
+I find **co-adaptation** a more illuminating description than personalization alone.
 
-It is co-adaptation.
-
-Once we understand recommendation this way, the idea of a fixed user becomes increasingly difficult to defend. The user tomorrow is partly a consequence of the recommendations made today. The recommender tomorrow is partly a consequence of the user's response today.
+The user tomorrow is partly a consequence of the recommendations made today. The recommender tomorrow is partly a consequence of the user's response today.
 
 Neither side has an independent trajectory.
 
@@ -233,7 +243,7 @@ What exists is a coupled process.
 
 ## The Circularity of Personalization
 
-This coupled process produces a strange circularity.
+Once I started thinking in terms of a coupled process, another problem became hard to unsee.
 
 The system recommends something because it believes I like it. I encounter it more often because the system recommends it. I become more likely to choose it because it has become familiar. The system then interprets my increased choice as stronger evidence that I liked it all along.
 
@@ -247,37 +257,35 @@ Behavior confirms prediction.
 
 Over time, a possibility can become a pattern, and a pattern can become something that looks like preference.
 
-The phrase “user model” contains another temptation: it suggests that the model exists on one side and the real user on the other. The system constructs an approximation, the approximation becomes more accurate, and ideally the model converges toward the person.
+The social-science idea of **performativity** is useful here. A classification does not always remain outside the world it describes. Sometimes the classification changes how the subject is treated, and that treatment helps make the classification more true.
 
-But in an adaptive recommender, the relation is stranger.
+User models can have this property.
 
-The representation the machine constructs can influence how the person is treated. How the person is treated influences what opportunities and experiences they encounter. Those experiences can influence who the person becomes.
+Someone categorized as interested in a topic is shown more of it. More exposure produces more familiarity. Familiarity changes future interaction. Future interaction strengthens the category.
 
-The model can therefore contribute to making its own description true.
+So an error is not always merely an inaccurate prediction. Repeated errors can alter the environment around the user. Successful predictions can do the same.
 
-Someone categorized as interested in a topic is shown more of it. Someone shown more of it becomes more familiar with it. Greater familiarity changes future interaction. Future interaction strengthens the category.
-
-This is a mild version of a phenomenon familiar from the social sciences: classifications can become **performative**. They do not merely describe reality. They enter into it.
-
-An error is therefore not always merely an inaccurate prediction. Repeated errors can alter the environment around the user. Successful predictions can do the same.
-
-The distinction between describing a person and constructing the conditions under which that person acts becomes blurry.
+The boundary between describing a person and constructing the conditions under which that person acts becomes blurry.
 
 > **Recommendation is productive as well as predictive.**
 
-It does not only select among existing desires.
+That is not necessarily a criticism.
 
-It participates in the production of future desire.
+It is a statement about what kind of system recommendation has become.
 
 ---
 
 ## The Possibility of Becoming Otherwise
 
-But shaping is not the same as narrowing. The same loop can open possibilities.
+It would be easy to take the previous argument in a purely pessimistic direction: personalization narrows, feedback traps, recommendation manufactures preference.
 
-A recommendation can introduce an artist, a cuisine, a scientific field, a writer, or an idea that permanently expands someone's world. A system can discover latent compatibility before the person themselves is capable of articulating it.
+I do not think that is the whole picture.
 
-This suggests that we should replace the language of preference with something broader.
+The same loop can open possibilities.
+
+A recommendation can introduce an artist, a cuisine, a scientific field, a writer, or an idea that permanently expands someone's world. A system can surface a compatibility before the person themselves is capable of articulating it.
+
+This is where I think the language of *becoming* is more useful than the language of preference alone.
 
 A human being is not merely a bundle of wants.
 
@@ -287,7 +295,7 @@ We acquire knowledge. We form tastes. We lose interests. We gain and abandon asp
 
 The interesting object is therefore not simply the user's current state.
 
-It is the **trajectory of transformation**.
+It is the trajectory of transformation.
 
 A preference model asks:
 
@@ -297,77 +305,61 @@ A dynamical view asks:
 
 > Where are they going?
 
-A richer view asks:
+The question I find even more interesting is:
 
-> What kinds of future remain possible from here?
+> **What kinds of future remain possible from here?**
 
-This last question matters because a healthy relationship with recommendation might not be one in which the system perfectly converges on a narrow model of who a user already appears to be.
+A healthy relationship with recommendation may not be one in which the system perfectly converges on a narrow model of who the user already appears to be.
 
 Perhaps it should preserve some openness. Some uncertainty. Some room for surprise. Some possibility that the person tomorrow will not simply be an increasingly predictable version of the person today.
 
-From the perspective of prediction, surprising behavior is often an error: the user did something inconsistent with the model.
+This is why I have started to think about exploration differently.
 
-From the perspective of a changing person, surprise can be exactly where something important happens.
+In machine learning, exploration is often framed as something the system does because *the model* is uncertain about the user.
 
-Someone listens to a genre they have never explored. Reads outside their intellectual comfort zone. Develops an unexpected hobby. Discovers a field. Changes their mind.
-
-These events are difficult for systems precisely because the past does not fully determine them. Yet they may be among the most consequential moments in a person's history.
-
-There is therefore a tension at the heart of personalization.
-
-> **A system can become very good at knowing the current user while becoming worse at allowing the future user to appear.**
-
-This is why exploration is philosophically interesting. It is not only something the machine does to reduce its own uncertainty.
-
-Humans are uncertain about themselves too.
+But humans are uncertain about themselves too.
 
 We cannot know whether we love something we have never encountered. We cannot choose from possibilities we do not know exist.
 
-Sometimes the role of recommendation is therefore not to satisfy preference.
+Sometimes recommendation does not merely satisfy preference.
 
-It is to make preference possible.
+It makes preference possible.
+
+> **A system can become very good at knowing the current user while becoming worse at allowing the future user to appear.**
+
+I suspect this tension—between knowing someone well and leaving room for them to become otherwise—is one of the deepest problems in personalization.
 
 ---
 
 ## The Recommender as Cognitive Environment
 
-Every recommender system implicitly constructs a world.
+This leads me to a broader way of thinking about recommender systems.
+
+Every recommender implicitly constructs a world.
 
 Not the whole world.
 
 A selection. A sequence. A local environment of things deemed worth placing before someone.
 
-This selection matters because human attention is finite. What is not shown may never become an object of thought. What is shown repeatedly can acquire salience merely through familiarity.
+This matters because human attention is finite. What is not shown may never become an object of thought. What is shown repeatedly can acquire salience simply through familiarity.
 
-The system therefore operates before preference in an important sense.
+So the recommender often operates *before* preference in an important sense. It influences what becomes available to be preferred.
 
-It influences what becomes available to be preferred.
+Cognitive science has long treated perception, attention, memory, and expectation as selective processes. We do not experience reality as a complete inventory from which we neutrally choose. Attention selects from the present. Memory selects from what has happened. Expectation organizes possible futures.
 
-This echoes a deeper idea in cognitive science. We do not experience reality as a complete inventory from which we neutrally choose. Perception and attention construct a tractable world from overwhelming possibility. Memory does something similar to the past.
+Recommender systems increasingly participate in all three.
 
-Attention selects from the present. Memory selects from what has happened. Expectation selects from possible futures.
+They determine what appears now. They retrieve things from our past. They anticipate what we may want next.
 
-Together they form the experienced world within which choice occurs.
-
-Recommender systems increasingly participate in all three. They determine what appears now. They retrieve things from our past. They anticipate what we may want next.
-
-They are, in this limited but consequential sense, becoming external components of attention and memory.
-
-That does not mean they function like the brain. The analogy is not anatomical.
+I do not mean that recommenders literally function like parts of the brain. The analogy I care about is not anatomical.
 
 It is ecological.
 
-They have become part of the cognitive environment within which human cognition operates.
+Tools have always altered cognition. Writing changed memory. Maps changed navigation. Search engines changed the relationship between knowing and retrieving.
 
-Tools have always altered thought. Writing changed memory. Maps changed navigation. Search engines changed the relationship between knowing and retrieving. Calculators changed arithmetic practice.
+Recommenders add something distinctive: the environment itself adapts to the person moving through it.
 
-The recommender system represents another step in this history. Its distinctive feature is that it is not merely passive infrastructure.
-
-It observes us and changes its behavior in response.
-
-The environment itself adapts.
-
-A bookshelf does not rearrange itself according to which book we looked at yesterday. A city street does not ordinarily rebuild itself around the places we visited last week. But a digital feed does something close to this continuously.
+A bookshelf does not rearrange itself according to which book we looked at yesterday. A city street does not rebuild itself around the places we visited last week. A digital feed does something close to this continuously.
 
 We act in an environment that changes because of our actions, and those environmental changes alter the actions available to us.
 
@@ -377,45 +369,49 @@ It is a human–machine cognitive ecology.
 
 > **A single recommendation may be trivial. A million recommendations constitute an environment.**
 
-Understanding the user therefore eventually requires understanding the environment that is learning the user.
+Once I see recommendation this way, “user modeling” no longer feels like a problem that can be separated cleanly from the environment doing the modeling.
 
 ---
 
-## What Does It Mean to Know a User?
+## What I Mean by a Cognitive Dynamical System of the User
 
-We can now return to the original ambition of personalization.
+At this point, I need a name for the object I have been circling around.
 
-What would it mean for a machine to truly “know” a user?
+The phrase I currently find most useful is:
 
-Knowing everything they clicked would not be enough. Predicting their next click would not be enough. Even correctly describing their current tastes might not be enough.
+**a cognitive dynamical system of the user.**
 
-To know a person dynamically would require some understanding of what persists and what is temporary; what they remember and what has faded; what they seek and what merely captures them; what they value now and what they may later regret; what they know they want and what they have not yet learned to want; how experience changes them; and how their present actions shape their future possibilities.
+I do not mean this as a proposal for a specific architecture.
 
-This begins to sound less like a database record and more like the traditional object of psychology.
+I mean it as an ontology.
 
-The person becomes a temporally extended, adaptive system: a system with memory and expectations; a system capable of learning, reflecting on its own desires, resisting habits, and revising goals; a system never completely identical to its previous state.
+The user is a temporally extended, adaptive system. Some states persist; others disappear quickly. Memory makes parts of the past available and lets others fade. Current behavior reflects goals, habits, attention, context, knowledge, and momentary conditions. Experience changes future state. The environment is part of that experience. The recommender is part of that environment.
 
-This is what I mean by a **cognitive dynamical system of the user**.
+This framing owes obvious debts to several literatures: state-space thinking in neuroscience, computational models of learning and decision-making, research on multiple memory systems, behavioral economics, causal inference, reinforcement learning, and cybernetics.
 
-Not a new architecture.
+I do not think these literatures already give us a unified theory of the user. They do not.
 
-Not a specific mathematical model.
+What I find interesting is that they make different pieces of the same object visible.
 
-A different ontology.
+The point is not to import every cognitive concept into recommendation. Nor is it to label arbitrary latent dimensions as “memory,” “belief,” or “goal” and declare the model cognitive.
+
+The point is more modest and, I think, more consequential:
+
+> **Treat the user as something that has state, history, memory, agency, and dynamics—not simply as a target distribution to be estimated.**
+
+That change in viewpoint is enough to generate a very different set of research questions.
 
 ---
 
 ## The Human Use of Recommender Systems
 
-Once we adopt this ontology, the language of optimization begins to look incomplete.
+Once recommendation is part of the dynamics, optimization begins to look incomplete as a language for the problem.
 
 Optimization asks for an objective. Maximize clicks. Maximize watch time. Maximize purchases. Maximize retention. Perhaps maximize some richer notion of satisfaction.
 
-But any fixed objective risks treating the person as a means through which a metric is produced.
+But if the system helps shape the state from which future behavior emerges, the question is not only whether the next recommendation succeeds.
 
-A more human-centered perspective might begin elsewhere.
-
-The recommender and the user enter into a long-term relationship. The system repeatedly influences the informational and experiential environment of the person. The relevant question is therefore not only whether an individual recommendation succeeds. It is what kind of relationship the repeated interaction creates.
+It is what kind of relationship the repeated interaction creates.
 
 Does the system help the user articulate and pursue their own intentions? Does it preserve room for discovery? Does it recognize when desire is temporary? Does it allow the user to escape a pattern the system has learned too well? Does it distinguish familiarity from endorsement? Does it leave space for a person to surprise the model?
 
@@ -423,13 +419,15 @@ Perhaps the ultimate test of personalization is not whether the system eventuall
 
 Perhaps it is whether it remains useful even as we change.
 
-Norbert Wiener worried about machines less because they might become independently malevolent than because human beings might specify the wrong goals and then allow machines to pursue them with extraordinary consistency.
+This is where Wiener becomes more than historical decoration for me.
+
+His recurring concern was not simply that machines might become powerful. It was that humans might specify purposes poorly and then build systems extremely capable of pursuing them.
 
 The danger was not intelligence alone.
 
 It was purpose without sufficient reflection on purpose.
 
-Recommendation makes this old cybernetic concern unusually concrete. We now build systems capable of observing human behavior at enormous scale, learning what reliably produces responses, and adapting the environment accordingly.
+Recommendation makes that old cybernetic concern unusually concrete. We now build systems capable of observing human behavior at enormous scale, learning what reliably produces responses, and adapting the environment accordingly.
 
 The technical achievement is remarkable.
 
@@ -437,7 +435,7 @@ But the philosophical question arrives immediately afterward:
 
 **What is the feedback loop for?**
 
-If the answer is simply more behavior, the loop can optimize behavior. If the answer is more time, the loop can optimize time.
+If the answer is more behavior, the loop can optimize behavior. If the answer is more time, the loop can optimize time.
 
 But human purposes are rarely so clean.
 
@@ -447,27 +445,23 @@ We want systems to understand us, but not imprison us inside what they have unde
 
 We want personalization, but also the freedom to become someone the model could not have predicted.
 
-The problem of recommendation is therefore inseparable from a problem of human use.
+This is why I no longer see the problem of recommendation as only a question of better prediction.
 
-Not merely:
-
-> How can we make machines better at predicting people?
-
-But:
-
-> **What kind of relationship between people and adaptive machines is worth creating?**
+It is also a question of human use.
 
 ---
 
 ## The User Is a Process
 
-The user vector is useful because it makes a person computationally manageable.
+I started with a familiar abstraction: the user as a representation built from past behavior.
 
-But it encourages us to imagine the person as a thing.
+I still think that abstraction is useful. It is computationally powerful precisely because it compresses.
 
-A more faithful picture is a process.
+But every abstraction teaches us to ignore something.
 
-The person remembers. Forgets. Learns. Predicts. Desires. Regrets. Forms habits. Breaks them. Discovers. Becomes bored. Changes context. Changes interpretation. Changes themselves.
+What the user vector encourages us to ignore is time.
+
+A person remembers. Forgets. Learns. Predicts. Desires. Regrets. Forms habits. Breaks them. Discovers. Becomes bored. Changes context. Changes interpretation. Changes themselves.
 
 And increasingly, some of these changes occur inside environments selected by algorithms that are themselves learning from the changes they helped produce.
 
@@ -487,15 +481,15 @@ That is a much larger responsibility.
 
 It is also a much more interesting intellectual problem.
 
-So perhaps the central question of user modeling should no longer be:
+The questions I keep coming back to are no longer only:
 
 > **What does this user like?**
 
-Nor even:
+or:
 
 > **What will this user do next?**
 
-But something closer to:
+They are increasingly:
 
 > **Who is this person becoming?**
 
@@ -511,4 +505,8 @@ The user is not even a state.
 
 The user is a trajectory.
 
-And the deepest problem of recommendation may be learning how to accompany that trajectory without pretending that prediction and understanding are the same thing.
+For now, that is the worldview I find most useful: not recommendation as the recovery of a fixed preference, but recommendation as one participant in an evolving human–machine system.
+
+I expect the details of that view to change.
+
+I am less sure that the central intuition will.
