@@ -6,6 +6,8 @@ tags: [recommender-systems, user-modeling, causal-inference, performative-predic
 series: adaptive-intelligence
 series_order: 4
 placeholder: true
+writing_type: "Research Note"
+citation: false
 ---
 
 *Forthcoming research note*
