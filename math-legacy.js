@@ -22,12 +22,10 @@
     ["state_t ∈ viable region", "\\mathrm{state}_t \\in \\mathrm{viable\\ region}"],
     ["Delta_(i,v,k) = response(edit_k) - response(control_k)", "\\Delta_{i,v,k} = \\operatorname{response}(\\mathrm{edit}_k) - \\operatorname{response}(\\mathrm{control}_k)"],
     ["margin = logit(A) - logit(B)", "\\mathrm{margin} = \\operatorname{logit}(A) - \\operatorname{logit}(B)"],
-    ["correct categorical behavior ≠ calibrated scalar readout", "\\text{correct categorical behavior} \\neq \\text{calibrated scalar readout}"],
     ["paired brain target > nonlinear readout", "\\text{paired neural target} > \\text{nonlinear readout}"],
     ["paired brain target < best matched non-neural target", "\\text{paired neural target} < \\text{best matched non-neural target}"],
     ["paired brain target ≈ pairing-broken neural target", "\\text{paired neural target} \\approx \\text{pairing-broken neural target}"],
     ["prediction gain -> neural-specific representational improvement", "\\text{prediction gain} \\not\\Rightarrow \\text{neural-specific representational improvement}"],
-    ["observed behavior ≠ identified preference mechanism", "\\text{observed behavior} \\neq \\text{identified preference mechanism}"],
     ["future user state = f(current user state, recommendation policy, context)", "\\text{future user state} = f(\\text{current user state}, \\text{recommendation policy}, \\text{context})"]
   ]);
 
