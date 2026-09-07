@@ -66,6 +66,34 @@
   margin-top: 0.3rem;
 }
 
+/* Paper-style mathematics. MathJax inherits the article color and centers
+   display equations while preserving horizontal scrolling for long formulas. */
+.blog-article mjx-container {
+  color: var(--text-primary);
+}
+
+.blog-article mjx-container[display="true"] {
+  max-width: 100%;
+  margin: 1.15rem 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.08rem 0;
+}
+
+.blog-article-body .legacy-math-display {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.blog-article-body .legacy-math-inline {
+  white-space: nowrap;
+}
+
+.research-note mjx-container[display="true"] {
+  margin: 1rem 0 !important;
+}
+
 @media (max-width: 620px) {
   .blog-article-body ul {
     padding-left: 1.4rem;
@@ -73,5 +101,9 @@
 
   .blog-article-body ol {
     padding-left: 1.55rem;
+  }
+
+  .blog-article mjx-container[display="true"] {
+    font-size: 0.94em;
   }
 }
