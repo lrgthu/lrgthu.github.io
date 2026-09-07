@@ -27,7 +27,7 @@ permalink: /blog/
           {% assign updated_at = post.updated | default: post_meta.updated | default: post.date %}
           <li class="blog-post-row">
             <div class="blog-post-date-stack">
-              <time class="blog-post-date" datetime="{{ updated_at | date_to_xmlschema }}">Updated {{ updated_at | date: "%b %d, %Y" }}</time>
+              <time class="blog-post-date" datetime="{{ updated_at | date_to_xmlschema }}">{{ updated_at | date: "%b %d, %Y" }}</time>
               <span class="blog-post-kind">{{ writing_type }}</span>
             </div>
             <div>
