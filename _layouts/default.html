@@ -66,9 +66,20 @@
   </script>
   {% endif %}
   {% if page.use_vis %}<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>{% endif %}
+  {% if page.layout == 'post' %}
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        processEscapes: true
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+  {% endif %}
   <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v=retro-11">
   <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-8">
-  <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-2">
+  <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-3">
 </head>
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
   <div class="layout">
@@ -78,5 +89,6 @@
     </main>
   </div>
   <script src="{{ '/script.js' | relative_url }}?v=blog-1"></script>
+  {% if page.layout == 'post' %}<script src="{{ '/math-legacy.js' | relative_url }}?v=math-1"></script>{% endif %}
 </body>
 </html>
