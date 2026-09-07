@@ -79,7 +79,7 @@
   {% endif %}
   <link rel="stylesheet" href="{{ '/style.css' | relative_url }}?v=retro-11">
   <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-8">
-  <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-3">
+  <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-4">
 </head>
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
   <div class="layout">
@@ -89,6 +89,9 @@
     </main>
   </div>
   <script src="{{ '/script.js' | relative_url }}?v=blog-1"></script>
-  {% if page.layout == 'post' %}<script src="{{ '/math-legacy.js' | relative_url }}?v=math-1"></script>{% endif %}
+  {% if page.layout == 'post' %}
+  <script src="{{ '/math-legacy.js' | relative_url }}?v=math-1"></script>
+  <script src="{{ '/article-components.js' | relative_url }}?v=flow-1"></script>
+  {% endif %}
 </body>
 </html>
