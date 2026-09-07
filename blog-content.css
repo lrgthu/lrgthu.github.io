@@ -66,6 +66,44 @@
   margin-top: 0.3rem;
 }
 
+/* Conceptual flows are semantic schematics, not code or equations. */
+.concept-flow {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.58rem;
+  width: 100%;
+  margin: 1rem 0 1.15rem;
+  padding: 0.38rem 0.15rem 0.48rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  color: var(--text-primary);
+  font-family: var(--font-publication);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+
+.concept-flow-node {
+  font-weight: 600;
+  letter-spacing: 0.008em;
+}
+
+.concept-flow-arrow {
+  flex: 0 0 auto;
+  color: var(--accent-dim);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.08em;
+  font-weight: 400;
+  opacity: 0.72;
+}
+
+.research-note .concept-flow {
+  margin: 0.9rem 0 1rem;
+  font-size: 0.84rem;
+}
+
 /* Paper-style mathematics. MathJax inherits the article color and centers
    display equations while preserving horizontal scrolling for long formulas. */
 .blog-article mjx-container {
@@ -101,6 +139,11 @@
 
   .blog-article-body ol {
     padding-left: 1.55rem;
+  }
+
+  .concept-flow {
+    justify-content: flex-start;
+    padding-bottom: 0.55rem;
   }
 
   .blog-article mjx-container[display="true"] {
