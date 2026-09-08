@@ -15,6 +15,24 @@ permalink: /blog/
   <div class="blog-rule" aria-hidden="true"></div>
 </header>
 
+{% assign pinned_posts = site.posts | where: "series", "adaptive-intelligence" | sort: "series_order" %}
+<section class="blog-archive blog-pinned" aria-labelledby="pinned-title">
+  <h2 class="blog-section-label" id="pinned-title">Pinned perspectives</h2>
+  <p class="blog-pinned-deck">A three-part arc: boundary → adaptive organization → user dynamics.</p>
+  <ul class="blog-post-list blog-pinned-list">
+    {% for post in pinned_posts limit:3 %}
+      <li class="blog-post-row blog-pinned-row">
+        <div class="blog-pinned-index">0{{ post.series_order }}</div>
+        <div>
+          <span class="blog-post-kind">Perspective</span>
+          <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% if post.summary %}<p class="blog-post-summary">{{ post.summary }}</p>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
 <section class="blog-archive" aria-labelledby="published-title">
   <h2 class="blog-section-label" id="published-title">Published</h2>
 
