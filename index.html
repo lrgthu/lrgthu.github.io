@@ -86,26 +86,22 @@ use_vis: true
 
 <section class="section" id="blog">
   <h2 class="section-title">Blog</h2>
+  {% assign pinned_posts = site.posts | where: "series", "adaptive-intelligence" | sort: "series_order" %}
   <div class="blog-home">
-    <div>
-      <p class="blog-eyebrow">Essays / notes / field notes</p>
-      {% if site.posts.size > 0 %}
-        <ul class="blog-post-list blog-home-list">
-          {% for post in site.posts limit:3 %}
-            <li class="blog-post-row">
-              <div>
-                <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                {% if post.summary %}<p class="blog-post-summary">{{ post.summary }}</p>{% endif %}
-              </div>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p class="blog-home-copy">
-          Notes from between models and minds — intelligence, representation, learning, systems,
-          and ideas that are still too unfinished to become papers.
-        </p>
-      {% endif %}
+    <div class="blog-home-main">
+      <p class="blog-eyebrow">Pinned perspectives</p>
+      <p class="blog-pinned-deck">A three-part arc: boundary → adaptive organization → user dynamics.</p>
+      <ul class="blog-post-list blog-home-list blog-pinned-list blog-pinned-home">
+        {% for post in pinned_posts limit:3 %}
+          <li class="blog-post-row blog-pinned-row">
+            <div class="blog-pinned-index">0{{ post.series_order }}</div>
+            <div>
+              <a class="blog-post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if post.summary %}<p class="blog-post-summary">{{ post.summary }}</p>{% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
     <a class="blog-enter" href="{{ '/blog/' | relative_url }}">All writing →</a>
   </div>
