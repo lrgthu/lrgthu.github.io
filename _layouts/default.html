@@ -81,6 +81,7 @@
   <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-8">
   <link rel="stylesheet" href="{{ '/blog-pinned.css' | relative_url }}?v=pinned-1">
   <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-5">
+  {% if page.home_refined %}<link rel="stylesheet" href="{{ '/home-refined.css' | relative_url }}?v=refined-2">{% endif %}
 </head>
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
   <div class="layout">
