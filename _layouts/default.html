@@ -81,9 +81,9 @@
   <link rel="stylesheet" href="{{ '/blog.css' | relative_url }}?v=blog-8">
   <link rel="stylesheet" href="{{ '/blog-pinned.css' | relative_url }}?v=pinned-1">
   <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-5">
-  {% if page.home_refined %}<link rel="stylesheet" href="{{ '/home-refined.css' | relative_url }}?v=refined-2">{% endif %}
+  {% if page.home_refined or page.url contains '/blog/' %}<link rel="stylesheet" href="{{ '/home-refined.css' | relative_url }}?v=refined-3">{% endif %}
 </head>
-<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+<body class="{% if page.body_class %}{{ page.body_class }} {% endif %}{% if page.home_refined or page.url contains '/blog/' %}site-refined{% endif %}{% if page.layout == 'post' %} blog-post-page{% endif %}">
   <div class="layout">
     {% include sidebar.html %}
     <main class="content">
