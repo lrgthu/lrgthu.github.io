@@ -1,0 +1,334 @@
+/* Short thoughts and continuous threads, using the existing paper/ink palette. */
+
+.site-refined .thoughts-heading-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .75rem 1.5rem;
+}
+
+.site-refined .thoughts-heading-row .section-title {
+  flex: 1 1 10rem;
+  margin-bottom: 0;
+}
+
+.site-refined .thought-link {
+  display: inline-block;
+  padding: .18rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: .68rem;
+  letter-spacing: .025em;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.site-refined .thought-link:hover {
+  color: var(--accent-dim);
+  border-color: currentColor;
+}
+
+.site-refined .thoughts-deck {
+  margin: .65rem 0 1.2rem;
+  color: var(--text-muted);
+  font-family: var(--font-publication);
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.thoughts-previews,
+.thought-preview-main,
+.thought-part-body {
+  min-width: 0;
+}
+
+.thought-preview {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 1.2rem 0;
+  border-top: 1px dotted var(--rule);
+}
+
+.thought-preview:first-child {
+  border-top-style: solid;
+}
+
+.thought-preview:last-child {
+  padding-bottom: 0;
+}
+
+.site-refined .thought-preview-date {
+  align-self: start;
+  padding: .12rem 0;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: .68rem;
+  line-height: 1.65;
+  text-decoration: none;
+}
+
+.thought-preview-date span {
+  display: block;
+}
+
+.site-refined .thought-preview-date:hover,
+.site-refined .thought-date-link:hover {
+  color: var(--accent-dim);
+  text-decoration: underline;
+}
+
+.thought-preview-index {
+  margin-bottom: .45rem;
+  color: var(--accent-dim);
+  font-family: var(--font-body);
+  font-size: .68rem;
+  line-height: 1.5;
+}
+
+.site-refined .thought-part-body {
+  color: var(--text-secondary);
+  font-family: var(--font-publication);
+  font-size: 1rem;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.thought-part-body > * + * {
+  margin-top: .9rem;
+}
+
+.thought-part-body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.thought-part-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.thought-part-body blockquote {
+  padding-left: 1rem;
+  border-left: 1px solid var(--rule);
+}
+
+.thought-part-body ul,
+.thought-part-body ol {
+  padding-left: 1.25rem;
+}
+
+.thought-part-body pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.thought-part-body code {
+  font-family: var(--font-body);
+  font-size: .85em;
+}
+
+.site-refined .thought-preview .thought-part-body {
+  font-size: .94rem;
+  line-height: 1.68;
+}
+
+.site-refined .thought-read-more {
+  margin-top: .95rem;
+}
+
+.thoughts-archive-header {
+  padding-bottom: .9rem;
+}
+
+.site-refined .thoughts-title {
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 400;
+  letter-spacing: -.015em;
+  line-height: 1.15;
+}
+
+.thought-permalink,
+.thought-archive-entry {
+  width: 100%;
+  max-width: 43rem;
+}
+
+.thought-archive-entry {
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.thought-archive-entry + .thought-archive-entry {
+  margin-top: 2.6rem;
+}
+
+.thought-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .7rem 1rem;
+  margin-bottom: 1.55rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: .68rem;
+  line-height: 1.6;
+}
+
+.site-refined .thought-date-link {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.thought-part {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  scroll-margin-top: 2rem;
+}
+
+.thought-thread-numbered .thought-part {
+  grid-template-columns: 2.7rem minmax(0, 1fr);
+  gap: 1.1rem;
+}
+
+.thought-part + .thought-part {
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: 1px dotted var(--rule-light);
+}
+
+.site-refined .thought-part-index {
+  align-self: start;
+  padding-top: .28rem;
+  color: var(--accent-dim);
+  font-family: var(--font-body);
+  font-size: .7rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.site-refined .thought-part-index:hover {
+  text-decoration: underline;
+}
+
+.thought-footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.thought-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The third navigation item fits on its own row below the mobile identity. */
+@media (max-width: 768px) {
+  .site-refined .sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .site-refined .sidebar-profile {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .site-refined .sidebar-links {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .site-refined .blog-sidebar-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+  }
+
+  .site-refined .blog-sidebar-nav a[aria-current="page"] {
+    display: inline;
+  }
+}
+
+@media (max-width: 520px) {
+  .thought-preview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .6rem;
+  }
+
+  .thought-preview-date span {
+    display: inline;
+  }
+
+  .thought-preview-date span::before {
+    content: ", ";
+  }
+
+  .thought-thread-numbered .thought-part {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .5rem;
+  }
+
+  .site-refined .thought-part-index {
+    justify-self: start;
+    padding-top: 0;
+  }
+
+  .site-refined .thought-part-body {
+    font-size: .98rem;
+    line-height: 1.75;
+  }
+
+  .thought-part + .thought-part {
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+  }
+
+  .thoughts-heading-row .thought-link {
+    font-size: .65rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .site-refined .thought-link,
+  .site-refined .thought-part-index,
+  .site-refined .thought-preview-date,
+  .site-refined .thought-date-link,
+  .site-refined .blog-sidebar-nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media print {
+  .thought-meta .thought-link,
+  .thought-footer {
+    display: none;
+  }
+
+  .thought-part {
+    break-inside: avoid;
+  }
+}

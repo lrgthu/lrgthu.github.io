@@ -1,0 +1,13 @@
+{% assign preview_parts = include.thought.content | split: '<!-- thought-part -->' %}
+<article class="thought-preview" aria-label="Thought from {{ include.thought.date | date: '%B %d, %Y' }}">
+  <a class="thought-preview-date" href="{{ include.thought.url | relative_url }}" aria-label="Open thought from {{ include.thought.date | date: '%B %d, %Y' }}">
+    <time datetime="{{ include.thought.date | date_to_xmlschema }}">{{ include.thought.date | date: '%b %d' }}<span>{{ include.thought.date | date: '%Y' }}</span></time>
+  </a>
+  <div class="thought-preview-main">
+    {% if preview_parts.size > 1 %}<p class="thought-preview-index" aria-label="Part 1 of {{ preview_parts.size }}">1/{{ preview_parts.size }}</p>{% endif %}
+    <div class="thought-part-body">{{ preview_parts.first | markdownify }}</div>
+    {% if preview_parts.size > 1 %}
+      <a class="thought-link thought-read-more" href="{{ include.thought.url | relative_url }}">Read full thread · {{ preview_parts.size }} parts →</a>
+    {% endif %}
+  </div>
+</article>

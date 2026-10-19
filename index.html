@@ -107,6 +107,22 @@ home_refined: true
   </div>
 </section>
 
+{% assign recent_thoughts = site.thoughts | sort: "date" | reverse %}
+{% if recent_thoughts.size > 0 %}
+<section class="section" id="thoughts">
+  <div class="thoughts-heading-row">
+    <h2 class="section-title">Thoughts</h2>
+    <a class="thought-link" href="{{ '/thoughts/' | relative_url }}">All thoughts →</a>
+  </div>
+  <p class="thoughts-deck">Questions, observations, and unfinished ideas.</p>
+  <div class="thoughts-previews">
+    {% for thought in recent_thoughts limit:3 %}
+      {% include thought-preview.html thought=thought %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 <section class="section" id="publications">
   <h2 class="section-title">Publications</h2>
 
@@ -226,3 +242,4 @@ home_refined: true
     </div>
   </div>
 </section>
+

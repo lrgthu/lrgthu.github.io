@@ -1,0 +1,11 @@
+{% assign thread_parts = include.body | split: '<!-- thought-part -->' %}
+<div class="thought-thread{% if thread_parts.size > 1 %} thought-thread-numbered{% endif %}">
+  {% for part in thread_parts %}
+    <section class="thought-part" id="{{ include.anchor_prefix }}part-{{ forloop.index }}" aria-label="Part {{ forloop.index }} of {{ thread_parts.size }}">
+      {% if thread_parts.size > 1 %}
+        <a class="thought-part-index" href="{{ include.url | relative_url }}#part-{{ forloop.index }}" aria-label="Link to part {{ forloop.index }} of {{ thread_parts.size }}">{{ forloop.index }}/{{ thread_parts.size }}</a>
+      {% endif %}
+      <div class="thought-part-body">{{ part | markdownify }}</div>
+    </section>
+  {% endfor %}
+</div>

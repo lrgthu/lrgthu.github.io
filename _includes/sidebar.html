@@ -13,6 +13,7 @@
   <nav class="blog-sidebar-nav" aria-label="Site navigation">
     <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
     <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog/' %} aria-current="page"{% endif %}>Blog</a>
+    <a href="{{ '/thoughts/' | relative_url }}"{% if page.url contains '/thoughts/' %} aria-current="page"{% endif %}>Thoughts</a>
   </nav>
 
   <div class="sidebar-divider"></div>
@@ -105,3 +106,4 @@
   <div class="sidebar-spacer"></div>
   <p class="sidebar-footer">Ruogu Lin © 2026</p>
 </aside>
+

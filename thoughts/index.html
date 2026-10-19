@@ -1,0 +1,28 @@
+---
+layout: default
+title: Thoughts
+description: "Short thoughts by Ruogu Lin: questions, observations, and unfinished ideas."
+body_class: thoughts-page
+home_refined: true
+permalink: /thoughts/
+---
+<header class="thoughts-archive-header">
+  <h1 class="thoughts-title">Thoughts</h1>
+  <p class="thoughts-deck">Questions, observations, and unfinished ideas.</p>
+</header>
+
+{% assign all_thoughts = site.thoughts | sort: "date" | reverse %}
+{% for thought in all_thoughts %}
+  {% capture entry_prefix %}{{ thought.slug }}-{% endcapture %}
+  <article class="thought-archive-entry" aria-label="Thought from {{ thought.date | date: '%B %d, %Y' }}">
+    <header class="thought-meta">
+      <a class="thought-date-link" href="{{ thought.url | relative_url }}" aria-label="Open thought from {{ thought.date | date: '%B %d, %Y' }}"><time datetime="{{ thought.date | date_to_xmlschema }}">{{ thought.date | date: '%b %d, %Y' }}</time></a>
+      <a class="thought-link" href="{{ thought.url | relative_url }}">Permalink ↗</a>
+    </header>
+    {% include thought-thread.html body=thought.content url=thought.url anchor_prefix=entry_prefix %}
+  </article>
+{% endfor %}
+
+<footer class="thought-footer">
+  <a class="thought-link" href="{{ '/' | relative_url }}">← Home</a>
+</footer>

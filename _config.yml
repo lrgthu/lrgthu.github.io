@@ -20,6 +20,11 @@ kramdown:
 
 permalink: /blog/:title/
 
+collections:
+  thoughts:
+    output: true
+    permalink: /thoughts/:name/
+
 plugins:
   - jekyll-sitemap
 
@@ -37,6 +42,15 @@ defaults:
       body_class: blog-page
       writing_type: Perspective
       citation: true
+  - scope:
+      path: ""
+      type: thoughts
+    values:
+      layout: thought
+      body_class: thoughts-page
+      home_refined: true
+      writing_type: Thought
 
 exclude:
   - README.md
+

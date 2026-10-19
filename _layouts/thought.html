@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="thought-permalink" aria-labelledby="thought-title">
+  <header class="thought-meta">
+    <a class="thought-link" href="{{ '/thoughts/' | relative_url }}">← Thoughts</a>
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%b %d, %Y' }}</time>
+    <h1 class="thought-sr-only" id="thought-title">{{ page.title | escape }}</h1>
+  </header>
+  {% include thought-thread.html body=content url=page.url %}
+  <footer class="thought-footer">
+    <a class="thought-link" href="{{ '/thoughts/' | relative_url }}">All thoughts →</a>
+    <a class="thought-link" href="{{ '/#thoughts' | relative_url }}">← Home</a>
+  </footer>
+</article>
