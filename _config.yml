@@ -53,4 +53,5 @@ defaults:
 
 exclude:
   - README.md
+  - _archive
 
