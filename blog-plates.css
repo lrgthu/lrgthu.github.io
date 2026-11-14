@@ -1,0 +1,238 @@
+/*
+ * Archival Frontispieces & Interactive Living Plates
+ * Designed to match the warm paper (#f7f3e9), charcoal ink (#1d1b17),
+ * forest green (#24483b), and oxblood rubrication (#7a3428) of lrgthu.github.io.
+ */
+
+/* --- 1. Monograph Frontispiece --- */
+.blog-frontispiece {
+  margin: 1.35rem 0 1.45rem;
+  padding: 0;
+}
+
+.blog-frontispiece-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--rule, #b8b09f);
+  background: var(--bg-surface, #f7f3e9);
+}
+
+.blog-frontispiece-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--bg-surface, #f7f3e9);
+}
+
+.blog-frontispiece-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.65rem;
+  margin-top: 0.62rem;
+  color: var(--text-muted, #6a6254);
+  font-family: var(--font-publication, Baskerville, Georgia, serif);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.blog-plate-label {
+  flex: 0 0 auto;
+  color: var(--accent-dim, #7a3428);
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* --- 2. Interactive Living Plates --- */
+.living-plate {
+  margin: 1.85rem 0 2.05rem;
+  padding: 1rem 1.1rem 0.95rem;
+  border-top: 1px solid var(--border, #29261f);
+  border-bottom: 1px solid var(--border, #29261f);
+  background: rgba(233, 227, 214, 0.28);
+}
+
+.living-plate-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  margin-bottom: 0.72rem;
+  padding-bottom: 0.48rem;
+  border-bottom: 1px dotted var(--rule, #b8b09f);
+}
+
+.living-plate-kicker {
+  color: var(--accent-dim, #7a3428);
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.living-plate-title {
+  color: var(--text-primary, #1d1b17);
+  font-family: var(--font-heading, Baskerville, Georgia, serif);
+  font-size: 0.96rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.living-plate-hint {
+  color: var(--text-muted, #6a6254);
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.living-plate-stage {
+  position: relative;
+  width: 100%;
+  background: var(--bg-surface, #f7f3e9);
+  border: 1px solid var(--rule, #b8b09f);
+}
+
+.living-plate-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: pan-y;
+}
+
+.living-plate-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.9rem;
+  margin-top: 0.75rem;
+  padding-top: 0.58rem;
+  border-top: 1px dotted var(--rule, #b8b09f);
+}
+
+.living-plate-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.living-plate-label {
+  color: var(--text-muted, #6a6254);
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-right: 0.18rem;
+}
+
+.living-plate-btn {
+  appearance: none;
+  border: 1px solid var(--rule, #b8b09f);
+  background: var(--bg-surface, #f7f3e9);
+  color: var(--text-secondary, #302d26);
+  padding: 0.24rem 0.5rem;
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.63rem;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+}
+
+.living-plate-btn:hover {
+  border-color: var(--accent-dim, #7a3428);
+  color: var(--text-primary, #1d1b17);
+}
+
+.living-plate-btn[aria-pressed="true"],
+.living-plate-btn.is-active {
+  border-color: var(--accent-dim, #7a3428);
+  background: var(--accent-dim, #7a3428);
+  color: #f7f3e9;
+}
+
+.living-plate-slider-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.63rem;
+  color: var(--text-secondary, #302d26);
+}
+
+.living-plate-slider {
+  width: 7.4rem;
+  accent-color: #7a3428;
+  cursor: pointer;
+}
+
+.living-plate-value {
+  min-width: 3.1rem;
+  color: var(--accent-dim, #7a3428);
+  font-weight: 700;
+  text-align: right;
+}
+
+.living-plate-readout {
+  margin-top: 0.58rem;
+  color: var(--text-secondary, #302d26);
+  font-family: var(--font-publication, Baskerville, Georgia, serif);
+  font-size: 0.81rem;
+  line-height: 1.5;
+}
+
+.living-plate-readout strong {
+  font-family: var(--font-body, "Courier New", Courier, monospace);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.living-plate-readout strong.status-ok {
+  color: var(--accent, #24483b);
+}
+
+.living-plate-readout strong.status-warn {
+  color: var(--accent-dim, #7a3428);
+}
+
+.living-plate-readout strong.status-muted {
+  color: var(--text-muted, #6a6254);
+}
+
+@media (max-width: 620px) {
+  .living-plate {
+    padding: 0.82rem 0.75rem 0.8rem;
+  }
+
+  .living-plate-slider {
+    width: 6rem;
+  }
+
+  .blog-frontispiece-caption {
+    font-size: 0.76rem;
+  }
+}
+
+@media print {
+  .living-plate-controls,
+  .living-plate-hint {
+    display: none;
+  }
+
+  .living-plate {
+    background: transparent;
+    break-inside: avoid;
+  }
+
+  .blog-frontispiece {
+    break-inside: avoid;
+  }
+}

@@ -8,6 +8,7 @@
   {% assign canonical_url = page.url | absolute_url %}
   {% assign post_meta = site.data.post_meta[page.slug] %}
   {% assign updated_at = page.updated | default: post_meta.updated %}
+  {% assign og_image = page.og_image | default: post_meta.og_image %}
   {% assign writing_type = page.writing_type | default: "Perspective" %}
   {% assign is_article = false %}
   {% if page.layout == 'post' or page.layout == 'thought' %}{% assign is_article = true %}{% endif %}
@@ -23,12 +24,16 @@
   <meta property="og:description" content="{{ seo_description | escape }}">
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:type" content="{% if is_article %}article{% else %}website{% endif %}">
+  {% if og_image %}<meta property="og:image" content="{{ og_image | absolute_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">{% endif %}
   {% if is_article and page.date %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">{% endif %}
   {% if is_article and updated_at %}<meta property="article:modified_time" content="{{ updated_at | date_to_xmlschema }}">{% endif %}
 
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="{% if og_image %}summary_large_image{% else %}summary{% endif %}">
   <meta name="twitter:title" content="{{ seo_title | escape }}">
   <meta name="twitter:description" content="{{ seo_description | escape }}">
+  {% if og_image %}<meta name="twitter:image" content="{{ og_image | absolute_url }}">{% endif %}
 
   <script type="application/ld+json">
   {
@@ -46,7 +51,8 @@
         "headline": {{ seo_title | jsonify }},
         "name": {{ seo_title | jsonify }},
         "description": {{ seo_description | jsonify }},
-        "url": {{ canonical_url | jsonify }},
+        "url": {{ canonical_url | jsonify }},{% if og_image %}
+        "image": {{ og_image | absolute_url | jsonify }},{% endif %}
         "author": {"@id": {{ site.url | append: '/#person' | jsonify }}}{% if is_article and page.date %},
         "datePublished": {{ page.date | date_to_xmlschema | jsonify }}{% if updated_at %},
         "dateModified": {{ updated_at | date_to_xmlschema | jsonify }}{% endif %},
@@ -84,6 +90,7 @@
   <link rel="stylesheet" href="{{ '/blog-pinned.css' | relative_url }}?v=pinned-1">
   <link rel="stylesheet" href="{{ '/blog-content.css' | relative_url }}?v=list-5">
   {% if page.home_refined or page.url contains '/blog/' %}<link rel="stylesheet" href="{{ '/home-refined.css' | relative_url }}?v=refined-3">{% endif %}
+  {% if page.layout == 'post' %}<link rel="stylesheet" href="{{ '/blog-plates.css' | relative_url }}?v=plates-1">{% endif %}
   <link rel="stylesheet" href="{{ '/thoughts.css' | relative_url }}?v=thoughts-1">
 </head>
 <body class="{% if page.body_class %}{{ page.body_class }} {% endif %}{% if page.home_refined or page.url contains '/blog/' %}site-refined{% endif %}{% if page.layout == 'post' %} blog-post-page{% endif %}">
@@ -97,6 +104,7 @@
   {% if page.layout == 'post' %}
   <script src="{{ '/math-legacy.js' | relative_url }}?v=math-3"></script>
   <script src="{{ '/article-components.js' | relative_url }}?v=semantic-2"></script>
+  <script src="{{ '/blog-plates.js' | relative_url }}?v=plates-1"></script>
   {% endif %}
 </body>
 </html>

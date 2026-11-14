@@ -2,16 +2,34 @@ where-the-loop-closes:
   updated: 2026-11-14
   toc: true
   toc_open: false
+  og_image: /assets/blog/og-01-where-the-loop-closes.png
+  frontispiece:
+    plate: "Plate I"
+    src: /assets/blog/plate-01-where-the-loop-closes.webp
+    alt: "Copperplate engraving of four concentric rings—cortical gyri, dyadic speech waves, developmental growth rings with escapement teeth, and linked book pages—cut by an oxblood draftsman's compass."
+    caption: "Four nested clocks—neural, dyadic, ontogenetic, and cultural—with a draftsman’s divider marking where an explanatory boundary closes."
 
 when-the-world-pushes-back:
   updated: 2026-11-14
   toc: true
   toc_open: false
+  og_image: /assets/blog/og-02-when-the-world-pushes-back.png
+  frontispiece:
+    plate: "Plate II"
+    src: /assets/blog/plate-02-when-the-world-pushes-back.webp
+    alt: "Copperplate engraving inspired by Held and Hein's kitten carousel crowned by a centrifugal governor, contrasting an actively walking cat in a closed sensorimotor loop against a passive cat suspended in a gondola."
+    caption: "After Held & Hein (1963) and Wiener (1948): matched visual stripes under a shared governor, contrasting closed-loop reafference on the left with open-loop passive transport on the right."
 
 the-user-is-not-a-vector:
   updated: 2026-11-14
   toc: true
   toc_open: false
+  og_image: /assets/blog/og-03-the-user-is-not-a-vector.png
+  frontispiece:
+    plate: "Plate III"
+    src: /assets/blog/plate-03-the-user-is-not-a-vector.webp
+    alt: "Copperplate engraving contrasting a static vector pinned on a Cartesian grid with a walker inside a curved library whose footsteps rearrange the surrounding shelves."
+    caption: "From a static coordinate to an adaptive ecology: a walker whose footsteps continually rearrange the shelves ahead."
 
 when-prediction-changes-what-it-predicts:
   toc: false

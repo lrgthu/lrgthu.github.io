@@ -5,6 +5,7 @@ layout: default
 {% assign writing_type = page.writing_type | default: "Perspective" %}
 {% assign updated_at = page.updated | default: post_meta.updated %}
 {% assign update_note = page.update_note | default: post_meta.update_note %}
+{% assign frontispiece = page.frontispiece | default: post_meta.frontispiece %}
 {% assign toc_enabled = page.toc | default: post_meta.toc %}
 {% assign toc_open = true %}
 {% if page.toc_open == false or post_meta.toc_open == false %}{% assign toc_open = false %}{% endif %}
@@ -36,6 +37,20 @@ layout: default
       <p class="blog-update-note"><strong>Revision note.</strong> {{ update_note }}</p>
     {% endif %}
   </header>
+
+  {% if frontispiece and page.placeholder != true %}
+    <figure class="blog-frontispiece">
+      <div class="blog-frontispiece-frame">
+        <img src="{{ frontispiece.src | relative_url }}" alt="{{ frontispiece.alt | escape }}" width="1376" height="768" loading="eager" decoding="async">
+      </div>
+      {% if frontispiece.caption %}
+        <figcaption class="blog-frontispiece-caption">
+          {% if frontispiece.plate %}<span class="blog-plate-label">{{ frontispiece.plate }}</span>{% endif %}
+          <span>{{ frontispiece.caption }}</span>
+        </figcaption>
+      {% endif %}
+    </figure>
+  {% endif %}
 
   {% if toc_enabled and page.placeholder != true %}
     <details class="blog-toc" data-blog-toc{% if toc_open %} open{% endif %}>

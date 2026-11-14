@@ -9,6 +9,12 @@ tags: [vision, neuroscience, representation-learning, neuroai]
 writing_type: Perspective
 toc: true
 toc_open: false
+og_image: /assets/blog/og-04-the-division-of-visual-work.png
+frontispiece:
+  plate: "Plate IV"
+  src: /assets/blog/plate-04-the-division-of-visual-work.webp
+  alt: "Copperplate engraving of a wooden chair refracted into three parallel representations: occluding contour versus shadow, 2.5D surface-normal needles, and spatial ground-plane reach geometry."
+  caption: "One retinal scene refracted into concurrent downstream formats: occluding contour separated from cast shadow, 2.5D surface-normal needles, and action-ready spatial layout."
 ---
 
 *Rethinking my doctoral work through Marr*
@@ -30,6 +36,10 @@ Across three lines of my thesis—comparing networks trained on distinct objecti
 Take two photographs of the same chair captured from different viewpoints. Judging that both images show the same piece of furniture and judging how the chair has rotated are equally genuine visual achievements, yet they treat the pixel differences between the two photographs in opposite ways. Identification treats viewpoint change as nuisance variation to be factored out; pose estimation or reach planning treats that exact geometric transformation as the signal to recover.
 
 Marr's (1982) distinction between computational theory and representational format clarifies why no single feature space gets both jobs for free. Every format makes certain relationships explicit at the price of burying others. Marr himself still placed a viewer-independent three-dimensional object model at the apex of his visual pipeline, but decades of subsequent neuroscience showed that primate vision serves heterogeneous, concurrent consumers: ventral temporal pathways untangle object identity across viewing conditions, while dorsal parietal and scene-selective pathways retain viewer-centered metric geometry, surface orientation, and obstacle boundaries needed to guide eye movements, grasping, and locomotion (Goodale & Milner, 1992; DiCarlo & Cox, 2007). "Abstraction" is therefore not a scalar rank. A representation that discards viewpoint to stabilize category readout becomes impoverished for motor control.
+
+<div class="living-plate" data-living-plate="marr-chair">
+  <noscript><p><em>Interactive Plate IV: Interactive 3D chair projection contrasting view-invariant category readout, view-equivariant 2.5D surface normals, and contour-versus-shadow separation.</em></p></noscript>
+</div>
 
 When we use an ImageNet object classifier to map human visual cortex, we inherit the asymmetries of its training objective—the distinctions its loss rewards and the geometric variations it can afford to collapse. That dependence surfaced directly when I compared encoding models built from networks trained for object classification, scene classification, and boundary detection (Lin, 2024, chapter 4). Even in exploratory single-participant comparisons where task and training data covaried, switching objectives shifted layer-to-cortex correspondences in AlexNet—though not uniformly in ResNet-50—and boundary-detection networks induced a distinct cortical arrangement again. Model choice is never a neutral ruler held up against the brain; a candidate network probes cortex through the particular invariances its objective forced it to build.
 

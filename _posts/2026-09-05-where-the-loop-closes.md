@@ -55,6 +55,10 @@ Step back one timescale further and the dyad becomes a transmission chain. Labor
 
 Neural trajectories unfold in milliseconds, conversational alignment in seconds and minutes, ontogenetic plasticity over years, and grammatical evolution across generations. Human language owes its leverage to the way structured internal computation, dyadic coordination, and cumulative culture lock together across those four clocks rather than residing in any single layer alone.
 
+<div class="living-plate" data-living-plate="boundary-caliper">
+  <noscript><p><em>Interactive Plate I: Counterfactual boundary caliper across cortical, dyadic, ontogenetic, and cultural timescales.</em></p></noscript>
+</div>
+
 ---
 
 ## 4. What Large Language Models Actually Inherit

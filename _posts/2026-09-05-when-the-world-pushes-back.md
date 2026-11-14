@@ -67,6 +67,10 @@ A cybernetic perspective adds a stricter mechanistic condition that even joint b
 
 Consider a concrete failure mode. Suppose two visuomotor networks guide a limb toward a moving target. Evaluated offline on recorded primate visual streams, both achieve high linear predictivity of posterior parietal cortex; evaluated in unperturbed closed-loop reaching, both land on the target with human-like kinematics. Inside Model A, however, the parietal-aligned subspace serves as the forward state estimator driving rapid online motor correction within 150 ms of a visual target jump. Inside Model B, a geometrically similar parietal-like representation arises as an auxiliary predictive readout, while actual motor correction relies on a shortcut low-level reflex pathway that collapses under feedback delay. Static encoding benchmarks and unperturbed behavioral tests score both models as equally brain-like. Perturbing loop delay or intervening directly on the aligned latent subspace separates them immediately.
 
+<div class="living-plate" data-living-plate="perturbation-falsifier">
+  <noscript><p><em>Interactive Plate II: Closed-loop reaching simulation comparing a forward state estimator (Model A) against a passive readout + reflex shortcut (Model B) under feedback delay and subspace silencing.</em></p></noscript>
+</div>
+
 Turning causal-role equivalence into an experimental program points to three diagnostic tests where passive alignment can fail:
 
 1. **Perturbation and recovery trajectories.** Subject biological and artificial systems to matched closed-loop disturbances—visuomotor rotations, feedback delays, sensory dropouts, altered plant dynamics—and compare the time course of error correction rather than endpoint accuracy alone.

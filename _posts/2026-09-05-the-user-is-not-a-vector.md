@@ -91,6 +91,10 @@ In [*Where the Loop Closes*](/blog/where-the-loop-closes/), I argued that explan
 
 Separating these components turns philosophical distinctions into testable interventional signatures. Randomized exposure holdouts and evaluation on common, policy-independent candidate sets separate mere availability from internalized interest. Temporary withdrawal of recommendation pressure tests hysteresis: convenience-driven clicking collapses as soon as prominent slotting stops, whereas cultivated competence and endorsed taste persist and generate self-initiated search. Delayed reassessment and light-touch reflective elicitation expose gaps between midnight compulsion and next-day endorsement.
 
+<div class="living-plate" data-living-plate="performative-trajectory">
+  <noscript><p><em>Interactive Plate III: Performative user-recommender phase portrait and policy withdrawal (holdout) hysteresis test.</em></p></noscript>
+</div>
+
 Once user state transitions are modeled as action-dependent, Wiener's question from [*When the World Pushes Back*](/blog/when-the-world-pushes-back/)—**Whose `J`?**—becomes an immediate systems design problem. Optimizing short-horizon behavioral volume treats human plasticity as an instrument for metric growth. Designing for **human use** treats predictive accuracy as a constraint inside a broader relationship: helping people pursue intentions they endorse, discover capacities they had not yet articulated, and revise how the environment adapts to them without fighting an opaque adversary.
 
 ---
