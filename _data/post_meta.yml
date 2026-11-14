@@ -1,16 +1,15 @@
 the-system-is-the-model:
-  updated: 2026-09-05
-  update_note: "Clarified the operational criterion for choosing a system boundary and added cases where a local model is sufficient."
+  updated: 2026-11-14
   toc: true
+  toc_open: false
 
 intelligence-is-in-the-loop:
-  updated: 2026-09-05
-  update_note: "Sharpened the research program around causal-role equivalence, matched perturbations, and the scope of the claim."
+  updated: 2026-11-14
   toc: true
+  toc_open: false
 
 the-user-is-not-a-vector:
-  updated: 2026-09-05
-  update_note: "Clarified that dynamic vectors are not the target; added literature on performative prediction, causal identification, and user agency."
+  updated: 2026-11-14
   toc: true
   toc_open: false
 

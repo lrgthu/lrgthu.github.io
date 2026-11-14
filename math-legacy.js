@@ -4,12 +4,16 @@
 
   const inlineMath = new Map([
     ["z_t", "z_t"],
+    ["z_(t+1)", "z_{t+1}"],
     ["a_t", "a_t"],
     ["c_t", "c_t"],
+    ["ε_t", "\\varepsilon_t"],
     ["x_i", "x_i"],
     ["mean_g", "\\operatorname{mean}_g"],
     ["n_g", "n_g"],
-    ["π*", "\\pi^\\star"]
+    ["π*", "\\pi^\\star"],
+    ["J(π)", "J(\\pi)"],
+    ["J", "J"]
   ]);
 
   const displayMath = new Map([
