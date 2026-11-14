@@ -1,5 +1,5 @@
 ---
-title: "Intelligence Is in the Loop"
+title: "When the World Pushes Back"
 date: 2026-09-05 15:58:00 -0500
 summary: "A research perspective on NeuroAI through Norbert Wiener: from representation to feedback, learning, agency, and the question of who chooses the goal."
 tags: [neuroai, cybernetics, control, neuroscience, ai, norbert-wiener]
@@ -21,7 +21,7 @@ Norbert Wiener offers an unexpectedly sharp lens here—less as a forgotten prop
 
 `environment → sensing → internal state → action → environment`
 
-In [*The System Is the Model*](/blog/the-system-is-the-model/), I framed this as a question of where an explanatory loop closes. Taking the organism–environment loop as the primary unit of analysis changes NeuroAI in two connected ways: mechanistically, brain–model evaluation has to test whether matched internal states play equivalent **causal roles** around the loop rather than merely exhibiting similar geometry; normatively, once a predictive model is wired into a loop that acts on the world, the source of its objective ceases to be an external engineering detail. **Intelligence is larger than the model, and optimization is smaller than judgment.**
+In [*Where the Loop Closes*](/blog/where-the-loop-closes/), I framed this as a question of choosing the smallest causal boundary that remains adequate under intervention. Taking the organism–environment loop as the primary unit of analysis changes NeuroAI in two connected ways: mechanistically, brain–model evaluation has to test whether matched internal states play equivalent **causal roles** around the loop rather than merely exhibiting similar geometry; normatively, once a predictive model is wired into a loop that acts on the world, the source of its objective ceases to be an external engineering detail. **Intelligence is larger than the model, and optimization is smaller than judgment.**
 
 ---
 

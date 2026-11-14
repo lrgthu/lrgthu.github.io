@@ -1,8 +1,8 @@
 ---
-title: "What Visual Representations Are For"
+title: "The Division of Visual Work"
 date: 2026-09-06 13:00:00 -0500
 updated: 2026-11-14
-permalink: /blog/what-representations-are-for/
+permalink: /blog/the-division-of-visual-work/
 summary: "Revisiting my visual neuroscience work through Marr: what visual descriptions make explicit, how they relate, and how their organization changes across cortex and time."
 description: "A personal rethink of visual representation, hierarchy, and computation, grounded in my doctoral work on brain encoding models and revisited through Marr."
 tags: [vision, neuroscience, representation-learning, neuroai]
@@ -65,11 +65,11 @@ Because the stimulus remained visible throughout much of the recording window, s
 
 ---
 
-## Division of Work Over a Single Ladder
+## Beyond the Single Ladder
 
 Putting these threads together replaces the ladder metaphor with a **division of computational work** across representations of the same scene. That division does not require an isolated cortical module for every visual adjective. A single neural population code can preserve surface orientation in one subspace while permitting an orthogonal linear readout to extract object identity invariantly—provided both subspaces are formatted for their respective consumers.
 
-Return one last time to the chair. Recognizing what kind of object it is, recovering the slant of its seat, separating its cast shadow from its leg boundary, situating it within the room's layout, and ultimately guiding a body to sit in it or walk around it—where passive vision meets the closed sensorimotor loop explored in [*Intelligence Is in the Loop*](/blog/intelligence-is-in-the-loop/)—pose genuinely different computational demands on the same retinal input.
+Return one last time to the chair. Recognizing what kind of object it is, recovering the slant of its seat, separating its cast shadow from its leg boundary, situating it within the room's layout, and ultimately guiding a body to sit in it or walk around it—where passive vision meets the closed sensorimotor loop explored in [*When the World Pushes Back*](/blog/when-the-world-pushes-back/)—pose genuinely different computational demands on the same retinal input.
 
 Marr's lasting gift is the insistence that representations cannot be understood apart from the problems their formats make tractable. The colored cortical maps from my dissertation still give me a map of correspondences worth studying; what changed is the question I bring to them. Instead of asking how high a cortical region sits on a single hierarchy, I want to specify which geometric and semantic properties its representation keeps explicit, how neighboring descriptions share the load, and what downstream work that organization makes possible.
 
